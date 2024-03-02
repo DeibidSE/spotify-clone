@@ -1,75 +1,46 @@
-# Nuxt 3 Minimal Starter
+# Clon de Spotify con Nuxt 3
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Este proyecto es un clon de Spotify desarrollado con el framework Vue Nuxt 3.
 
-## Setup
+## Descripción
 
-Make sure to install the dependencies:
+Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo a los usuarios buscar y reproducir música, crear listas de reproducción personalizadas, explorar artistas y álbumes, entre otras funcionalidades.
+
+## Instalación
+
+1. **Clona este repositorio en tu máquina local:**
 
 ```bash
-# npm
+git clone https://github.com/DeibidSE/spotify-clone.git
+```
+
+2. **Navega al directorio del proyecto:**
+
+```bash
+cd spotify-clone
+```
+
+3. **Instala las dependencias:**
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Uso
 
-Start the development server on `http://localhost:3000`:
+1. **Inicia el servidor de desarrollo:**
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+2. **Abre tu navegador web y accede a `http://localhost:3000` para ver la aplicación en funcionamiento.**
 
-Build the application for production:
+## Créditos
 
-```bash
-# npm
-npm run build
+- Este proyecto ha sido creado por [DeibidSE](https://github.com/DeibidSE).
+- Basado en el proyecto [Spotify Twitch Clone](https://github.com/midudev/spotify-twitch-clone) desarrollado por [Midudev](https://github.com/midudev).
 
-# pnpm
-pnpm run build
+## Licencia
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
