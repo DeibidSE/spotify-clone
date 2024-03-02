@@ -40,7 +40,7 @@ const isPlayingPlaylist = computed(() => {
 
 const handleClick = async () => {
   // Playlist playing clicked to pause music
-  if (isPlayingPlaylist === true) {
+  if (isPlayingPlaylist.value === true) {
     playerStore.setIsPlaying(false)
     return
   }

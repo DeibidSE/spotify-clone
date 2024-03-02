@@ -3,7 +3,6 @@
     <div
       id="playlist-container"
       class="relative flex flex-col h-full overflow-x-hidden bg-zinc-900"
-      :transition:name="'playlist ' + id + ' box'"
     >
       <!-- <PageHeader /> -->
 
@@ -13,7 +12,6 @@
             :src="playlist?.cover"
             :alt="'Cover of ' + playlist?.title"
             class="object-cover w-full h-full shadow-lg"
-            :transition:name="'playlist ' + playlist?.id + ' image'"
           >
         </picture>
 
@@ -21,18 +19,13 @@
           <h2 class="flex items-end flex-1">
             Playlist
           </h2>
-          <div>
-            <h1 class="block text-5xl font-bold text-white">
-              {{ playlist?.title }}
-              <span :transition:name="'playlist ' + playlist?.id + ' title'" />
-            </h1>
-          </div>
+          <h1 class="block text-5xl font-bold text-white">
+            {{ playlist?.title }}
+          </h1>
 
           <div class="flex items-end flex-1">
             <div class="text-sm font-normal text-gray-300">
-              <div :transition:name="'playlist ' + playlist?.id + ' artists'">
-                <span>{{ playlist?.artists.join(', ') }}</span>
-              </div>
+              <span>{{ playlist?.artists.join(', ') }}</span>
               <p class="mt-1">
                 <span class="text-white">{{ playListSongs.length }} canciones</span>,
                 3 h aproximadamente
@@ -67,16 +60,3 @@ const playlist = allPlaylists.find(playlist => playlist.id === Number(id))
 const playListSongs = songs.filter(song => song.albumId === playlist?.albumId)
 
 </script>
-
-<style scoped>
-img {
-  view-transition-name: selected-playlist;
-}
-</style>
-
-<style>
-::view-transition-old(header),
-::view-transition-new(header) {
-  width: auto;
-}
-</style>

@@ -31,4 +31,8 @@ const props = defineProps({
 })
 
 const sliderValue = ref([props.value])
+
+watch(() => props.value, (newValue) => {
+  sliderValue.value = [newValue]
+})
 </script>

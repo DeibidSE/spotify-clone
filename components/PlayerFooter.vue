@@ -1,35 +1,34 @@
 <template>
   <div class="z-50 flex flex-row justify-between w-full h-full px-1">
-    <div class="w-[200px] grid place-content-center">
+    <div class="grid w-full place-content-center">
       Current Song Info
     </div>
 
-    <div class="grid flex-1 gap-4 place-content-center">
+    <div class="grid flex-1 w-full gap-4 place-content-center">
       <div class="flex flex-col items-center justify-center gap-2">
-        <button class="p-2 bg-white rounded-full" @click="togglePlay">
-          <svg
-            v-if="playerStore.isPlaying"
-            role="img"
-            height="16"
-            width="16"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          ><path d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z" /></svg>
-          <svg
-            v-else
-            role="img"
-            height="16"
-            width="16"
-            aria-hidden="true"
-            viewBox="0 0 16 16"
-          ><path d="M3 1.713a.7.7 0 0 1 1.05-.607l10.89 6.288a.7.7 0 0 1 0 1.212L4.05 14.894A.7.7 0 0 1 3 14.288V1.713z" /></svg>
-        </button>
+        <div class="flex flex-row items-center justify-center gap-6">
+          <!-- Previous song button-->
+          <button class="p-2" @click="prevSong">
+            <IconsPrevIcon />
+          </button>
+          <!-- Play/pause button-->
+          <button class="p-2 bg-white rounded-full" @click="togglePlay">
+            <IconsPlayIcon v-if="!playerStore.isPlaying" class="w-4 h-4" />
+            <IconsPauseIcon v-else class="w-4 h-4" />
+          </button>
+          <!-- Next song button -->
+          <button class="p-2" @click="nextSong">
+            <IconsNextIcon />
+          </button>
+        </div>
+
+        <!-- Song time slider-->
         <SongControl :audio="audioRef" @update:audio="updateAudioRef" />
         <audio ref="audioRef" />
       </div>
     </div>
 
-    <div class="grid place-content-center">
+    <div class="grid w-full place-content-center">
       Volume Control
     </div>
   </div>
@@ -45,6 +44,28 @@ let audioSrc = null
 const togglePlay = () => {
   if (playerStore.currentMusic.song) {
     playerStore.setIsPlaying(!playerStore.isPlaying)
+  }
+}
+
+const nextSong = () => {
+  const { song, playlist, songs } = playerStore.currentMusic
+  const index = playerStore.currentMusic.songs.findIndex(e => e.id === song.id) ?? -1
+  if (index > -1 && index + 1 < songs.length) {
+    playerStore.setIsPlaying(false)
+    playerStore.setCurrentMusic({ songs, playlist, song: songs[index + 1] })
+    playerStore.setIsPlaying(true)
+    audioRef.value.currentTime = 0
+  }
+}
+
+const prevSong = () => {
+  const { song, playlist, songs } = playerStore.currentMusic
+  const index = playerStore.currentMusic.songs.findIndex(e => e.id === song.id) ?? -1
+  if (index && index > -1 && index > 0) {
+    playerStore.setIsPlaying(false)
+    playerStore.setCurrentMusic({ songs, playlist, song: songs[index - 1] })
+    playerStore.setIsPlaying(true)
+    audioRef.value.currentTime = 0
   }
 }
 

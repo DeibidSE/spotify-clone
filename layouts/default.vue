@@ -8,7 +8,7 @@
       <slot />
     </main>
 
-    <footer class="[grid-area:player] h-[80px]">
+    <footer class="[grid-area:player] h-20">
       <PlayerFooter />
     </footer>
   </div>
