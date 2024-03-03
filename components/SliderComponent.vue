@@ -1,7 +1,7 @@
 <template>
   <SliderRoot
     v-model="sliderValue"
-    class="relative flex items-center select-none touch-none group w-96"
+    class="relative flex items-center w-full select-none touch-none group"
     :max="max"
     @update:model-value="$emit('update:modelValue', sliderValue)"
   >

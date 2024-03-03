@@ -1,11 +1,11 @@
 <template>
-  <div class="z-50 flex flex-row justify-between w-full h-full px-1">
-    <div class="grid w-full place-content-center">
-      Current Song Info
+  <div class="z-50 flex flex-row justify-between w-full h-full gap-6 px-1">
+    <div class="flex items-center justify-start">
+      <CurrentSong />
     </div>
 
-    <div class="grid flex-1 w-full gap-4 place-content-center">
-      <div class="flex flex-col items-center justify-center gap-2">
+    <div class="flex items-center justify-center flex-1 w-full gap-4">
+      <div class="flex flex-col items-center justify-center w-full gap-2">
         <div class="flex flex-row items-center justify-center gap-6">
           <!-- Previous song button-->
           <button class="p-2" @click="prevSong">
@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div class="grid w-full place-content-center">
-      Volume Control
+    <div class="flex items-center justify-end">
+      <VolumeControl />
     </div>
   </div>
 </template>
@@ -41,8 +41,12 @@ const playerStore = usePlayerStore()
 const audioRef = ref(null)
 let audioSrc = null
 
+const currentSong = computed(() => {
+  return playerStore.currentMusic?.song
+})
+
 const togglePlay = () => {
-  if (playerStore.currentMusic.song) {
+  if (currentSong.value) {
     playerStore.setIsPlaying(!playerStore.isPlaying)
   }
 }
@@ -93,6 +97,10 @@ watchEffect(() => {
   } else {
     audioRef.value.pause()
   }
+})
+
+watch(() => playerStore.volume, (newVolume) => {
+  audioRef.value.volume = newVolume
 })
 
 </script>

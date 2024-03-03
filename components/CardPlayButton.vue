@@ -18,7 +18,7 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { usePlayerStore } from '@/store/playerStore'
 
 const props = defineProps({

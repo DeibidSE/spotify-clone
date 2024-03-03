@@ -1,5 +1,5 @@
 <template>
-  <div class="flex text-xs gap-x-3">
+  <div class="flex w-1/2 gap-3 text-xs">
     <span class="w-12 text-right opacity-50">{{ formatTime(currentTime) }}</span>
     <SliderComponent
       :max="props.audio ? props.audio.duration : 0"
