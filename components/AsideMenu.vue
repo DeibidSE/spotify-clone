@@ -2,12 +2,12 @@
   <nav class="flex flex-col flex-1 gap-2">
     <!-- Top panel -->
     <div class="flex flex-col w-full p-2 rounded-lg bg-zinc-900">
-      <a href="/" class="menu_item">
+      <NuxtLink to="/" class="menu_item">
         <IconsHomeIcon />Inicio
-      </a>
-      <a href="/" class="menu_item">
+      </NuxtLink>
+      <NuxtLink to="/search" class="menu_item">
         <IconsSearchIcon />Buscar
-      </a>
+      </NuxtLink>
     </div>
     <!-- Bottom panel -->
     <div class="flex flex-col w-full h-full p-2 rounded-lg bg-zinc-900">
@@ -15,10 +15,10 @@
         <IconsLibraryIcon />Tu biblioteca
       </a>
       <div class="overflow-y-auto">
-        <a
+        <NuxtLink
           v-for="(playlist, key) in playlists"
           :key="key"
-          :href="`/playlist/${playlist.id}`"
+          :to="`/playlist/${playlist.id}`"
           class="flex flex-row items-center gap-5 p-2 rounded-md hover:bg-zinc-800"
         >
           <picture class="flex-none w-12 h-12">
@@ -32,7 +32,7 @@
               {{ playlist.artists.join(', ') }}
             </span>
           </div>
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </nav>

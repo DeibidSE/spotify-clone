@@ -1,7 +1,6 @@
 <template>
   <NuxtLayout>
     <div
-      id="playlist-container"
       class="relative flex flex-col h-full overflow-x-hidden bg-zinc-900"
     >
       <header class="flex flex-row gap-8 px-6 mt-12">
@@ -9,7 +8,7 @@
           <img
             :src="playlist.cover"
             :alt="'Cover of ' + playlist.title"
-            class="object-cover w-full h-full shadow-lg"
+            class="object-cover w-full h-full shadow-lg [view-transition-name:selected-playlist]"
           >
         </picture>
 
@@ -49,12 +48,12 @@
 </template>
 
 <script setup lang="ts">
-import { allPlaylists, songs } from '@/lib/data'
+import { playlists, songs } from '@/lib/data'
 
 const route = useRoute()
 const id = ref(Number(route.params.id))
 
-const playlist = ref(allPlaylists.find(playlist => playlist.id === id.value))
-const playlistSongs = ref(songs.filter(song => song.albumId === playlist.value?.albumId))
+const playlist = ref(playlists.find(playlist => playlist.id === id.value))
+const playlistSongs = ref(songs.filter(song => song.albumId === playlist.value?.id))
 
 </script>

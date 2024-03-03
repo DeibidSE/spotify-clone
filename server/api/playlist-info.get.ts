@@ -1,4 +1,4 @@
-import { allPlaylists, songs as allSongs } from '@/lib/data'
+import { playlists, songs } from '@/lib/data'
 
 export default defineEventHandler((event) => {
   try {
@@ -9,19 +9,22 @@ export default defineEventHandler((event) => {
       throw createError({ statusCode: 400, statusMessage: 'ID not provided' })
     }
 
-    const playlist = allPlaylists.find(playlist => playlist.id === id)
+    const playlist = playlists.find(playlist => playlist.id === id)
 
     if (!playlist) {
-      throw createError({ statusCode: 400, statusMessage: 'Playlist not found' })
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Playlist not found'
+      })
     }
 
-    const songs = allSongs.filter(song => song.albumId === playlist.albumId)
+    const allSongs = songs.filter(song => song.albumId === playlist.id)
 
     if (!playlist || !songs.length) {
       throw new Error('Invalid data or no songs found')
     }
 
-    return new Response(JSON.stringify({ playlist, songs }), {
+    return new Response(JSON.stringify({ playlist, songs: allSongs }), {
       headers: { 'content-type': 'application/json' }
     })
   } catch (error) {

@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Song } from '@/lib/data'
+import { type Song } from '@/lib/types.d'
 
 defineProps({
   songs: {

@@ -9,16 +9,17 @@
       <CardPlayButton :id="id" size="small" />
     </div>
     <!-- Card -->
-    <a
-      :href="'/playlist/' + id"
+    <NuxtLink
+      :to="`/playlist/${id}`"
       class="relative flex flex-col gap-2 p-2 pb-6 overflow-hidden transition-all duration-300 rounded-md w-44"
+      @click="active = playlist.id"
     >
       <picture class="flex-none w-full h-auto aspect-square">
         <img
           :src="cover"
-          :alt="'Cover of ' + title + ' by ' + artists.join(', ')"
+          :alt="`Cover of  ${title} by ${artists.join(', ')}`"
           class="object-cover w-full h-full rounded-md"
-          @click="active = props.playlist.id"
+          :class="{ 'active [view-transition-name:selected-playlist] [contain:layout]': active === playlist.id }"
         >
       </picture>
       <div class="flex flex-col flex-auto px-2">
@@ -29,19 +30,18 @@
           {{ artists.join(', ') }}
         </span>
       </div>
-    </a>
+    </NuxtLink>
   </article>
 </template>
 
 <script setup lang="ts">
-import type { Playlist } from '@/lib/data'
+import { type Playlist } from '@/lib/types.d'
 
 const props = defineProps({
   playlist: {
     type: Object as () => Playlist,
     default: () => ({
       id: 0,
-      albumId: 0,
       title: '',
       color: '',
       cover: '',

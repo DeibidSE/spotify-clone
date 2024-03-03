@@ -1,34 +1,39 @@
-import { colors } from './colors'
+import { type Song, type Playlist, type Colors } from './types.d'
 
-export interface Playlist {
-  id: number;
-  albumId: number;
-  title: string;
-  color: (typeof colors)[keyof typeof colors];
-  cover: string;
-  artists: string[];
+export const colors: Colors = {
+  red: { accent: '#da2735', dark: '#7f1d1d' },
+  orange: { accent: '#cc5400', dark: '#7c2d12' },
+  yellow: { accent: '#ffae00', dark: '#78350f' },
+  green: { accent: '#21c872', dark: '#14532d' },
+  teal: { accent: '#2ee9d7', dark: '#134e4a' },
+  blue: { accent: '#1e3a8a', dark: '#1e3a8a' },
+  indigo: { accent: '#394bd5', dark: '#312e81' },
+  purple: { accent: '#df24ff', dark: '#581c87' },
+  pink: { accent: '#f33b73', dark: '#831843' },
+  emerald: { accent: '#0c6e54', dark: '#064e3b' },
+  rose: { accent: '#ed2377', dark: '#871b48' },
+  gray: { accent: '#555555', dark: '#27272a' }
 }
 
 export const playlists: Playlist[] = [
   {
     id: 1,
-    albumId: 1,
     title: 'Chill Lo-Fi Music',
     color: colors.yellow,
-    cover: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    cover:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['NoSpirit', 'Casiio']
   },
   {
     id: 2,
-    albumId: 2,
     title: 'Lo-Fi Chill Session',
     color: colors.green,
-    cover: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    cover:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Kupla', 'Blue Fox']
   },
   {
     id: 3,
-    albumId: 3,
     title: 'Study Session',
     color: colors.rose,
     cover: 'https://f4.bcbits.com/img/a1435058381_65.jpg',
@@ -36,7 +41,6 @@ export const playlists: Playlist[] = [
   },
   {
     id: 4,
-    albumId: 4,
     title: 'Blue Note Study Time',
     color: colors.blue,
     cover: 'https://f4.bcbits.com/img/a1962013209_16.jpg',
@@ -44,7 +48,6 @@ export const playlists: Playlist[] = [
   },
   {
     id: 5,
-    albumId: 5,
     title: 'Chau Saura Session',
     color: colors.purple,
     cover: 'https://f4.bcbits.com/img/a2793859494_16.jpg',
@@ -52,7 +55,6 @@ export const playlists: Playlist[] = [
   },
   {
     id: 6,
-    albumId: 6,
     title: 'Like a Necessity',
     color: colors.orange,
     cover: 'https://f4.bcbits.com/img/a0363730459_16.jpg',
@@ -60,38 +62,13 @@ export const playlists: Playlist[] = [
   }
 ]
 
-export const morePlaylists = playlists.map(item => ({
-  ...item,
-  id: item.id + '_more'
-}))
-
-export const sidebarPlaylists = playlists.map(item => ({
-  ...item,
-  id: item.id + '_side'
-}))
-
-export const allPlaylists = [
-  ...playlists,
-  ...morePlaylists,
-  ...sidebarPlaylists
-]
-
-export interface Song {
-  id: number;
-  albumId: number;
-  title: string;
-  image: string;
-  artists: string[];
-  album: string;
-  duration: string;
-}
-
 export const songs: Song[] = [
   {
     id: 1,
     albumId: 1,
     title: 'Moonlit Walk',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['LoFi Dreamer'],
     album: 'Chill Lo-Fi Music',
     duration: '3:12'
@@ -100,7 +77,8 @@ export const songs: Song[] = [
     id: 2,
     albumId: 1,
     title: 'Coffee Daze',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['LoFi Dreamer'],
     album: 'Chill Lo-Fi Music',
     duration: '4:07'
@@ -109,7 +87,8 @@ export const songs: Song[] = [
     id: 3,
     albumId: 1,
     title: 'Skyline Serenade',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['LoFi Dreamer'],
     album: 'Chill Lo-Fi Music',
     duration: '3:50'
@@ -118,7 +97,8 @@ export const songs: Song[] = [
     id: 4,
     albumId: 1,
     title: 'Urban Echoes',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['LoFi Dreamer'],
     album: 'Chill Lo-Fi Music',
     duration: '3:30'
@@ -127,7 +107,8 @@ export const songs: Song[] = [
     id: 5,
     albumId: 1,
     title: "Night's End",
-    image: 'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['LoFi Dreamer'],
     album: 'Chill Lo-Fi Music',
     duration: '4:20'
@@ -136,7 +117,8 @@ export const songs: Song[] = [
     id: 1,
     albumId: 2,
     title: 'Silent Rain',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Urban Nocturne'],
     album: 'Midnight Tales',
     duration: '3:40'
@@ -145,7 +127,8 @@ export const songs: Song[] = [
     id: 2,
     albumId: 2,
     title: 'Lost Pages',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Urban Nocturne'],
     album: 'Midnight Tales',
     duration: '3:20'
@@ -154,7 +137,8 @@ export const songs: Song[] = [
     id: 3,
     albumId: 2,
     title: 'Midnight Tales',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Urban Nocturne'],
     album: 'Midnight Tales',
     duration: '3:50'
@@ -163,7 +147,8 @@ export const songs: Song[] = [
     id: 4,
     albumId: 2,
     title: 'City Lights',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Urban Nocturne'],
     album: 'Midnight Tales',
     duration: '3:30'
@@ -172,7 +157,8 @@ export const songs: Song[] = [
     id: 5,
     albumId: 2,
     title: 'Night Drive',
-    image: 'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
+    image:
+      'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Urban Nocturne'],
     album: 'Midnight Tales',
     duration: '4:20'
