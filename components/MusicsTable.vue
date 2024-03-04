@@ -48,18 +48,5 @@
 <script setup lang="ts">
 import { type Song } from '@/lib/types.d'
 
-defineProps({
-  songs: {
-    type: Object as () => Song[],
-    default: () => ({
-      id: 0,
-      albumId: 0,
-      title: '',
-      image: '',
-      artists: [],
-      album: '',
-      duration: ''
-    })
-  }
-})
+defineProps<{songs: Song[]}>()
 </script>

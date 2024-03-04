@@ -6,28 +6,28 @@
     <div
       class="absolute z-10 transition-all duration-500 translate-y-4 opacity-0 right-4 bottom-20 group-hover:translate-y-0 group-hover:opacity-100"
     >
-      <CardPlayButton :id="id" size="small" />
+      <CardPlayButton :id="playlist.id" size="small" />
     </div>
     <!-- Card -->
     <NuxtLink
-      :to="`/playlist/${id}`"
+      :to="`/playlist/${playlist.id}`"
       class="relative flex flex-col gap-2 p-2 pb-6 overflow-hidden transition-all duration-300 rounded-md w-44"
       @click="active = playlist.id"
     >
       <picture class="flex-none w-full h-auto aspect-square">
         <img
-          :src="cover"
-          :alt="`Cover of  ${title} by ${artists.join(', ')}`"
+          :src="playlist.cover"
+          :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
           class="object-cover w-full h-full rounded-md"
           :class="{ 'active [view-transition-name:selected-playlist] [contain:layout]': active === playlist.id }"
         >
       </picture>
       <div class="flex flex-col flex-auto px-2">
         <h4 class="text-sm text-white">
-          {{ title }}
+          {{ playlist.title }}
         </h4>
         <span class="text-xs text-gray-400">
-          {{ artists.join(', ') }}
+          {{ playlist.artists.join(', ') }}
         </span>
       </div>
     </NuxtLink>
@@ -37,18 +37,6 @@
 <script setup lang="ts">
 import { type Playlist } from '@/lib/types.d'
 
-const props = defineProps({
-  playlist: {
-    type: Object as () => Playlist,
-    default: () => ({
-      id: 0,
-      title: '',
-      color: '',
-      cover: '',
-      artists: []
-    })
-  }
-})
+defineProps<{playlist: Playlist}>()
 const active = useState()
-const { id, cover, title, artists } = props.playlist
 </script>
