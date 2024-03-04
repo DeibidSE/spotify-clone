@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-import { usePlayerStore } from '@/store/playerStore'
 
 const playerStore = usePlayerStore()
 const audioRef = ref(null)

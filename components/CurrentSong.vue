@@ -33,7 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePlayerStore } from '@/store/playerStore'
 import { type Song } from '@/lib/types.d'
 
 const playerStore = usePlayerStore()

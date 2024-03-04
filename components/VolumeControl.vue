@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePlayerStore } from '@/store/playerStore'
 
 const playerStore = usePlayerStore()
 const previousVolume = ref(0)

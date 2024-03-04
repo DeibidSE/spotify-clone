@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePlayerStore } from '@/store/playerStore'
-
 const props = defineProps({
   id: {
     type: Number,
