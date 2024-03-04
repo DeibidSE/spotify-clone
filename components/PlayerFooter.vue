@@ -1,34 +1,33 @@
 <template>
-  <div class="z-50 flex flex-row justify-between w-full h-full gap-6 px-1">
-    <div class="flex items-center justify-start">
+  <div class="z-50 flex w-full h-full gap-2 px-1">
+    <div class="flex items-center justify-start w-[30%]">
       <CurrentSong />
     </div>
 
-    <div class="flex items-center justify-center flex-1 w-full gap-4">
-      <div class="flex flex-col items-center justify-center w-full gap-2">
-        <div class="flex flex-row items-center justify-center gap-6">
-          <!-- Previous song button-->
-          <button class="p-2" @click="prevSong">
-            <IconsPrevIcon />
-          </button>
-          <!-- Play/pause button-->
-          <button class="p-2 bg-white rounded-full" @click="togglePlay">
-            <IconsPlayIcon v-if="!playerStore.isPlaying" class="w-4 h-4" />
-            <IconsPauseIcon v-else class="w-4 h-4" />
-          </button>
-          <!-- Next song button -->
-          <button class="p-2" @click="nextSong">
-            <IconsNextIcon />
-          </button>
-        </div>
-
-        <!-- Song time slider-->
-        <SongControl :audio="audioRef" @update:audio="updateAudioRef" />
-        <audio ref="audioRef" />
+    <div class="flex flex-col items-center justify-center w-[40%] gap-2">
+      <!-- Control buttons -->
+      <div class="flex flex-row items-center justify-center gap-6">
+        <!-- Previous song btn-->
+        <button class="p-2 text-zinc-400 hover:text-zinc-100" @click="prevSong">
+          <nuxt-icon name="previous" />
+        </button>
+        <!-- Play/pause btn-->
+        <button class="p-2 bg-white rounded-full hover:scale-110" @click="togglePlay">
+          <nuxt-icon v-if="!playerStore.isPlaying" name="play" class="w-4 h-4 text-black" />
+          <nuxt-icon v-else name="pause" class="w-4 h-4 text-black" />
+        </button>
+        <!-- Next song btn -->
+        <button class="p-2 text-zinc-400 hover:text-zinc-100" @click="nextSong">
+          <nuxt-icon name="next" />
+        </button>
       </div>
+
+      <!-- Song time slider-->
+      <SongControl :audio="audioRef" @update:audio="updateAudioRef" />
+      <audio ref="audioRef" />
     </div>
 
-    <div class="flex items-center justify-end">
+    <div class="flex items-center justify-end w-[30%] min-w-44">
       <VolumeControl />
     </div>
   </div>

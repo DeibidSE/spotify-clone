@@ -12,22 +12,19 @@
           >
         </picture>
 
-        <div class="flex flex-col justify-between">
-          <h2 class="flex items-end flex-1">
-            Playlist
+        <div class="flex flex-col items-start justify-center w-full h-full truncate">
+          <h2 class="flex w-full">
+            Lista
           </h2>
-          <h1 class="block text-5xl font-bold text-white">
+          <h1 class="w-full font-bold text-white truncate text-8xl">
             {{ playlist?.title }}
           </h1>
-
-          <div v-if="playlist" class="flex items-end flex-1">
-            <div class="text-sm font-normal text-gray-300">
-              <span>{{ playlist.artists.join(', ') }}</span>
-              <p class="mt-1">
-                <span class="text-white">{{ playlistSongs.length }} canciones </span>,
-                3h aproximadamente
-              </p>
-            </div>
+          <div v-if="playlist" class="flex flex-col w-full gap-1 text-sm font-normal text-gray-300">
+            <span>{{ playlist.artists.join(', ') }}</span>
+            <p>
+              <span class="text-white">• {{ playlistSongs.length }} canciones,</span>
+              3h aproximadamente
+            </p>
           </div>
         </div>
       </header>

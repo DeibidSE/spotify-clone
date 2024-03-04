@@ -9,8 +9,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/eslint-module',
-    'radix-vue/nuxt'
+    'radix-vue/nuxt',
+    'nuxt-icons'
   ],
   css: ['@/assets/css/tailwind.css']
 })

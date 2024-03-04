@@ -1,14 +1,17 @@
 <template>
-  <div class="flex justify-center w-32 gap-2 pr-2 text-white">
+  <div class="flex justify-center w-40 gap-3 text-white">
     <button class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
-      <IconsMuteVolume v-if="isVolumeSilenced" />
-      <IconsVolumeIcon v-else />
+      <nuxt-icon v-if="isVolumeSilenced" name="mute" />
+      <nuxt-icon v-else name="volume" />
     </button>
     <SliderComponent
       :max="100"
       :value="playerStore.volume * 100"
       @update:model-value="handleVolumeChange"
     />
+    <button class="ml-2 transition opacity-70 hover:opacity-100">
+      <nuxt-icon name="expand" />
+    </button>
   </div>
 </template>
 

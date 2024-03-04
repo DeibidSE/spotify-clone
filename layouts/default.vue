@@ -1,14 +1,14 @@
 <template>
-  <div class="grid h-screen gap-2 p-2 spotify_grid">
-    <aside class="[grid-area:aside] flex flex-col overflow-y-auto w-full h-full">
+  <div class="grid h-screen gap-2 p-2 overflow-auto spotify_grid">
+    <aside class="[grid-area:left-sidebar] flex flex-col overflow-y-auto w-full h-full">
       <AsideMenu />
     </aside>
 
-    <main class="[grid-area:main] rounded-lg bg-zinc-900 overflow-y-auto w-full">
+    <main class="[grid-area:main-view] rounded-lg bg-zinc-900 overflow-y-auto w-full">
       <slot />
     </main>
 
-    <footer class="[grid-area:player] h-20">
+    <footer class="[grid-area:now-playing-bar] h-[72px]">
       <PlayerFooter />
     </footer>
   </div>
@@ -17,8 +17,8 @@
 <style scoped>
 .spotify_grid {
   grid-template-areas:
-    "aside main main"
-    "player player player";
+    "left-sidebar main-view main-view"
+    "now-playing-bar now-playing-bar now-playing-bar";
   grid-template-columns: 350px 1fr;
   grid-template-rows: 1fr auto;
 }

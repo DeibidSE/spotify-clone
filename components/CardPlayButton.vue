@@ -3,14 +3,18 @@
     class="p-4 transition bg-green-500 rounded-full card-play-button hover:scale-105 hover:bg-green-400"
     @click="handleClick"
   >
-    <IconsPlayIcon
+    <nuxt-icon
       v-if="!isPlayingPlaylist"
+      name="play"
+      class="text-black"
       :class="[
         size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
       ]"
     />
-    <IconsPauseIcon
+    <nuxt-icon
       v-else
+      name="pause"
+      class="text-black"
       :class="[
         size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
       ]"

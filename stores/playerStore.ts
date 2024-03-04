@@ -20,5 +20,6 @@ export const usePlayerStore = defineStore('player', {
     setCurrentMusic (newCurrentMusic: any) {
       this.currentMusic = newCurrentMusic
     }
-  }
+  },
+  persist: true
 })
