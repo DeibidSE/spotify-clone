@@ -6,6 +6,14 @@ export default defineNuxtConfig({
   },
   eslint: { lintOnStart: false },
   ssr: false,
+  runtimeConfig: {
+    public: {
+      BASE_URL: '/spotify-clone'
+    }
+  },
+  app: {
+    baseURL: '/spotify-clone'
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
