@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { type Song, type Playlist } from '@/lib/types.d'
+
 const props = defineProps({
   id: {
     type: Number,
@@ -34,6 +36,7 @@ const props = defineProps({
   }
 })
 
+const config = useRuntimeConfig()
 const playerStore = usePlayerStore()
 
 const isPlayingPlaylist = computed(() => {
@@ -49,8 +52,7 @@ const handleClick = async () => {
 
   // No music -> Fetch playlist info and set it in the state
   try {
-    const res = await fetch(`/api/playlist-info?id=${props.id}`, { server: false })
-    const { songs, playlist } = await res.json()
+    const { songs, playlist }: { songs: Song[], playlist: Playlist } = await $fetch(`${config.public.BASE_URL}/api/playlist-info?id=${props.id}`)
     // Set the first song of the playlist as the currentMusic
     playerStore.setCurrentMusic({ songs, playlist, song: songs[0] })
     // Play music
