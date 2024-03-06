@@ -8,6 +8,10 @@ html {
   color: white;
 }
 
+.nuxt-icon svg{
+  margin-bottom: 0 !important;
+}
+
 @font-face {
   font-family: "CircularStd";
   src: url("/fonts/CircularStd-Medium.woff2") format("woff2");
