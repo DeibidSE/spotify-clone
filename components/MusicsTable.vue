@@ -19,7 +19,11 @@
 
     <tbody>
       <tr class="h-[16px]" />
-      <tr v-for="(song, index) in songs" :key="index" class="overflow-hidden text-sm font-light text-gray-300 transition duration-300 border-spacing-0 hover:bg-white/10">
+      <tr
+        v-for="(song, index) in songs"
+        :key="index"
+        class="overflow-hidden text-sm font-light text-gray-300 transition duration-300 border-spacing-0 hover:bg-white/10"
+      >
         <td class="w-5 px-4 py-2 rounded-tl-lg rounded-bl-lg">
           {{ index + 1 }}
         </td>

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="p-4 transition bg-green-500 rounded-full card-play-button hover:scale-105 hover:bg-green-400"
+    class="p-4 transition bg-green-500 rounded-full shadow-xl shadow-black/60 card-play-button hover:scale-105 hover:bg-green-400"
     @click="handleClick"
   >
     <nuxt-icon
@@ -8,7 +8,7 @@
       name="play"
       class="text-black"
       :class="[
-        size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
+        size === 'small' ? 'text-sm' : 'text-xl'
       ]"
     />
     <nuxt-icon
@@ -16,7 +16,7 @@
       name="pause"
       class="text-black"
       :class="[
-        size === 'small' ? 'w-4 h-4' : 'w-5 h-5'
+        size === 'small' ? 'text-sm' : 'text-xl'
       ]"
     />
   </button>

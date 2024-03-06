@@ -1,19 +1,25 @@
 <template>
   <nav class="flex flex-col h-full gap-2">
     <!-- Top panel -->
-    <div class="flex flex-col w-full p-2 rounded-lg bg-zinc-900">
-      <NuxtLink to="/" class="menu_item">
-        <nuxt-icon name="home" />Inicio
-      </NuxtLink>
-      <NuxtLink to="/search" class="menu_item">
-        <nuxt-icon name="search" />Buscar
-      </NuxtLink>
+    <div class="flex flex-col w-full rounded-lg bg-zinc-900">
+      <ul class="px-3 py-2">
+        <li class="px-3 py-1">
+          <NuxtLink to="/" class="menu_item">
+            <nuxt-icon name="home" class="text-2xl" />Inicio
+          </NuxtLink>
+        </li>
+        <li class="px-3 py-1">
+          <NuxtLink to="/search" class="menu_item">
+            <nuxt-icon name="search" class="text-2xl" />Buscar
+          </NuxtLink>
+        </li>
+      </ul>
     </div>
     <!-- Bottom panel -->
-    <div class="flex flex-col w-full h-full p-2 rounded-lg bg-zinc-900">
-      <a href="/" class="menu_item">
-        <nuxt-icon name="library" />Tu biblioteca
-      </a>
+    <div class="flex flex-col w-full h-full gap-2 p-2 rounded-lg bg-zinc-900">
+      <NuxtLink to="/library" class="flex gap-3 px-4 py-2 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100">
+        <nuxt-icon name="library" class="text-2xl" />Tu biblioteca
+      </NuxtLink>
       <div class="overflow-y-auto">
         <NuxtLink
           v-for="(playlist, key) in playlists"
@@ -53,6 +59,6 @@ const playlistPlaying = computed(() => {
 
 <style scoped>
 .menu_item {
-  @apply flex flex-row items-center gap-4 px-5 py-3 font-medium transition duration-300 text-zinc-400 hover:text-zinc-100;
+  @apply flex flex-row items-center h-10 gap-5 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100;
 }
 </style>

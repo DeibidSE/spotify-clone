@@ -33,11 +33,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 const playerStore = usePlayerStore()
-const audioRef = ref(null)
-let audioSrc = null
+const audioRef = ref<HTMLAudioElement>()
+let audioSrc = ''
 
 const currentSong = computed(() => {
   return playerStore.currentMusic?.song
@@ -51,8 +51,9 @@ const togglePlay = () => {
 
 const nextSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
-  const index = playerStore.currentMusic.songs.findIndex(e => e.id === song.id) ?? -1
-  if (index > -1 && index + 1 < songs.length) {
+  const index = songs.findIndex(e => e.id === song.id) ?? -1
+
+  if (index > -1 && index + 1 < songs.length && audioRef.value) {
     playerStore.setIsPlaying(false)
     playerStore.setCurrentMusic({ songs, playlist, song: songs[index + 1] })
     playerStore.setIsPlaying(true)
@@ -62,8 +63,9 @@ const nextSong = () => {
 
 const prevSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
-  const index = playerStore.currentMusic.songs.findIndex(e => e.id === song.id) ?? -1
-  if (index && index > -1 && index > 0) {
+  const index = songs.findIndex(e => e.id === song.id) ?? -1
+
+  if (index > -1 && index > 0 && audioRef.value) {
     playerStore.setIsPlaying(false)
     playerStore.setCurrentMusic({ songs, playlist, song: songs[index - 1] })
     playerStore.setIsPlaying(true)
@@ -71,19 +73,19 @@ const prevSong = () => {
   }
 }
 
-const updateAudioRef = (newAudio) => {
-  if (audioRef.value) {
+const updateAudioRef = (newAudio: number) => {
+  if (audioRef.value && newAudio) {
     audioRef.value.currentTime = newAudio
   }
 }
 
 watchEffect(() => {
-  if (!audioRef.value) { return }
-
   const { song, playlist } = playerStore.currentMusic
-  if (!song || !playlist) { return }
+
+  if (!song || !playlist || !audioRef.value) { return }
 
   const src = `/music/${playlist.id}/0${song.id}.mp3`
+
   if (src !== audioSrc) {
     audioSrc = src
     audioRef.value.src = src
@@ -98,7 +100,9 @@ watchEffect(() => {
 })
 
 watch(() => playerStore.volume, (newVolume) => {
-  audioRef.value.volume = newVolume
+  if (audioRef.value) {
+    audioRef.value.volume = newVolume
+  }
 })
 
 </script>

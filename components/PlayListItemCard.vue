@@ -6,7 +6,7 @@
     <div
       class="absolute z-10 transition-all duration-500 translate-y-4 opacity-0 right-4 bottom-20 group-hover:translate-y-0 group-hover:opacity-100"
     >
-      <CardPlayButton :id="playlist.id" size="small" />
+      <CardPlayButton :id="playlist.id" size="large" />
     </div>
     <!-- Card -->
     <NuxtLink
