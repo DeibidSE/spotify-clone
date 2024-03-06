@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
+import { type Song, type Playlist } from '@/lib/types.d'
 
 export const usePlayerStore = defineStore('player', {
   state: () => ({
     isPlaying: false,
     currentMusic: {
-      playlist: null,
-      song: null,
-      songs: []
+      playlist: {} as Playlist,
+      song: {} as Song,
+      songs: [] as Song[]
     },
     volume: 1
   }),
