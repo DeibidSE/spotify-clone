@@ -4,7 +4,7 @@
       <AsideMenu />
     </aside>
 
-    <main class="[grid-area:main-view] rounded-lg bg-zinc-900 overflow-y-auto w-full">
+    <main class="[grid-area:main-view] rounded-lg bg-zinc-900 overflow-y-auto w-full h-full">
       <NuxtPage />
     </main>
     <footer class="[grid-area:now-playing-bar] h-[72px]">

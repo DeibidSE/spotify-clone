@@ -1,7 +1,7 @@
 <template>
   <!-- Song loaded -->
   <div
-    v-if="song"
+    v-if="song && Object.keys(song).length > 0"
     class="relative flex items-center gap-5 overflow-hidden"
   >
     <picture class="w-16 h-16 overflow-hidden rounded-md shadow-lg">
@@ -10,10 +10,10 @@
 
     <div class="flex flex-col">
       <h3 class="block text-sm font-semibold">
-        {{ song.title ?? '' }}
+        {{ song.title }}
       </h3>
       <span class="text-xs opacity-80">
-        {{ song.artists.join(', ') ?? '' }}
+        {{ song.artists.join(', ') }}
       </span>
     </div>
   </div>

@@ -1,14 +1,15 @@
 <template>
   <NuxtLayout>
     <div
-      class="relative flex flex-col h-full overflow-x-hidden bg-zinc-900"
+      class="relative flex flex-col h-full gap-6 px-6 py-4 overflow-x-hidden bg-zinc-900"
     >
-      <header class="flex flex-row gap-8 px-6 mt-12">
+      <HeaderMenu />
+      <header class="flex flex-row gap-8">
         <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
           <img
             :src="playlist.cover"
             :alt="'Cover of ' + playlist.title"
-            class="object-cover w-full h-full shadow-lg [view-transition-name:selected-playlist]"
+            class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist]"
           >
         </picture>
 
@@ -26,7 +27,7 @@
         </div>
       </header>
 
-      <div v-if="playlist" class="pt-6 pl-6">
+      <div v-if="playlist" class="pt-6">
         <CardPlayButton :id="id" size="large" />
       </div>
 
@@ -34,7 +35,7 @@
         class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
       />
 
-      <section v-if="playlist" class="p-6">
+      <section v-if="playlist">
         <MusicsTable :songs="playlistSongs" />
       </section>
     </div>

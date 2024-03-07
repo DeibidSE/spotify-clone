@@ -82,7 +82,7 @@ const updateAudioRef = (newAudio: number) => {
 watchEffect(() => {
   const { song, playlist } = playerStore.currentMusic
 
-  if (!song || !playlist || !audioRef.value) { return }
+  if (!song || !playlist || Object.keys(playlist).length === 0 || !audioRef.value) { return }
 
   const src = `/music/${playlist.id}/0${song.id}.mp3`
 
