@@ -25,11 +25,6 @@
         class="overflow-hidden text-sm font-light text-gray-300 transition duration-300 border-spacing-0 hover:bg-white/10"
       >
         <td class="relative w-5 px-4 py-2 rounded-tl-lg rounded-bl-lg">
-          <div
-            class="absolute z-10 transition-all duration-500 translate-y-4 opacity-0 right-4 bottom-20 group-hover:translate-y-0 group-hover:opacity-100"
-          >
-            <CardPlayButton :id="song.id" size="small" />
-          </div>
           {{ index + 1 }}
         </td>
         <td class="flex gap-3 px-4 py-2">
