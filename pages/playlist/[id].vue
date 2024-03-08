@@ -1,44 +1,39 @@
 <template>
   <NuxtLayout>
-    <div
-      class="relative flex flex-col h-full gap-6 px-6 py-4 overflow-x-hidden bg-zinc-900"
-    >
-      <HeaderMenu />
-      <header class="flex flex-row gap-8">
-        <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
-          <img
-            :src="playlist.cover"
-            :alt="'Cover of ' + playlist.title"
-            class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist]"
-          >
-        </picture>
+    <header class="flex flex-row gap-8">
+      <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
+        <img
+          :src="playlist.cover"
+          :alt="'Cover of ' + playlist.title"
+          class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist]"
+        >
+      </picture>
 
-        <div class="flex flex-col items-start justify-end w-full h-full truncate">
-          <h2 class="flex w-full">
-            Lista
-          </h2>
-          <h1 class="w-full font-bold text-white truncate text-8xl">
-            {{ playlist?.title }}
-          </h1>
-          <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-gray-300">
-            <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
-            <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
-          </div>
+      <div class="flex flex-col items-start justify-end w-full h-full truncate">
+        <h2 class="flex w-full">
+          Lista
+        </h2>
+        <h1 class="w-full font-bold text-white truncate text-8xl">
+          {{ playlist?.title }}
+        </h1>
+        <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-gray-300">
+          <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
+          <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
         </div>
-      </header>
-
-      <div v-if="playlist" class="pt-6">
-        <CardPlayButton :id="id" size="large" />
       </div>
+    </header>
 
-      <div
-        class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
-      />
-
-      <section v-if="playlist">
-        <MusicsTable :songs="playlistSongs" />
-      </section>
+    <div v-if="playlist" class="pt-6">
+      <CardPlayButton :id="id" size="large" />
     </div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+    />
+
+    <section v-if="playlist">
+      <MusicsTable :songs="playlistSongs" />
+    </section>
   </NuxtLayout>
 </template>
 
