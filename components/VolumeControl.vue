@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center w-40 gap-3 text-white">
-    <button class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
+    <button aria-label="Mute" class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
       <nuxt-icon v-if="isVolumeSilenced" name="mute" />
       <nuxt-icon v-else name="volume" />
     </button>
@@ -9,7 +9,7 @@
       :value="playerStore.volume * 100"
       @update:model-value="handleVolumeChange"
     />
-    <button class="ml-2 transition opacity-70 hover:opacity-100">
+    <button aria-label="Toggle full screen" class="ml-2 transition opacity-70 hover:opacity-100" @click="toggleFullscreen">
       <nuxt-icon name="expand" />
     </button>
   </div>
@@ -35,5 +35,13 @@ const handleVolumeChange = (value: number[]) => {
   const [newVolume] = value
   const volumeValue = newVolume / 100
   playerStore.setVolume(volumeValue)
+}
+
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
 }
 </script>

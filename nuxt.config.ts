@@ -12,7 +12,38 @@ export default defineNuxtConfig({
     }
   },
   app: {
-    baseURL: '/spotify-clone'
+    baseURL: '/spotify-clone',
+    head: {
+      title: 'Clon de Spotify',
+      meta: [
+        {
+          charset: 'utf-8'
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1'
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Clon de Spotify hecho con Nuxt 3'
+        },
+        {
+          name: 'author',
+          content: 'David Simón - @DeibidSE'
+        }
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/spotify-clone/favicon.ico'
+        }
+      ],
+      htmlAttrs: {
+        lang: 'es'
+      }
+    }
   },
   modules: [
     '@nuxtjs/tailwindcss',

@@ -1,5 +1,6 @@
 <template>
   <button
+    aria-label="Play/Pause"
     class="p-4 transition bg-green-500 rounded-full shadow-xl card-play-button hover:scale-105 hover:bg-green-400"
     @click="handleClick"
   >

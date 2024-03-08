@@ -8,16 +8,16 @@
       <!-- Control buttons -->
       <div class="flex flex-row items-center justify-center gap-6">
         <!-- Previous song btn-->
-        <button class="p-2 text-zinc-400 hover:text-zinc-100" @click="prevSong">
+        <button aria-label="Previous song" class="p-2 text-zinc-400 hover:text-zinc-100" @click="prevSong">
           <nuxt-icon name="previous" />
         </button>
         <!-- Play/pause btn-->
-        <button class="p-2 bg-white rounded-full hover:scale-110" @click="togglePlay">
+        <button aria-label="Play/Pause" class="p-2 bg-white rounded-full hover:scale-110" @click="togglePlay">
           <nuxt-icon v-if="!playerStore.isPlaying" name="play" class="w-4 h-4 text-black" />
           <nuxt-icon v-else name="pause" class="w-4 h-4 text-black" />
         </button>
         <!-- Next song btn -->
-        <button class="p-2 text-zinc-400 hover:text-zinc-100" @click="nextSong">
+        <button aria-label="Next song" class="p-2 text-zinc-400 hover:text-zinc-100" @click="nextSong">
           <nuxt-icon name="next" />
         </button>
       </div>

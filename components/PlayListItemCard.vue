@@ -23,9 +23,9 @@
         >
       </picture>
       <div class="flex flex-col flex-auto px-2">
-        <h4 class="text-sm text-white">
+        <span class="text-sm text-white">
           {{ playlist.title }}
-        </h4>
+        </span>
         <span class="text-xs text-gray-400">
           {{ playlist.artists.join(', ') }}
         </span>
