@@ -5,7 +5,7 @@
     class="relative flex items-center gap-5 overflow-hidden"
   >
     <picture class="w-16 h-16 overflow-hidden rounded-md shadow-lg">
-      <img :src="song.image" :alt="song.title">
+      <img :src="song.image" :alt="song.title" class="rounded-md aspect-square">
     </picture>
 
     <div class="flex flex-col">

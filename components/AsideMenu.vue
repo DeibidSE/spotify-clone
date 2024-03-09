@@ -29,7 +29,11 @@
           :class="{'text-green-500' : playlistPlaying === playlist.id}"
         >
           <picture class="flex-none w-12 h-12">
-            <img :src="playlist.cover" :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`" class="object-cover w-full h-full rounded-md">
+            <img
+              :src="playlist.cover"
+              :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
+              class="object-cover w-full h-full rounded-md aspect-square"
+            >
           </picture>
           <div class="flex flex-col w-full truncate">
             <h4 class="text-sm truncate">

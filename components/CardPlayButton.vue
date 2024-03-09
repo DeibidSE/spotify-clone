@@ -1,24 +1,19 @@
 <template>
   <button
     aria-label="Play/Pause"
-    class="p-4 transition bg-green-500 rounded-full shadow-xl card-play-button hover:scale-105 hover:bg-green-400"
+    class="text-black transition bg-green-500 rounded-full shadow-xl hover:scale-105 hover:bg-green-400"
+    :class="[
+      size === 'small' ? 'text-sm p-4' : 'text-xl p-5'
+    ]"
     @click="handleClick"
   >
     <nuxt-icon
       v-if="!isPlayingPlaylist"
       name="play"
-      class="text-black"
-      :class="[
-        size === 'small' ? 'text-sm' : 'text-xl'
-      ]"
     />
     <nuxt-icon
       v-else
       name="pause"
-      class="text-black"
-      :class="[
-        size === 'small' ? 'text-sm' : 'text-xl'
-      ]"
     />
   </button>
 </template>

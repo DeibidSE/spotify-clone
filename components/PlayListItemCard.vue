@@ -18,7 +18,7 @@
         <img
           :src="playlist.cover"
           :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
-          class="object-cover w-full h-full rounded-md"
+          class="object-cover w-full h-full rounded-md aspect-square"
           :class="{ 'active [view-transition-name:selected-playlist] [contain:layout]': active === playlist.id }"
         >
       </picture>

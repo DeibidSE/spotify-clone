@@ -1,39 +1,43 @@
 <template>
   <NuxtLayout>
-    <header class="flex flex-row gap-8">
-      <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
-        <img
-          :src="playlist.cover"
-          :alt="'Cover of ' + playlist.title"
-          class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist]"
-        >
-      </picture>
-
-      <div class="flex flex-col items-start justify-end w-full h-full truncate">
-        <h2 class="flex w-full">
-          Lista
-        </h2>
-        <h1 class="w-full font-bold text-white truncate text-8xl">
-          {{ playlist?.title }}
-        </h1>
-        <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-gray-300">
-          <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
-          <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
+    <div class="flex flex-col gap-6 px-6 py-4">
+      <header class="flex flex-row gap-8">
+        <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
+          <img
+            :src="playlist.cover"
+            :alt="'Cover of ' + playlist.title"
+            class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist] aspect-square"
+          >
+        </picture>
+        <div class="flex flex-col items-start justify-end w-full h-full truncate">
+          <h2 class="flex w-full">
+            Lista
+          </h2>
+          <h1 class="w-full font-bold text-white truncate text-8xl">
+            {{ playlist?.title }}
+          </h1>
+          <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-gray-300">
+            <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
+            <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
+          </div>
         </div>
+      </header>
+
+      <div v-if="playlist" class="flex items-center justify-start w-full h-full gap-10 p-6">
+        <CardPlayButton :id="id" size="large" />
+        <button
+          aria-label="More options"
+          class="flex items-center justify-center pb-2 text-3xl tracking-widest text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
+        >
+          ...
+        </button>
       </div>
-    </header>
 
-    <div v-if="playlist" class="pt-6">
-      <CardPlayButton :id="id" size="large" />
+      <PlaylistTable v-if="playlist" :songs="playlistSongs" :playlist="playlist" />
+
+      <!-- Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]" />
     </div>
-
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
-    />
-
-    <section v-if="playlist">
-      <MusicsTable :songs="playlistSongs" />
-    </section>
   </NuxtLayout>
 </template>
 
