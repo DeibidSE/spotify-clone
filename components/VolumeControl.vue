@@ -1,9 +1,11 @@
 <template>
   <div class="flex justify-center w-40 gap-3 text-white">
-    <button aria-label="Mute" class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
-      <nuxt-icon v-if="isVolumeSilenced" name="mute" />
-      <nuxt-icon v-else name="volume" />
-    </button>
+    <ToolTip tooltip-text="Silenciar" position="top">
+      <button aria-label="Mute" class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
+        <nuxt-icon v-if="isVolumeSilenced" name="mute" />
+        <nuxt-icon v-else name="volume" />
+      </button>
+    </ToolTip>
     <SliderComponent
       :max="100"
       :value="playerStore.volume * 100"
