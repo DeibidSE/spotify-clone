@@ -8,6 +8,8 @@
         <PlayListItemCard v-for="(playlist, key) in playlists" :key="key" :playlist="playlist" />
       </div>
     </div>
+    <!-- Gradient -->
+    <div class="absolute inset-0 h-full bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-green-600/80 -z-10" />
   </NuxtLayout>
 </template>
 

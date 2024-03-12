@@ -1,25 +1,10 @@
-import { type Song, type Playlist, type Colors } from './types.d'
-
-export const colors: Colors = {
-  red: { accent: '#da2735', dark: '#7f1d1d' },
-  orange: { accent: '#cc5400', dark: '#7c2d12' },
-  yellow: { accent: '#ffae00', dark: '#78350f' },
-  green: { accent: '#21c872', dark: '#14532d' },
-  teal: { accent: '#2ee9d7', dark: '#134e4a' },
-  blue: { accent: '#1e3a8a', dark: '#1e3a8a' },
-  indigo: { accent: '#394bd5', dark: '#312e81' },
-  purple: { accent: '#df24ff', dark: '#581c87' },
-  pink: { accent: '#f33b73', dark: '#831843' },
-  emerald: { accent: '#0c6e54', dark: '#064e3b' },
-  rose: { accent: '#ed2377', dark: '#871b48' },
-  gray: { accent: '#555555', dark: '#27272a' }
-}
+import { type Song, type Playlist } from './types.d'
 
 export const playlists: Playlist[] = [
   {
     id: 1,
     title: 'Chill Lo-Fi Music',
-    color: colors.yellow,
+    color: '#b45309',
     cover:
       'https://vinyl.lofirecords.com/cdn/shop/products/VINYL_MORNING_COFFEE_4-min.png?v=1680526353',
     artists: ['NoSpirit', 'Casiio']
@@ -27,7 +12,7 @@ export const playlists: Playlist[] = [
   {
     id: 2,
     title: 'Lo-Fi Chill Session',
-    color: colors.green,
+    color: '#4f46e5',
     cover:
       'https://vinyl.lofirecords.com/cdn/shop/files/2amsynth-vinyl.png?v=1693312187',
     artists: ['Kupla', 'Blue Fox']
@@ -35,28 +20,28 @@ export const playlists: Playlist[] = [
   {
     id: 3,
     title: 'Study Session',
-    color: colors.rose,
+    color: '#db2777',
     cover: 'https://f4.bcbits.com/img/a1435058381_65.jpg',
     artists: ['Tenno', 'xander', 'Team Astro']
   },
   {
     id: 4,
     title: 'Blue Note Study Time',
-    color: colors.blue,
+    color: '#38bdf8',
     cover: 'https://f4.bcbits.com/img/a1962013209_16.jpg',
     artists: ['Raimu', 'Yasumu']
   },
   {
     id: 5,
     title: 'Chau Saura Session',
-    color: colors.purple,
+    color: '#6b21a8',
     cover: 'https://f4.bcbits.com/img/a2793859494_16.jpg',
     artists: ['Chau Saura', 'amies', 'kyu']
   },
   {
     id: 6,
     title: 'Like a Necessity',
-    color: colors.orange,
+    color: '#eab308',
     cover: 'https://f4.bcbits.com/img/a0363730459_16.jpg',
     artists: ['WFS', 'Nadav Cohen']
   }

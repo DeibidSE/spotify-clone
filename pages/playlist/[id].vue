@@ -36,7 +36,10 @@
       <PlaylistTable v-if="playlist" :songs="playlistSongs" :playlist="playlist" />
 
       <!-- Gradient -->
-      <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]" />
+      <div
+        class="absolute inset-0 -z-[1]"
+        :style="`background-image: linear-gradient(to top, rgb(24, 24, 27), rgba(24, 24, 27, 0.8), ${playlist?.color})`"
+      />
     </div>
   </NuxtLayout>
 </template>

@@ -1,16 +1,7 @@
-export interface Color {
-  accent: string
-  dark: string
-}
-
-export interface Colors {
-  [key: string]: Color
-}
-
 export interface Playlist {
   id: number
   title: string
-  color: Color
+  color: string
   cover: string
   artists: string[]
 }

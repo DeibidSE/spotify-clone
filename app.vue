@@ -7,7 +7,6 @@
     <main class="[grid-area:main-view] relative z-10 flex flex-col rounded-lg overflow-y-auto w-full h-full bg-zinc-900">
       <HeaderMenu />
       <NuxtPage />
-      <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-green-600/80 -z-[1] h-full" />
     </main>
 
     <footer class="[grid-area:now-playing-bar] h-[72px]">
