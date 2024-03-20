@@ -7,7 +7,7 @@ export const playlists: Playlist[] = [
     color: '#b45309',
     cover: '/music/chill_lofi/cover.webp',
     artists: ['NoSpirit', 'Casiio'],
-    genre: 'lowfi'
+    genre: 'LowFi'
   },
   {
     id: 'lofi_chill_session',
@@ -15,7 +15,7 @@ export const playlists: Playlist[] = [
     color: '#4f46e5',
     cover: '/music/lofi_chill_session/cover.webp',
     artists: ['Kupla', 'Blue Fox'],
-    genre: 'lowfi'
+    genre: 'LowFi'
   },
   {
     id: 'study_time',
@@ -23,7 +23,7 @@ export const playlists: Playlist[] = [
     color: '#db2777',
     cover: '/music/study_time/cover.webp',
     artists: ['Tenno', 'xander', 'Team Astro'],
-    genre: 'lowfi'
+    genre: 'LowFi'
   },
   {
     id: 'blue_note_study_time',
@@ -31,7 +31,7 @@ export const playlists: Playlist[] = [
     color: '#38bdf8',
     cover: '/music/blue_note_study_time/cover.webp',
     artists: ['Raimu', 'Yasumu'],
-    genre: 'lowfi'
+    genre: 'LowFi'
   },
   {
     id: 'chau_saura_session',
@@ -39,7 +39,7 @@ export const playlists: Playlist[] = [
     color: '#6b21a8',
     cover: '/music/chau_saura_session/cover.webp',
     artists: ['Chau Saura', 'amies', 'kyu'],
-    genre: 'lowfi'
+    genre: 'LowFi'
   }
 ]
 
