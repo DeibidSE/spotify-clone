@@ -3,7 +3,7 @@ import { playlists, songs } from '@/lib/data'
 export default defineEventHandler((event) => {
   try {
     const urlObject = new URL(getRequestURL(event))
-    const id = Number(urlObject.searchParams.get('id'))
+    const id = urlObject.searchParams.get('id')
 
     if (!id) {
       throw createError({ statusCode: 400, statusMessage: 'ID not provided' })

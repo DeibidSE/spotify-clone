@@ -30,7 +30,7 @@
         >
           <picture class="flex-none w-12 h-12">
             <img
-              :src="playlist.cover"
+              :src="`${config.public.BASE_URL}/${playlist.cover}`"
               :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
               class="object-cover w-full h-full rounded-md aspect-square"
             >
@@ -54,6 +54,7 @@
 
 <script setup lang="ts">
 import { playlists } from '@/lib/data'
+const config = useRuntimeConfig()
 const playerStore = usePlayerStore()
 
 const playlistPlaying = computed(() => {

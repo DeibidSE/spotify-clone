@@ -23,8 +23,8 @@ import { type Song, type Playlist } from '@/lib/types.d'
 
 const props = defineProps({
   id: {
-    type: Number,
-    default: 0
+    type: String,
+    default: ''
   },
   size: {
     type: String,

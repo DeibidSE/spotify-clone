@@ -1,17 +1,17 @@
 export interface Playlist {
-  id: number
+  id: string
   title: string
   color: string
   cover: string
   artists: string[]
+  genre: string
 }
 
 export interface Song {
   id: number
-  albumId: number
+  albumId: string
   title: string
   image: string
   artists: string[]
-  album: string
   duration: string
 }

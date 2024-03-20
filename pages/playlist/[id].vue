@@ -4,7 +4,7 @@
       <header class="flex flex-row gap-8">
         <picture v-if="playlist" class="flex-none aspect-square w-52 h-52">
           <img
-            :src="playlist.cover"
+            :src="`${config.public.BASE_URL}/${playlist.cover}`"
             :alt="'Cover of ' + playlist.title"
             class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist] aspect-square"
           >
@@ -47,9 +47,10 @@
 <script setup lang="ts">
 import { playlists, songs } from '@/lib/data'
 
+const config = useRuntimeConfig()
 const route = useRoute()
 // Recover id from the route and cast it to Number (as it recovers it as a string)
-const id = Number(route.params.id)
+const id = route.params.id
 // Find the playlist that matches that id
 const playlist = playlists.find(playlist => playlist?.id === id)
 // Get all the songs from that playlist

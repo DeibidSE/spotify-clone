@@ -58,7 +58,7 @@
           </div>
         </td>
         <td class="px-4 py-2 hover:text-white hover:underline">
-          {{ song.album }}
+          {{ playlist.title }}
         </td>
         <td class="px-4 py-2 rounded-tr-lg rounded-br-lg">
           {{ song.duration }}
