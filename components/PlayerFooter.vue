@@ -6,7 +6,7 @@
 
     <div class="flex flex-col items-center justify-center w-[40%] gap-2">
       <!-- Control buttons -->
-      <div class="flex flex-row items-center justify-center gap-6">
+      <div class="flex flex-row items-center justify-center gap-5">
         <!-- Previous song btn-->
         <button aria-label="Previous song" class="p-2 text-zinc-400 hover:text-zinc-100" @click="prevSong">
           <nuxt-icon name="previous" />
@@ -19,6 +19,18 @@
         <!-- Next song btn -->
         <button aria-label="Next song" class="p-2 text-zinc-400 hover:text-zinc-100" @click="nextSong">
           <nuxt-icon name="next" />
+        </button>
+        <button
+          aria-label="Loop"
+          class="relative p-2"
+          :class="{
+            'text-green-500 hover:text-green-400': loopEnabled,
+            'text-zinc-400 hover:text-zinc-100' : !loopEnabled
+          }"
+          @click="toggleLoop"
+        >
+          <nuxt-icon name="loop" />
+          <span v-if="loopEnabled" class="absolute bottom-0 w-1 h-1 transform -translate-x-1/2 bg-green-500 rounded-full left-1/2" />
         </button>
       </div>
 
@@ -37,6 +49,7 @@
 
 const playerStore = usePlayerStore()
 const audioRef = ref<HTMLAudioElement>()
+const loopEnabled = ref(false)
 let audioSrc = ''
 
 const currentSong = computed(() => {
@@ -70,6 +83,13 @@ const prevSong = () => {
     playerStore.setCurrentMusic({ songs, playlist, song: songs[index - 1] })
     playerStore.setIsPlaying(true)
     audioRef.value.currentTime = 0
+  }
+}
+
+const toggleLoop = () => {
+  if (audioRef.value) {
+    audioRef.value.loop = !loopEnabled.value
+    loopEnabled.value = !loopEnabled.value
   }
 }
 
