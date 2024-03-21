@@ -17,9 +17,9 @@
     </div>
     <!-- Bottom panel -->
     <div class="flex flex-col w-full h-full gap-2 p-2 rounded-lg bg-zinc-900">
-      <NuxtLink to="/library" class="flex gap-3 px-4 py-2 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100">
+      <div class="flex gap-3 px-4 py-2 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100">
         <nuxt-icon name="library" class="text-2xl" />Tu biblioteca
-      </NuxtLink>
+      </div>
       <div class="overflow-y-auto">
         <NuxtLink
           v-for="(playlist, key) in playlists"
