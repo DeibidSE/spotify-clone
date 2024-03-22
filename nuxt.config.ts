@@ -12,8 +12,7 @@ export default defineNuxtConfig({
     }
   },
   app: {
-    baseURL: '/spotify-clone',
-    buildAssetsDir: 'assets',
+    baseURL: '/spotify-clone/',
     head: {
       title: 'Clon de Spotify',
       meta: [
