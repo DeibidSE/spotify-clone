@@ -31,7 +31,7 @@
                 name="pause"
                 class="absolute inset-0 z-10 self-center opacity-0 justify-self-center group-hover:opacity-100"
               />
-              <img :src="song.image" :alt="song.title" class="rounded-md w-11 h-11 aspect-square group-hover:opacity-60">
+              <img :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md w-11 h-11 aspect-square group-hover:opacity-60">
             </div>
 
             <div class="flex flex-col">
@@ -77,7 +77,7 @@
               </span>
               <img
                 v-if="list.cover && list.cover !== ''"
-                :src="list.cover"
+                :src="`${$config.public.BASE_URL}${list.cover}`"
                 class="absolute bottom-0 right-0 object-cover object-center w-28 h-28 rotate-[25deg] translate-x-4 translate-y-1.5 shadow-[0_2px_4px_0_rgba(0,0,0,0.2)]"
               >
             </div>

@@ -44,7 +44,7 @@
         </td>
         <td class="flex gap-3 px-4 py-2">
           <picture class="">
-            <img :src="song.image" :alt="song.title" class="rounded-md w-11 h-11 aspect-square">
+            <img :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md w-11 h-11 aspect-square">
           </picture>
           <div class="flex flex-col">
             <h3 class="text-base font-normal text-white">

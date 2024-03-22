@@ -16,7 +16,7 @@
     >
       <picture class="flex-none w-full h-auto aspect-square">
         <img
-          :src="`${config.public.BASE_URL}/${playlist.cover}`"
+          :src="`${$config.public.BASE_URL}${playlist.cover}`"
           :alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
           class="object-cover w-full h-full rounded-md aspect-square"
           :class="{ 'active [view-transition-name:selected-playlist] [contain:layout]': active === playlist.id }"
@@ -36,7 +36,6 @@
 
 <script setup lang="ts">
 import { type Playlist } from '@/lib/types.d'
-const config = useRuntimeConfig()
 
 defineProps<{playlist: Playlist}>()
 const active = useState()
