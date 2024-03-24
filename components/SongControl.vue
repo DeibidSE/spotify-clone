@@ -14,7 +14,7 @@
 
 const props = defineProps({
   audio: {
-    type: HTMLAudioElement,
+    type: Object,
     default: () => null
   }
 })
