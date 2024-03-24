@@ -95,26 +95,16 @@ import { songs, playlists } from '@/lib/data'
 const playerStore = usePlayerStore()
 const searchQuery = ref('')
 
-const defaultLists = [
-  { name: 'Música', color: '#dc148c', cover: 'https://i.scdn.co/image/ab67fb8200005caf474a477debc822a3a45c5acb' },
-  { name: 'Podcats', color: '#006450', cover: 'https://i.scdn.co/image/ab6765630000ba8a81f07e1ead0317ee3c285bfa' },
-  { name: 'Eventos en directo', color: '#8400e7', cover: 'https://concerts.spotifycdn.com/images/live-events_category-image.jpg' },
-  { name: 'Lista de éxitos', color: '#8d67ab', cover: 'https://charts-images.scdn.co/assets/locale_en/regional/weekly/region_global_default.jpg' },
-  { name: 'En el coche', color: '#2d46b9', cover: 'https://i.scdn.co/image/ab67fb8200005caf341265d27be641506e56c346' }
-]
-
 const filteredItems = computed(() => {
   return songs.filter(song =>
     song.title.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 })
 
-const uniqueGenres = Array.from(new Set(playlists.map(playlist => playlist.genre))).map((genre) => {
+const lists = Array.from(new Set(playlists.map(playlist => playlist.genre))).map((genre) => {
   const playlist = playlists.find(p => p.genre === genre)
   return { name: genre, color: playlist?.color || '#000', cover: playlist?.cover }
 })
-
-const lists = [...defaultLists, ...uniqueGenres]
 
 const playSong = (selectedSong: Song) => {
   const currentMusic = playerStore.currentMusic
