@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 
+const config = useRuntimeConfig()
 const playerStore = usePlayerStore()
 const audioRef = ref<HTMLAudioElement>()
 const loopEnabled = ref(false)
@@ -104,7 +105,7 @@ watchEffect(() => {
 
   if (!song || !playlist || Object.keys(playlist).length === 0 || !audioRef.value) { return }
 
-  const src = `/music/${playlist.id}/0${song.id}.mp3`
+  const src = `${config.public.BASE_URL}/music/${playlist.id}/0${song.id}.mp3`
 
   if (src !== audioSrc) {
     audioSrc = src
