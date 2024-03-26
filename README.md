@@ -1,12 +1,14 @@
 # Clon de Spotify con Nuxt 3
 
-Este proyecto es un clon de Spotify desarrollado con el framework Vue Nuxt 3.
+    ⚠️ Este proyecto continua en desarrollo y puede contener errores ⚠️
 
-## Descripción
+# Descripción
 
-Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo a los usuarios buscar y reproducir música, crear listas de reproducción personalizadas, explorar artistas y álbumes, entre otras funcionalidades.
+Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo a los usuarios explorar, buscar y reproducir diferentes canciones y/o álbumes, entre otras funcionalidades.
 
-## Instalación
+Por el momento, el proyecto está disponible únicamente en español, sin embargo, se planea realizar una traducción al inglés en futuras actualizaciones.
+
+# Instalación
 
 1. **Clona este repositorio en tu máquina local:**
 
@@ -20,7 +22,7 @@ git clone https://github.com/DeibidSE/spotify-clone.git
 cd spotify-clone
 ```
 
-3. **Instala las dependencias:**
+3. **Instala las dependencias (_Requiere Node v18 o superior_):**
 
 ```bash
 npm install
@@ -34,12 +36,16 @@ npm install
 npm run dev
 ```
 
-2. **Abre tu navegador web y accede a `http://localhost:3000` para ver la aplicación en funcionamiento.**
+2. **Abre tu navegador web y accede a `http://localhost:3000/spotify-clone/` para ver la aplicación en funcionamiento.**
+
+## Contribuciones
+
+¡Las contribuciones son siempre bienvenidas! Si encuentras algún problema o tienes alguna sugerencia, no dudes en enviar un pull request. ¡Siempre se agradece cualquier colaboración por pequeña que sea!
 
 ## Créditos
 
 - Este proyecto ha sido creado por [DeibidSE](https://github.com/DeibidSE).
-- Basado en el proyecto [Spotify Twitch Clone](https://github.com/midudev/spotify-twitch-clone) desarrollado por [Midudev](https://github.com/midudev).
+- Inspirado en el proyecto [Spotify Twitch Clone](https://github.com/midudev/spotify-twitch-clone) desarrollado por [Midudev](https://github.com/midudev).
 
 ## Licencia
 
