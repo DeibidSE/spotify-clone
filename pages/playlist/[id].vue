@@ -16,21 +16,47 @@
           <h1 class="w-full font-bold text-white truncate text-8xl">
             {{ playlist?.title }}
           </h1>
-          <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-gray-300">
+          <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-white">
             <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
             <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
           </div>
         </div>
       </header>
 
-      <div v-if="playlist" class="flex items-center justify-start w-full h-full gap-10 p-6">
-        <CardPlayButton :id="id" size="large" />
-        <button
-          aria-label="More options"
-          class="flex items-center justify-center pb-2 text-3xl tracking-widest text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
-        >
-          ...
-        </button>
+      <div v-if="playlist" class="relative flex items-center justify-between w-full h-full p-6">
+        <div class="flex gap-10">
+          <CardPlayButton :id="id" :size="1" />
+          <button
+            aria-label="More options"
+            class="flex items-center justify-center pb-2 text-3xl tracking-widest text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
+          >
+            ...
+          </button>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300 transition cursor-pointer hover:text-white" @click="isListExpanded = !isListExpanded">
+          <span class="text-sm">Lista</span>
+          <nuxt-icon name="list" />
+          <ul
+            v-show="isListExpanded"
+            class="absolute z-10 w-40 p-1 overflow-hidden rounded shadow-lg right-4 top-20 bg-zinc-800"
+          >
+            <li class="p-3 text-xs font-bold text-green-400">
+              Ver como
+            </li>
+            <li
+              class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
+              @click="playerStore.setCompactList(true)"
+            >
+              <nuxt-icon name="compact-list" />Compacto
+            </li>
+            <li
+              class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
+              @click="playerStore.setCompactList(false)"
+            >
+              <nuxt-icon name="list" />Lista
+            </li>
+          </ul>
+        </div>
       </div>
 
       <PlaylistTable v-if="playlist" :songs="playlistSongs" :playlist="playlist" />
@@ -47,9 +73,12 @@
 <script setup lang="ts">
 import { playlists, songs } from '@/lib/data'
 
+const isListExpanded = ref(false)
+const playerStore = usePlayerStore()
+
 const route = useRoute()
 // Recover id from the route and cast it to Number (as it recovers it as a string)
-const id = route.params.id
+const id = route.params.id ?? ''
 // Find the playlist that matches that id
 const playlist = playlists.find(playlist => playlist?.id === id)
 // Get all the songs from that playlist

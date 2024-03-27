@@ -8,6 +8,9 @@
         <th class="py-2">
           Título
         </th>
+        <th v-if="playerStore.isListCompact" class="py-2">
+          Artistas
+        </th>
         <th class="py-2">
           Álbum
         </th>
@@ -22,7 +25,7 @@
       <tr
         v-for="(song, index) in songs"
         :key="index"
-        class="overflow-hidden text-sm font-light text-gray-300 transition duration-300 border-spacing-0 hover:bg-white/10 group"
+        class="overflow-hidden text-sm font-light text-gray-400 transition duration-300 border-spacing-0 hover:bg-white/10 group"
         @click="playSong(song)"
       >
         <td class="relative w-5 px-4 py-2 text-center rounded-tl-lg rounded-bl-lg">
@@ -44,18 +47,23 @@
         </td>
         <td class="flex gap-3 px-4 py-2">
           <picture class="">
-            <img :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md w-11 h-11 aspect-square">
+            <img v-if="!playerStore.isListCompact" :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md w-11 h-11 aspect-square">
           </picture>
           <div class="flex flex-col">
             <h3 class="text-base font-normal text-white">
               {{ song.title }}
             </h3>
-            <div class="flex flex-row">
+            <div v-if="!playerStore.isListCompact" class="flex flex-row">
               <span v-for="(artist, key) in song.artists" :key="key" class="hover:text-white hover:underline">
                 {{ artist }}<span v-if="key !== song.artists.length - 1">,&nbsp;</span>
               </span>
             </div>
           </div>
+        </td>
+        <td v-if="playerStore.isListCompact" class="px-4 py-2 hover:text-white hover:underline">
+          <span v-for="(artist, key) in song.artists" :key="key" class="hover:text-white hover:underline">
+            {{ artist }}<span v-if="key !== song.artists.length - 1">,&nbsp;</span>
+          </span>
         </td>
         <td class="px-4 py-2 hover:text-white hover:underline">
           {{ playlist.title }}

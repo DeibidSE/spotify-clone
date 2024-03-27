@@ -9,7 +9,8 @@ export const usePlayerStore = defineStore('player', {
       song: {} as Song,
       songs: [] as Song[]
     },
-    volume: 1
+    volume: 1,
+    isListCompact: false
   }),
   actions: {
     setVolume (newVolume: number) {
@@ -20,6 +21,9 @@ export const usePlayerStore = defineStore('player', {
     },
     setCurrentMusic (newCurrentMusic: any) {
       this.currentMusic = newCurrentMusic
+    },
+    setCompactList (isCompact: boolean) {
+      this.isListCompact = isCompact
     }
   },
   persist: true
