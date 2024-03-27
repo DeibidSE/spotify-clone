@@ -3,7 +3,7 @@
     aria-label="Play/Pause"
     class="text-black transition bg-green-500 rounded-full shadow-xl hover:scale-105 hover:bg-green-400"
     :class="[
-      size === 'small' ? 'text-sm p-4' : 'text-xl p-5'
+      size === 0 ? 'text-sm p-4' : 'text-xl p-5'
     ]"
     @click="handleClick"
   >
@@ -21,16 +21,7 @@
 <script setup lang="ts">
 import { type Song, type Playlist } from '@/lib/types.d'
 
-const props = defineProps({
-  id: {
-    type: String,
-    default: ''
-  },
-  size: {
-    type: String,
-    default: 'small'
-  }
-})
+const props = defineProps<{id: String | String[], size: number}>()
 
 const config = useRuntimeConfig()
 const playerStore = usePlayerStore()

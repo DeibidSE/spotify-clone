@@ -2,7 +2,7 @@
   <NuxtLayout>
     <div class="flex flex-col h-full gap-6 px-6 py-4">
       <div class="relative">
-        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-4">
           <nuxt-icon name="search" class="w-4 h-4 text-white" />
         </div>
         <input
@@ -16,7 +16,7 @@
         <div
           v-for="(song, key) in filteredItems"
           :key="key"
-          class="flex items-center justify-between overflow-hidden text-sm font-normal text-gray-300 rounded-md hover:bg-white/10 group"
+          class="flex items-center justify-between overflow-hidden text-sm font-normal text-gray-400 rounded-md hover:bg-white/10 group"
           @click="playSong(song)"
         >
           <div class="flex w-full gap-3 px-4 py-2">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="flex flex-col">
-              <h3 class="text-base font-normal text-white">
+              <h3 class="text-base text-white">
                 {{ song.title }}
               </h3>
               <div class="flex flex-row">
@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-          <div class="px-4 py-2 rounded-tr-lg rounded-br-lg">
+          <div class="flex items-center h-full px-4 py-2 rounded-tr-lg rounded-br-lg">
             {{ song.duration }}
           </div>
         </div>
@@ -63,25 +63,7 @@
           Explorar todo
         </h2>
         <div class="flex flex-wrap gap-6">
-          <article
-            v-for="(list, key) in lists"
-            :key="key"
-            class="relative overflow-hidden transition-all duration-300 rounded-md shadow-lg cursor-pointer"
-            :style="`background-color: ${list.color}`"
-          >
-            <div
-              class="flex flex-col items-start p-6 overflow-hidden transition-all duration-300 rounded-md w-44 h-44"
-            >
-              <span class="text-xl font-bold text-white">
-                {{ list.name }}
-              </span>
-              <img
-                v-if="list.cover && list.cover !== ''"
-                :src="`${$config.public.BASE_URL}${list.cover}`"
-                class="absolute bottom-0 right-0 object-cover object-center w-28 h-28 rotate-[25deg] translate-x-4 translate-y-1.5 shadow-[0_2px_4px_0_rgba(0,0,0,0.2)]"
-              >
-            </div>
-          </article>
+          <SearchCard v-for="(list, key) in lists" :key="key" :list="list" />
         </div>
       </div>
     </div>
