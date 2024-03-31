@@ -25,6 +25,6 @@
   "dependencies": {
     "nuxt-icons": "^3.2.1",
     "pinia": "^2.1.7",
-    "radix-vue": "^1.5.3"
+    "radix-vue": "^1.6.1"
   }
 }
