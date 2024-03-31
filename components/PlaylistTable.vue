@@ -2,19 +2,19 @@
   <table class="w-full h-full text-left divide-y cursor-default divide-gray-500/20">
     <thead>
       <tr class="sticky top-0 text-sm font-normal text-zinc-400">
-        <th class="py-2">
+        <th class="px-4 py-2">
           #
         </th>
-        <th class="py-2">
+        <th class="px-4 py-2">
           Título
         </th>
-        <th v-if="playerStore.isListCompact" class="py-2">
+        <th v-if="playerStore.isListCompact" class="px-4 py-2">
           Artistas
         </th>
-        <th class="py-2">
+        <th class="px-4 py-2">
           Álbum
         </th>
-        <th class="py-2">
+        <th class="px-4 py-2">
           <nuxt-icon name="time" />
         </th>
       </tr>
