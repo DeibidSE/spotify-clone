@@ -47,7 +47,7 @@ defineProps<{tooltipText?: String, position?: String}>()
 
     /* Position: BOTTOM */
     &[position^="bottom"]::after {
-      @apply top-[calc(105%_+_10px)];
+      @apply top-[calc(100%_+_5px)];
     }
     &[position^="bottom"]::before,
     &[position^="bottom"]::after {
