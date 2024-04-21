@@ -7,6 +7,18 @@
     <div class="flex flex-col items-center justify-center w-[40%] gap-2">
       <!-- Control buttons -->
       <div class="flex flex-row items-center justify-center gap-5">
+        <button
+          aria-label="Shuffle Songs"
+          class="relative p-2"
+          :class="{
+            'text-green-500 hover:text-green-400': shuffleEnabled,
+            'text-zinc-400 hover:text-zinc-100' : !shuffleEnabled
+          }"
+          @click="playerStore.shuffleEnabled = !playerStore.shuffleEnabled"
+        >
+          <nuxt-icon name="shuffle" />
+          <span v-if="shuffleEnabled" class="absolute bottom-0 w-1 h-1 transform -translate-x-1/2 bg-green-500 rounded-full left-1/2" />
+        </button>
         <!-- Previous song btn-->
         <button aria-label="Previous song" class="p-2 text-zinc-400 hover:text-zinc-100" @click="prevSong">
           <nuxt-icon name="previous" />
@@ -51,6 +63,7 @@ const config = useRuntimeConfig()
 const playerStore = usePlayerStore()
 const audioRef = ref<HTMLAudioElement>()
 const loopEnabled = ref(false)
+const shuffleEnabled = computed(() => playerStore.shuffleEnabled)
 let audioSrc = ''
 
 const currentSong = computed(() => {
@@ -67,24 +80,31 @@ const nextSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
   const index = songs.findIndex(e => e.id === song.id) ?? -1
 
-  if (index > -1 && index + 1 < songs.length && audioRef.value) {
-    playerStore.setIsPlaying(false)
-    playerStore.setCurrentMusic({ songs, playlist, song: songs[index + 1] })
-    playerStore.setIsPlaying(true)
-    audioRef.value.currentTime = 0
-  }
+  //  Exit if the current song is not found in the song list
+  if (index === -1 || !audioRef.value) { return }
+
+  // Get the index of the next song, considering the song list cycle.
+  const nextIndex = (index + 1) % songs.length
+
+  playerStore.setIsPlaying(false)
+  playerStore.setCurrentMusic({ songs, playlist, song: songs[nextIndex] })
+  playerStore.setIsPlaying(true)
+  audioRef.value.currentTime = 0
 }
 
 const prevSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
   const index = songs.findIndex(e => e.id === song.id) ?? -1
 
-  if (index > -1 && index > 0 && audioRef.value) {
-    playerStore.setIsPlaying(false)
-    playerStore.setCurrentMusic({ songs, playlist, song: songs[index - 1] })
-    playerStore.setIsPlaying(true)
-    audioRef.value.currentTime = 0
-  }
+  // Exit if the current song is the first one or there is no audio.
+  if (index <= 0 || !audioRef.value) { return }
+
+  const prevIndex = index - 1
+
+  playerStore.setIsPlaying(false)
+  playerStore.setCurrentMusic({ songs, playlist, song: songs[prevIndex] })
+  playerStore.setIsPlaying(true)
+  audioRef.value.currentTime = 0
 }
 
 const toggleLoop = () => {

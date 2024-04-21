@@ -1,30 +1,73 @@
 import { defineStore } from 'pinia'
 import { type Song, type Playlist } from '@/lib/types.d'
 
+interface Music {
+  playlist: Playlist
+  song: Song
+  songs: Song[]
+}
+
 export const usePlayerStore = defineStore('player', {
   state: () => ({
-    isPlaying: false,
-    currentMusic: {
-      playlist: {} as Playlist,
-      song: {} as Song,
-      songs: [] as Song[]
-    },
-    volume: 1,
-    isListCompact: false
+    isPlaying: false, // Indicates if the player is currently playing
+    currentMusic: {} as Music, // Stores information about the currently playing music
+    volume: 1, // Stores the current volume level
+    isListCompact: false, // Indicates if the playlist is displayed in a compact mode
+    shuffleEnabled: false // Indicates if shuffle mode is enabled
   }),
   actions: {
+    /**
+     * Set the new volume
+     * @param newVolume
+     */
     setVolume (newVolume: number) {
       this.volume = newVolume
     },
+    /**
+     * Set the state of the music player
+     * @param isPlaying
+     */
     setIsPlaying (isPlaying: boolean) {
       this.isPlaying = isPlaying
     },
-    setCurrentMusic (newCurrentMusic: any) {
-      this.currentMusic = newCurrentMusic
+    /**
+     * Sets the new music to be played
+     * @param newCurrentMusic
+     */
+    setCurrentMusic (newCurrentMusic: Music) {
+      // Checks if the shuffle is active to mix the songs of the playlist
+      if (
+        this.shuffleEnabled &&
+        this.currentMusic?.playlist?.id !== newCurrentMusic?.playlist?.id &&
+        this.currentMusic?.song?.title !== newCurrentMusic?.song?.title
+      ) {
+        newCurrentMusic = this.shuffleSongs(newCurrentMusic)
+      }
+
+      this.currentMusic = { ...newCurrentMusic }
     },
+    /**
+     * Set the state of how show the table
+     * @param isCompact
+     */
     setCompactList (isCompact: boolean) {
       this.isListCompact = isCompact
+    },
+    /**
+     * Mixes the list of songs randomly reorganizing the order
+     * @param songs
+     * @returns
+     */
+    shuffleSongs (newCurrentMusic: Music) {
+      const { songs, playlist } = newCurrentMusic
+
+      for (let i = songs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[songs[i], songs[j]] = [songs[j], songs[i]]
+      }
+
+      return { songs, playlist, song: songs[0] }
     }
   },
-  persist: true
+  persist: true // Indicates that the state should be persisted
 })
