@@ -6,16 +6,18 @@
           #
         </th>
         <th class="px-4 py-2">
-          Título
+          <span class="hover:text-white">{{ $t('title') }}</span>
         </th>
         <th v-if="playerStore.isListCompact" class="px-4 py-2">
-          Artistas
+          <span class="hover:text-white">{{ $t('artists') }}</span>
         </th>
         <th class="px-4 py-2">
-          Álbum
+          <span class="hover:text-white">{{ $t('album') }}</span>
         </th>
         <th class="px-4 py-2">
-          <nuxt-icon name="time" />
+          <ToolTip :tooltip-text="`${ $t('duration') }`" position="top">
+            <nuxt-icon name="time" class="hover:text-white" />
+          </ToolTip>
         </th>
       </tr>
     </thead>

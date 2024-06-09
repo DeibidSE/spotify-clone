@@ -15,6 +15,13 @@
   </div>
 </template>
 
+<script setup lang="ts">
+const { locale } = useI18n()
+const playerStore = usePlayerStore()
+
+locale.value = playerStore.currentLocale
+</script>
+
 <style scoped>
 .spotify_grid {
   grid-template-areas:

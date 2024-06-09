@@ -51,7 +51,23 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/eslint-module',
     'radix-vue/nuxt',
-    'nuxt-icons'
+    'nuxt-icons',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'es',
+    locales: [
+      { code: 'es', name: 'Español', file: 'es.json' },
+      { code: 'en', name: 'English', file: 'en.json' }
+    ],
+    lazy: true,
+    langDir: 'locales/',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    }
+  },
   css: ['@/assets/css/tailwind.css']
 })

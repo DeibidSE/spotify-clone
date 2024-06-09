@@ -8,7 +8,7 @@
         <input
           v-model="searchQuery"
           type="search"
-          placeholder="¿Qué quieres reproducir?"
+          :placeholder="`${ $t('search_placeholder') }`"
           class="w-full p-4 text-sm text-white bg-[#242424] rounded-full ps-10 focus:ring-white focus:border-white hover:border-[#2a2a2a] border-2 border-transparent"
         >
       </div>
@@ -52,15 +52,15 @@
       </div>
       <div v-else-if="searchQuery !== ''" class="flex flex-col items-center justify-center h-full gap-4">
         <h1 class="text-4xl font-bold">
-          No se ha encontrad ningún resultado para "{{ searchQuery }}"
+          {{ $t('no_results_for') }} "{{ searchQuery }}"
         </h1>
         <p class="text-white">
-          Asegurate que las palabras estén escritas correctamente o prueba con menos palabras clave o con otras distintas
+          {{ $t('no_results_for_advise') }}
         </p>
       </div>
       <div v-else class="flex flex-col gap-2">
         <h2 class="text-2xl font-bold">
-          Explorar todo
+          {{ $t('browse_all') }}
         </h2>
         <div class="flex flex-wrap gap-6">
           <SearchCard v-for="(list, key) in lists" :key="key" :list="list" />
@@ -104,6 +104,8 @@ const playSong = (selectedSong: Song) => {
     // From the song selected, gets the playlist and all the songs of that playlist
     const playlist = playlists.find(playlist => playlist.id === playlistId)
     const playlistSongs = songs.filter(song => song.albumId === playlistId)
+
+    if (!playlist || !playlistSongs) { return }
 
     // Set the song selected as the currentMusic
     playerStore.setCurrentMusic({ songs: playlistSongs, playlist, song: selectedSong })

@@ -11,14 +11,14 @@
         </picture>
         <div class="flex flex-col items-start justify-end w-full h-full truncate">
           <h2 class="flex w-full">
-            Lista
+            {{ $t('playlist') }}
           </h2>
           <h1 class="w-full font-bold text-white truncate text-8xl">
             {{ playlist?.title }}
           </h1>
           <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-white">
             <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
-            <span class="font-normal">• {{ playlistSongs.length ?? '0' }} canciones, {{ formattedDuration ?? '' }}</span>
+            <span class="font-normal">• {{ playlistSongs.length ?? '0' }} {{ $t('songs') }}, {{ formattedDuration ?? '' }}</span>
           </div>
         </div>
       </header>
@@ -34,26 +34,26 @@
           </button>
         </div>
         <div class="flex items-center gap-2 text-gray-300 transition cursor-pointer hover:text-white" @click="isListExpanded = !isListExpanded">
-          <span class="text-sm">Lista</span>
+          <span class="text-sm">{{ playerStore.isListCompact ? $t('compact') : $t('list') }}</span>
           <nuxt-icon name="list" />
           <ul
             v-show="isListExpanded"
             class="absolute z-10 w-40 p-1 overflow-hidden rounded shadow-lg right-4 top-20 bg-zinc-800"
           >
             <li class="p-3 text-xs font-bold text-green-400">
-              Ver como
+              {{ $t('view_as') }}
             </li>
             <li
               class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
               @click="playerStore.setCompactList(true)"
             >
-              <nuxt-icon name="compact-list" />Compacto
+              <nuxt-icon name="compact-list" />{{ $t('compact') }}
             </li>
             <li
               class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
               @click="playerStore.setCompactList(false)"
             >
-              <nuxt-icon name="list" />Lista
+              <nuxt-icon name="list" />{{ $t('list') }}
             </li>
           </ul>
         </div>

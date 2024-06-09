@@ -7,14 +7,15 @@
 <script setup lang="ts">
 const currentTime = new Date()
 const currentHour = currentTime.getHours()
+const { t } = useI18n()
 
 let greeting = ''
 
 if (currentHour < 12) {
-  greeting = '¡Buenos días!'
+  greeting = t('greetings_morning')
 } else if (currentHour < 18) {
-  greeting = '¡Buenas tardes!'
+  greeting = t('greetings_afternoon')
 } else {
-  greeting = '¡Buenas noches!'
+  greeting = t('greetings_evening')
 }
 </script>

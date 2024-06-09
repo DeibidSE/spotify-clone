@@ -15,3 +15,9 @@ export interface Song {
   artists: string[]
   duration: string
 }
+
+export interface Music {
+  playlist: Playlist
+  song: Song
+  songs: Song[]
+}

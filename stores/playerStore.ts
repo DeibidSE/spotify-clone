@@ -1,11 +1,5 @@
 import { defineStore } from 'pinia'
-import { type Song, type Playlist } from '@/lib/types.d'
-
-interface Music {
-  playlist: Playlist
-  song: Song
-  songs: Song[]
-}
+import { type Music } from '@/lib/types.d'
 
 export const usePlayerStore = defineStore('player', {
   state: () => ({
@@ -13,7 +7,8 @@ export const usePlayerStore = defineStore('player', {
     currentMusic: {} as Music, // Stores information about the currently playing music
     volume: 1, // Stores the current volume level
     isListCompact: false, // Indicates if the playlist is displayed in a compact mode
-    shuffleEnabled: false // Indicates if shuffle mode is enabled
+    shuffleEnabled: false, // Indicates if shuffle mode is enabled
+    currentLocale: 'es' // Default language set to Spanish
   }),
   actions: {
     /**
@@ -67,6 +62,9 @@ export const usePlayerStore = defineStore('player', {
       }
 
       return { songs, playlist, song: songs[0] }
+    },
+    setLocale (locale: string) {
+      this.currentLocale = locale
     }
   },
   persist: true // Indicates that the state should be persisted

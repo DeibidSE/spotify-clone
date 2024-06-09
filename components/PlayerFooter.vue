@@ -1,10 +1,11 @@
 <template>
-  <div class="z-50 flex w-full h-full gap-2 px-1">
-    <div class="flex items-center justify-start w-[30%]">
+  <div class="z-50 flex justify-between w-full h-full px-1 min-w-[620px] gap-2">
+    <!-- Song playing info -->
+    <div class="flex items-center justify-start w-[30%] min-w-44">
       <CurrentSong />
     </div>
 
-    <div class="flex flex-col items-center justify-center w-[40%] gap-2">
+    <div class="flex flex-col items-center justify-center w-[40%] max-w-[722px] gap-2">
       <!-- Control buttons -->
       <div class="flex flex-row items-center justify-center gap-5">
         <button
@@ -51,6 +52,7 @@
       <audio ref="audioRef" />
     </div>
 
+    <!-- Volume control -->
     <div class="flex items-center justify-end w-[30%] min-w-44">
       <VolumeControl />
     </div>
@@ -78,6 +80,9 @@ const togglePlay = () => {
 
 const nextSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
+
+  if (!song || !playlist || !songs) { return }
+
   const index = songs.findIndex(e => e.id === song.id) ?? -1
 
   //  Exit if the current song is not found in the song list
@@ -94,6 +99,9 @@ const nextSong = () => {
 
 const prevSong = () => {
   const { song, playlist, songs } = playerStore.currentMusic
+
+  if (!song || !playlist || !songs) { return }
+
   const index = songs.findIndex(e => e.id === song.id) ?? -1
 
   // Exit if the current song is the first one or there is no audio.

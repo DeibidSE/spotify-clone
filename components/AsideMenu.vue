@@ -5,12 +5,12 @@
       <ul class="px-3 py-2">
         <li class="px-3 py-1">
           <NuxtLink to="/" class="menu_item">
-            <nuxt-icon name="home" class="text-2xl" />Inicio
+            <nuxt-icon name="home" class="text-2xl" />{{ $t('home') }}
           </NuxtLink>
         </li>
         <li class="px-3 py-1">
           <NuxtLink to="/search" class="menu_item">
-            <nuxt-icon name="search" class="text-2xl" />Buscar
+            <nuxt-icon name="search" class="text-2xl" />{{ $t('search') }}
           </NuxtLink>
         </li>
       </ul>
@@ -18,7 +18,7 @@
     <!-- Bottom panel -->
     <div class="flex flex-col w-full h-full gap-2 p-2 rounded-lg bg-zinc-900">
       <div class="flex gap-3 px-4 py-2 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100">
-        <nuxt-icon name="library" class="text-2xl" />Tu biblioteca
+        <nuxt-icon name="library" class="text-2xl" />{{ $t('library') }}
       </div>
       <div class="overflow-y-auto">
         <NuxtLink

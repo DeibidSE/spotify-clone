@@ -14,7 +14,7 @@
 
 This Spotify clone offers a user interface similar to the official Spotify application, allowing users to explore, search, and play different songs and/or albums, among other functionalities.
 
-At the moment, the project is only available in Spanish, however, there are plans to provide an English translation in future updates.
+~~At the moment, the project is only available in Spanish, however, there are plans to provide an English translation in future updates.~~ - Done ✅
 
 # Installation
 

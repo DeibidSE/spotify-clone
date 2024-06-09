@@ -2,7 +2,7 @@
   <!-- Song loaded -->
   <div
     v-if="song && Object.keys(song).length > 0"
-    class="relative flex items-center gap-5 overflow-hidden"
+    class="relative flex items-center w-full gap-5 overflow-hidden"
   >
     <picture class="w-16 h-16 overflow-hidden rounded-md shadow-lg">
       <img :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md aspect-square">
