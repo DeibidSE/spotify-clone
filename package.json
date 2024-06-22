@@ -19,13 +19,13 @@
     "@pinia/nuxt": "^0.5.1",
     "eslint": "^8.57.0",
     "gh-pages": "^6.1.1",
-    "nuxt": "^3.11.2",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "nuxt": "^3.12.2",
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.0"
   },
   "dependencies": {
     "nuxt-icons": "^3.2.1",
     "pinia": "^2.1.7",
-    "radix-vue": "^1.8.3"
+    "radix-vue": "^1.8.4"
   }
 }
