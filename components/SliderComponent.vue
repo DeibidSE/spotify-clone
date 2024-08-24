@@ -19,7 +19,7 @@
 
 defineEmits(['update:modelValue'])
 
-const props = defineProps<{max?: number, value: number}>()
+const props = defineProps<{ max?: number, value: number }>()
 const sliderValue = ref<number[]>(props.value ? [props.value] : [0])
 
 watch(() => props.value, (newValue: number) => {

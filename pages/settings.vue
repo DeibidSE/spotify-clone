@@ -16,7 +16,7 @@
             <select
               id="selectLanguage"
               v-model="playerStore.currentLocale"
-              class="bg-[#333] rounded text-white/70 text-sm font-normal h-8 tracking-wide w-full pl-3 pr-8"
+              class="bg-[#333] rounded text-white/70 text-sm font-normal h-8 tracking-wide w-full pl-3 pr-8 truncate"
             >
               <option v-for="(language, code) in languages" :key="code" :value="code">
                 {{ language }}

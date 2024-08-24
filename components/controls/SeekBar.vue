@@ -11,8 +11,7 @@
 </template>
 
 <script setup lang="ts">
-
-const props = defineProps<{audio: HTMLAudioElement | undefined}>()
+const props = defineProps<{ audio: HTMLAudioElement | undefined }>()
 
 const emits = defineEmits(['update:audio'])
 

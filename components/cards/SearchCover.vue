@@ -20,5 +20,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{list: {name: string, color: string, cover?: string}}>()
+defineProps<{ list: {name: string, color: string, cover?: string} }>()
 </script>

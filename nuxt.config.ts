@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/spotify-clone/',
     head: {
-      title: 'Clon de Spotify',
+      title: 'Spotify Clone',
       meta: [
         {
           charset: 'utf-8'
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: 'Clon de Spotify hecho con Nuxt 3'
+          content: 'Spotify Clone created with Nuxt 3'
         },
         {
           name: 'author',
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
         }
       ],
       htmlAttrs: {
-        lang: 'es'
+        lang: 'en'
       }
     }
   },
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
   ],
   i18n: {
     strategy: 'no_prefix',
-    defaultLocale: 'es',
+    defaultLocale: 'en',
     locales: [
       { code: 'es', name: 'Español', file: 'es.json' },
       { code: 'en', name: 'English', file: 'en.json' }

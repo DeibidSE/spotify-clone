@@ -8,7 +8,8 @@ export const usePlayerStore = defineStore('player', {
     volume: 1, // Stores the current volume level
     isListCompact: false, // Indicates if the playlist is displayed in a compact mode
     shuffleEnabled: false, // Indicates if shuffle mode is enabled
-    currentLocale: 'es' // Default language set to Spanish
+    currentLocale: 'es', // Default language set to Spanish,
+    isGridCollapsed: false // Indicates if the left panel is collapsed or not
   }),
   actions: {
     /**
@@ -47,6 +48,13 @@ export const usePlayerStore = defineStore('player', {
      */
     setCompactList (isCompact: boolean) {
       this.isListCompact = isCompact
+    },
+    /**
+     * Set the state of how to show the grid
+     * @param isCollapsed
+     */
+    setGridCollapsed (isCollapsed: boolean) {
+      this.isGridCollapsed = isCollapsed
     },
     /**
      * Mixes the list of songs randomly reorganizing the order

@@ -1,6 +1,6 @@
 <template>
   <span
-    class="relative before:content-[''] before:z-[1001] before:border-[5px] before:border-solid before:border-transparent after:content-[attr(tooltipText)] after:text-center after:whitespace-nowrap after:min-w-[3em] after:max-w-xs after:overflow-hidden after:text-ellipsis after:shadow-sm after:opacity-30 after:text-white after:z-[1000] after:p-2 after:rounded-md"
+    class="relative before:content-[''] before:z-[1001] before:border-[5px] before:border-solid before:border-transparent after:content-[attr(tooltipText)] after:text-center after:whitespace-nowrap after:min-w-[3em] after:max-w-xs after:overflow-hidden after:text-ellipsis after:shadow-sm after:opacity-30 after:text-white after:z-[1000] after:p-2 after:rounded-md content-center"
     :tooltipText="tooltipText ?? ''"
     :position="position ?? 'top'"
     role="tooltip"
@@ -12,25 +12,25 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{tooltipText?: String, position?: String}>()
+defineProps<{ tooltipText?: string, position?: string }>()
 </script>
 
 <style scoped>
   span {
     & > * {
-      @apply inline-block;
+      @apply inline-flex items-center h-full;
     }
 
     &::before,
     &::after {
-      @apply text-[0.9em] leading-none select-none pointer-events-none absolute hidden opacity-0;
+      @apply text-sm leading-none select-none pointer-events-none absolute hidden opacity-0 transition-opacity duration-200 ease-out;
     }
     &::after {
       @apply bg-zinc-800;
     }
     &:hover::before,
     &:hover::after {
-      @apply block;
+      @apply block opacity-90;
     }
 
     /* Position: TOP */

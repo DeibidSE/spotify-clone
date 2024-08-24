@@ -13,8 +13,6 @@
 
 Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo a los usuarios explorar, buscar y reproducir diferentes canciones y/o álbumes, entre otras funcionalidades.
 
-~~Por el momento, el proyecto está disponible únicamente en español, sin embargo, se planea realizar una traducción al inglés en futuras actualizaciones.~~ - Hecho ✅
-
 # Instalación
 
 1. **Clona este repositorio en tu máquina local:**

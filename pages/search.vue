@@ -8,7 +8,7 @@
         <input
           v-model="searchQuery"
           type="search"
-          :placeholder="`${ $t('search_placeholder') }`"
+          :placeholder="$t('search_placeholder')"
           class="w-full p-4 text-sm text-white bg-[#242424] rounded-full ps-10 focus:ring-white focus:border-white hover:border-[#2a2a2a] border-2 border-transparent"
         >
       </div>
@@ -35,9 +35,9 @@
             </div>
 
             <div class="flex flex-col">
-              <h3 class="text-base text-white">
+              <span class="text-base text-white">
                 {{ song.title }}
-              </h3>
+              </span>
               <div class="flex flex-row">
                 <span class="hover:text-white hover:underline">
                   {{ song.artists.join(', ') }}
@@ -63,7 +63,7 @@
           {{ $t('browse_all') }}
         </h2>
         <div class="flex flex-wrap gap-6">
-          <SearchCard v-for="(list, key) in lists" :key="key" :list="list" />
+          <CardsSearchCover v-for="(list, key) in lists" :key="key" :list="list" />
         </div>
       </div>
     </div>

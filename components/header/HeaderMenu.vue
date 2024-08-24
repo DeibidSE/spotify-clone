@@ -1,12 +1,12 @@
 <template>
   <div class="z-10 flex flex-row items-center justify-between gap-2 px-6 py-4">
-    <ToolTip :tooltip-text="`${ $t('return') }`" position="bottom">
+    <ToolTip :tooltip-text="$t('return')" position="bottom">
       <a href="" aria-label="Go back" class="p-2 rounded-full bg-black/70" @click.prevent="$router.back()">
         <nuxt-icon name="arrow-back" />
       </a>
     </ToolTip>
     <div class="flex flex-row gap-2">
-      <ToolTip :tooltip-text="`${ $t('whats_new') }`" position="bottom">
+      <ToolTip :tooltip-text="$t('whats_new')" position="bottom">
         <NuxtLink
           to="/news"
           class="p-2 rounded-full bg-black/70 text-white/70 hover:text-white hover:scale-105"

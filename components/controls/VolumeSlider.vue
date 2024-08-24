@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center w-40 gap-3 text-white">
-    <ToolTip tooltip-text="Silenciar" position="top">
+    <ToolTip :tooltip-text="$t('mute')" position="top">
       <button aria-label="Mute" class="transition opacity-70 hover:opacity-100" @click="toggleVolume">
         <nuxt-icon v-if="isVolumeSilenced" name="mute" />
         <nuxt-icon v-else name="volume" />
@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-
 const playerStore = usePlayerStore()
 const previousVolume = ref(0)
 

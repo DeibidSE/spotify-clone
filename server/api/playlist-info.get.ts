@@ -27,7 +27,7 @@ export default defineEventHandler((event) => {
     return new Response(JSON.stringify({ playlist, songs: allSongs }), {
       headers: { 'content-type': 'application/json' }
     })
-  } catch (error) {
+  } catch (error: any) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 404,
       headers: { 'content-type': 'application/json' }

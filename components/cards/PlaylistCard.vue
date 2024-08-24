@@ -2,11 +2,11 @@
   <article
     class="relative transition-all duration-300 rounded-md shadow-lg group hover:bg-zinc-800 hover:shadow-xl bg-zinc-500/30"
   >
-    <!-- Play/Pause button-->
+    <!-- Play/Pause button -->
     <div
       class="absolute z-10 transition-all duration-500 translate-y-4 opacity-0 right-4 bottom-20 group-hover:translate-y-0 group-hover:opacity-100"
     >
-      <CardPlayButton :id="playlist.id" :size="1" />
+      <ControlsPlayPauseButton :id="playlist.id" />
     </div>
     <!-- Card -->
     <NuxtLink
@@ -26,8 +26,8 @@
         <span class="text-sm text-white">
           {{ playlist.title }}
         </span>
-        <span class="text-xs text-gray-400">
-          {{ playlist.artists.join(', ') }}
+        <span class="text-xs text-gray-400 capitalize">
+          {{ playlist.artists.length > 0 ? playlist.artists.join(', ') : `${$t('by')} DeibidSE` }}
         </span>
       </div>
     </NuxtLink>
@@ -37,6 +37,6 @@
 <script setup lang="ts">
 import { type Playlist } from '@/lib/types.d'
 
-defineProps<{playlist: Playlist}>()
+defineProps<{ playlist: Playlist }>()
 const active = useState()
 </script>

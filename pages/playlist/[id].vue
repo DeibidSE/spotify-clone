@@ -9,26 +9,29 @@
             class="object-cover w-full h-full shadow-lg rounded-[4px] [view-transition-name:selected-playlist] aspect-square"
           >
         </picture>
-        <div class="flex flex-col items-start justify-end w-full h-full truncate">
+        <div class="flex flex-col items-start justify-end w-full truncate">
           <h2 class="flex w-full">
             {{ $t('playlist') }}
           </h2>
-          <h1 class="w-full font-bold text-white truncate text-8xl">
+          <h1 class="w-full text-4xl font-bold text-white truncate xl:text-8xl md:text-6xl">
             {{ playlist?.title }}
           </h1>
           <div v-if="playlist" class="flex flex-row w-full gap-1 text-sm font-normal text-white">
-            <span class="font-bold">{{ playlist.artists.join(', ') }}</span>
+            <span class="font-bold">
+              {{ playlist.artists.length > 0 ? playlist.artists.join(', ') : 'DeibidSE' }}
+            </span>
             <span class="font-normal">• {{ playlistSongs.length ?? '0' }} {{ $t('songs') }}, {{ formattedDuration ?? '' }}</span>
           </div>
         </div>
       </header>
 
       <div v-if="playlist" class="relative flex items-center justify-between w-full h-full p-6">
-        <div class="flex gap-10">
-          <CardPlayButton :id="id" :size="1" />
+        <div class="flex items-center w-full gap-10">
+          <ControlsPlayPauseButton :id="id" />
+          <ControlsShuffleButton class="text-3xl" />
           <button
             aria-label="More options"
-            class="flex items-center justify-center pb-2 text-3xl tracking-widest text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
+            class="flex items-center justify-center pb-2 text-3xl tracking-wider text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
           >
             ...
           </button>

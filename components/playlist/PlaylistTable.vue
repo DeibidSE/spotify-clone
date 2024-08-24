@@ -15,13 +15,12 @@
           <span class="hover:text-white">{{ $t('album') }}</span>
         </th>
         <th class="px-4 py-2">
-          <ToolTip :tooltip-text="`${ $t('duration') }`" position="top">
+          <ToolTip :tooltip-text="$t('duration')" position="top">
             <nuxt-icon name="time" class="hover:text-white" />
           </ToolTip>
         </th>
       </tr>
     </thead>
-
     <tbody>
       <tr class="h-[16px]" />
       <tr
@@ -52,9 +51,9 @@
             <img v-if="!playerStore.isListCompact" :src="`${$config.public.BASE_URL}${song.image}`" :alt="song.title" class="rounded-md w-11 h-11 aspect-square">
           </picture>
           <div class="flex flex-col">
-            <h3 class="text-base font-normal text-white">
+            <span class="text-base font-normal text-white">
               {{ song.title }}
-            </h3>
+            </span>
             <div v-if="!playerStore.isListCompact" class="flex flex-row">
               <span v-for="(artist, key) in song.artists" :key="key" class="hover:text-white hover:underline">
                 {{ artist }}<span v-if="key !== song.artists.length - 1">,&nbsp;</span>
@@ -81,7 +80,7 @@
 <script setup lang="ts">
 import { type Playlist, type Song } from '@/lib/types.d'
 
-const songsProp = defineProps<{songs: Song[], playlist: Playlist}>()
+const songsProp = defineProps<{ songs: Song[], playlist: Playlist }>()
 
 const playerStore = usePlayerStore()
 
