@@ -1,16 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
+
   experimental: {
     viewTransition: true
   },
+
   eslint: { lintOnStart: false },
   ssr: false,
+
   runtimeConfig: {
     public: {
       BASE_URL: '/spotify-clone'
     }
   },
+
   app: {
     baseURL: '/spotify-clone/',
     head: {
@@ -45,6 +49,7 @@ export default defineNuxtConfig({
       }
     }
   },
+
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
@@ -54,6 +59,7 @@ export default defineNuxtConfig({
     'nuxt-icons',
     '@nuxtjs/i18n'
   ],
+
   i18n: {
     strategy: 'no_prefix',
     defaultLocale: 'en',
@@ -69,5 +75,7 @@ export default defineNuxtConfig({
       redirectOn: 'root'
     }
   },
-  css: ['@/assets/css/tailwind.css']
+
+  css: ['@/assets/css/tailwind.css'],
+  compatibilityDate: '2024-08-24'
 })
