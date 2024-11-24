@@ -1,9 +1,9 @@
 # Clon de Spotify con Nuxt 3
 
-    ⚠️ Este proyecto continua en desarrollo y puede contener errores ⚠️
+> [!WARNING]  
+> Este proyecto está sin finalizar y puede contener errores y/o funcionalidades sin desarrollar
 
----
-## README in English:
+#### README in English:
 
 [![en](https://img.shields.io/badge/lang-en-yellow.svg)](https://github.com/DeibidSE/spotify-clone/blob/master/README.md)
 
@@ -50,7 +50,7 @@ npm run dev
 ## Créditos
 
 - Este proyecto ha sido creado por [DeibidSE](https://github.com/DeibidSE).
-- Inspirado en el proyecto [Spotify Twitch Clone](https://github.com/midudev/spotify-twitch-clone) desarrollado por [Midudev](https://github.com/midudev).
+- Inspirado en el proyecto [spotify-astro-transitions](https://github.com/igorm84/spotify-astro-transitions/tree/main)
 
 ## Licencia
 
