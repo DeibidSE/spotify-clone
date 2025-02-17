@@ -1,20 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-
+  eslint: { lintOnStart: false },
   experimental: {
     viewTransition: true
   },
-
-  eslint: { lintOnStart: false },
   ssr: false,
-
   runtimeConfig: {
     public: {
       BASE_URL: '/spotify-clone'
     }
   },
-
   app: {
     baseURL: '/spotify-clone/',
     head: {
@@ -49,33 +45,28 @@ export default defineNuxtConfig({
       }
     }
   },
-
   modules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/eslint-module',
-    'radix-vue/nuxt',
     'nuxt-icons',
-    '@nuxtjs/i18n'
+    'pinia-plugin-persistedstate/nuxt',
+    'radix-vue/nuxt'
   ],
-
   i18n: {
     strategy: 'no_prefix',
     defaultLocale: 'en',
     locales: [
-      { code: 'es', name: 'Español', file: 'es.json' },
-      { code: 'en', name: 'English', file: 'en.json' }
+      { code: 'es', language: 'es-ES', name: 'Español', file: 'es.json' },
+      { code: 'en', language: 'en-GB', name: 'English', file: 'en.json' }
     ],
-    lazy: true,
-    langDir: 'locales/',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
     }
   },
-
   css: ['@/assets/css/tailwind.css'],
   compatibilityDate: '2024-08-24'
 })

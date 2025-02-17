@@ -13,19 +13,19 @@
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",
-    "@nuxtjs/i18n": "^9.1.0",
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
-    "@pinia/nuxt": "^0.5.5",
+    "@nuxtjs/tailwindcss": "^6.13.1",
     "eslint": "^8.57.1",
-    "gh-pages": "^6.2.0",
-    "nuxt": "^3.14.1592",
-    "vue": "^3.5.13",
-    "vue-router": "^4.4.5"
+    "gh-pages": "^6.3.0"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^9.2.0",
+    "@pinia/nuxt": "^0.10.1",
+    "nuxt": "^3.15.4",
     "nuxt-icons": "^3.2.1",
-    "pinia": "^2.2.6",
-    "radix-vue": "^1.9.10"
+    "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.2.0",
+    "radix-vue": "^1.9.14",
+    "vue": "latest",
+    "vue-router": "latest"
   }
 }
