@@ -48,7 +48,7 @@
 import { playlists } from '@/lib/data'
 const playerStore = usePlayerStore()
 const { t } = useI18n()
-const filters = [t('lists'), t('artists'), t('downloaded')]
+const filters = computed(() => [t('lists'), t('artists'), t('albums')])
 
 const playlistPlaying = computed(() => {
   return playerStore.currentMusic?.playlist?.id
@@ -59,6 +59,6 @@ const collapseLeftPanel = () => {
 }
 
 const applyFilter = (_filter: string) => {
-  //
+  // TODO
 }
 </script>

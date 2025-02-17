@@ -1,11 +1,11 @@
 {
   "album": "Album",
+  "albums": "Albums",
   "artists": "Artists",
   "browse_all": "Browse all",
   "by": "by",
   "collapse_lib": "Collapse Your Library",
   "compact": "Compact",
-  "downloaded": "Downloaded",
   "duration": "Duration",
   "github": "My GitHub page",
   "greetings_afternoon": "Good afternoon!",

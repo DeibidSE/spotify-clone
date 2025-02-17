@@ -14,12 +14,11 @@
           <div class="grid items-center w-full grid-cols-[2fr_1fr] gap-6">
             <span class="flex w-full text-sm text-gray-400">{{ $t('language_description') }}</span>
             <select
-              id="selectLanguage"
-              v-model="playerStore.currentLocale"
+              v-model="selectedLocale"
               class="bg-[#333] rounded text-white/70 text-sm font-normal h-8 tracking-wide w-full pl-3 pr-8 truncate"
             >
-              <option v-for="(language, code) in languages" :key="code" :value="code">
-                {{ language }}
+              <option v-for="lang in locales" :key="lang.code" :value="lang.code">
+                {{ lang.name }}
               </option>
             </select>
           </div>
@@ -30,20 +29,11 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
-const playerStore = usePlayerStore()
+const { locales, locale, setLocale } = useI18n()
 
-// Define available languages
-const languages: Record<string, string> = {
-  es: 'Español de España (European Spanish)',
-  en: 'English (English)'
-}
+const selectedLocale = ref(locale.value)
 
-// Watch for changes in the store's currentLocale and update the locale accordingly
-watch(() => playerStore.currentLocale, (newLocale) => {
-  locale.value = newLocale
+watch(selectedLocale, (newLocale) => {
+  setLocale(newLocale)
 })
-
-// Initialize locale from the store
-locale.value = playerStore.currentLocale
 </script>

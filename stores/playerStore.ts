@@ -8,7 +8,6 @@ export const usePlayerStore = defineStore('player', {
     volume: 1, // Stores the current volume level
     isListCompact: false, // Indicates if the playlist is displayed in a compact mode
     shuffleEnabled: false, // Indicates if shuffle mode is enabled
-    currentLocale: 'es', // Default language set to Spanish,
     isGridCollapsed: false // Indicates if the left panel is collapsed or not
   }),
   actions: {
@@ -70,9 +69,6 @@ export const usePlayerStore = defineStore('player', {
       }
 
       return { songs, playlist, song: songs[0] }
-    },
-    setLocale (locale: string) {
-      this.currentLocale = locale
     }
   },
   persist: true // Indicates that the state should be persisted

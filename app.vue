@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
 const playerStore = usePlayerStore()
 const isCollapsed = ref(playerStore.isGridCollapsed)
 
@@ -24,7 +23,6 @@ watch(() => playerStore.isGridCollapsed, (newValue) => {
   isCollapsed.value = newValue
 })
 
-locale.value = playerStore.currentLocale
 </script>
 
 <style scoped>
