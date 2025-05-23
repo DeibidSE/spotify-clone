@@ -8,24 +8,22 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public"
+    "lint": "eslint . --fix"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtjs/eslint-module": "^4.1.0",
-    "@nuxtjs/tailwindcss": "^6.13.1",
-    "eslint": "^8.57.1",
-    "gh-pages": "^6.3.0"
+    "@nuxt/eslint": "^1.4.1",
+    "@nuxtjs/tailwindcss": "^6.14.0"
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^9.2.0",
-    "@pinia/nuxt": "^0.10.1",
-    "nuxt": "^3.15.4",
+    "@nuxt/icon": "^1.13.0",
+    "@nuxtjs/i18n": "^9.5.4",
+    "@pinia/nuxt": "^0.11.0",
     "nuxt-icons": "^3.2.1",
-    "pinia": "^3.0.1",
-    "pinia-plugin-persistedstate": "^4.2.0",
-    "radix-vue": "^1.9.14",
-    "vue": "latest",
-    "vue-router": "latest"
+    "nuxt": "^3.17.4",
+    "pinia-plugin-persistedstate": "^4.3.0",
+    "pinia": "^3.0.2",
+    "radix-vue": "^1.9.17",
+    "vue-router": "latest",
+    "vue": "latest"
   }
 }
