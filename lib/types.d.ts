@@ -1,23 +1,23 @@
 export interface Playlist {
-  id: string
-  title: string
-  color: string
-  cover: string
-  artists: string[]
-  genre: string
+	id: string
+	title: string
+	color: string
+	cover: string
+	artists: string[]
+	genre: string
 }
 
 export interface Song {
-  id: number
-  albumId: string
-  title: string
-  image: string
-  artists: string[]
-  duration: string
+	id: number
+	albumId: string
+	title: string
+	image: string
+	artists: string[]
+	duration: string
 }
 
 export interface Music {
-  playlist: Playlist
-  song: Song
-  songs: Song[]
+	playlist: Playlist
+	song: Song
+	songs: Song[]
 }

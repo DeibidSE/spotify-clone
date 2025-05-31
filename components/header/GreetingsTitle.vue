@@ -1,7 +1,7 @@
 <template>
-  <h1 class="text-3xl font-bold">
-    {{ greeting }}
-  </h1>
+	<h1 class="text-3xl font-bold">
+		{{ greeting }}
+	</h1>
 </template>
 
 <script setup lang="ts">
@@ -12,10 +12,10 @@ const { t } = useI18n()
 let greeting = ''
 
 if (currentHour < 12) {
-  greeting = t('greetings_morning')
+	greeting = t('greetings_morning')
 } else if (currentHour < 18) {
-  greeting = t('greetings_afternoon')
+	greeting = t('greetings_afternoon')
 } else {
-  greeting = t('greetings_evening')
+	greeting = t('greetings_evening')
 }
 </script>
