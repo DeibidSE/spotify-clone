@@ -9,14 +9,46 @@
 					v-for="(playlist, key) in playlists"
 					:key="key"
 					:playlist="playlist"
+					@hover="setHoveredColor(playlist.color || '#1DB954')"
+					@leave="clearHoveredColor()"
 				/>
 			</div>
 		</div>
-		<!-- Gradient -->
-		<div class="absolute inset-0 h-full bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-green-600/80 -z-10" />
+		<!-- Base gradient -->
+		<div class="absolute inset-0 -z-20 bg-gradient-to-t from-spotify-obsidian via-spotify-obsidian/80 to-spotify-electric-green/80" />
+
+		<!-- Gradiente dinámico (con transición de opacidad) -->
+		<Transition name="fade">
+			<div
+				v-if="hoveredColor"
+				class="absolute inset-0 pointer-events-none -z-10"
+				:style="{
+					backgroundImage: `linear-gradient(to top, rgba(18,18,18), rgba(18,18,18,0.8), ${hoveredColor})`,
+				}"
+			/>
+		</Transition>
 	</NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import { playlists } from '@/lib/data'
+
+const hoveredColor = ref<string | null>(null)
+
+function setHoveredColor(color: string) {
+	hoveredColor.value = color
+}
+
+function clearHoveredColor() {
+	hoveredColor.value = null
+}
 </script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 2s ease;
+}
+.fade-enter-from, .fade-leave-to {
+	opacity: 0;
+}
+</style>

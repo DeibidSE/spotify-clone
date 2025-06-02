@@ -5,7 +5,7 @@
 				<h1 class="text-4xl font-bold">
 					{{ $t('whats_new') }}
 				</h1>
-				<span class="text-zinc-400">{{ $t('whats_new_header') }}</span>
+				<span class="text-spotify-icon-light">{{ $t('whats_new_header') }}</span>
 			</header>
 
 			<section class="flex flex-col items-center justify-center h-full gap-4">

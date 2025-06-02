@@ -5,8 +5,8 @@
 		:max="max"
 		@update:model-value="$emit('update:modelValue', sliderValue)"
 	>
-		<SliderTrack class="relative w-full h-1 overflow-hidden bg-gray-800 rounded-full grow">
-			<SliderRange class="absolute h-full bg-white group-hover:bg-green-400" />
+		<SliderTrack class="relative w-full h-1 overflow-hidden rounded-full bg-spotify-stone grow">
+			<SliderRange class="absolute h-full bg-white group-hover:bg-spotify-lime-pop" />
 		</SliderTrack>
 		<SliderThumb
 			class="hidden w-3 h-3 transition-colors bg-white border-2 rounded-full group-hover:block border-primary bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"

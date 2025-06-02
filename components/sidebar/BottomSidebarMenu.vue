@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="flex items-center px-4 py-1 text-[#b3b3b3]"
+		class="flex items-center px-4 py-1 text-spotify-steel"
 		:class="playerStore.isGridCollapsed ? 'justify-center' : 'justify-between'"
 	>
 		<!-- Panel Left Button -->
@@ -32,7 +32,7 @@
 				@click="collapseLeftPanel"
 			/>
 			<button
-				class="text-3xl leading-4 rounded-full bg-[#1f1f1f] hover:bg-[#2a2a2a] transition-colors duration-200 p-2 font-thin"
+				class="p-2 text-3xl font-thin leading-4 transition-colors duration-200 rounded-full bg-spotify-midnight hover:bg-spotify-shadow"
 				aria-label="Add New Playlist"
 			>
 				+
@@ -45,7 +45,7 @@
 			class="flex items-center gap-2"
 		>
 			<button
-				class="flex items-center gap-2 px-4 py-2 font-thin rounded-full bg-[#1f1f1f] hover:bg-[#2a2a2a] transition-colors duration-200"
+				class="flex items-center gap-2 px-4 py-2 font-thin transition-colors duration-200 rounded-full bg-spotify-midnight hover:bg-spotify-shadow"
 				aria-label="Create New Playlist"
 			>
 				<span class="text-3xl leading-4">+</span>
@@ -53,7 +53,7 @@
 			</button>
 			<nuxt-icon
 				name="expand"
-				class="cursor-pointer hover:text-white hover:bg-[#1f1f1f] p-2 rounded-full transition"
+				class="p-2 transition rounded-full cursor-pointer hover:text-white hover:bg-spotify-midnight"
 				aria-label="Expand Grid"
 				@click="expandLeftPanel"
 			/>
@@ -80,8 +80,8 @@
 			v-for="(playlist, key) in playlists"
 			:key="key"
 			:to="`/playlist/${playlist.id}`"
-			class="flex items-center gap-5 p-2 truncate transition rounded-md hover:bg-zinc-800"
-			:class="{ 'text-green-500': playlistPlaying === playlist.id }"
+			class="flex items-center gap-5 p-2 truncate transition rounded-md hover:bg-spotify-midnight"
+			:class="{ 'text-spotify-electric-green': playlistPlaying === playlist.id }"
 			aria-label="Go to Playlist: {{ playlist.title }}"
 		>
 			<!-- Playlist Image -->
@@ -99,7 +99,7 @@
 				class="flex flex-col w-full truncate"
 			>
 				<h4 class="text-sm truncate">{{ playlist.title }}</h4>
-				<span class="text-xs text-gray-400 truncate">
+				<span class="text-xs text-white/70 truncate">
 					{{ playlist.artists.length > 0 ? playlist.artists.join(', ') : `${$t('playlist')} • DeibidSE` }}
 				</span>
 			</div>

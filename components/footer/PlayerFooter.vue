@@ -18,7 +18,7 @@
 			<!-- Previous Song Button -->
 			<button
 				aria-label="Previous Song"
-				class="p-2 text-zinc-400 hover:text-zinc-100"
+				class="p-2 text-spotify-icon-light hover:text-white"
 				@click="prevSong"
 			>
 				<nuxt-icon name="previous" />
@@ -45,7 +45,7 @@
 			<!-- Next Song Button -->
 			<button
 				aria-label="Next Song"
-				class="p-2 text-zinc-400 hover:text-zinc-100"
+				class="p-2 text-spotify-icon-light hover:text-white"
 				@click="nextSong"
 			>
 				<nuxt-icon name="next" />

@@ -1,20 +1,6 @@
 <template>
 	<NuxtLayout>
 		<div class="flex flex-col h-full gap-6 px-6 py-4">
-			<div class="relative">
-				<div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-4">
-					<nuxt-icon
-						name="search"
-						class="w-4 h-4 text-white"
-					/>
-				</div>
-				<input
-					v-model="searchQuery"
-					type="search"
-					:placeholder="$t('search_placeholder')"
-					class="w-full p-4 text-sm text-white bg-[#242424] rounded-full ps-10 focus:ring-white focus:border-white hover:border-[#2a2a2a] border-2 border-transparent"
-				>
-			</div>
 			<div
 				v-if="searchQuery !== '' && filteredItems.length > 0"
 				class="flex flex-col w-full gap-4"
@@ -22,7 +8,7 @@
 				<div
 					v-for="(song, key) in filteredItems"
 					:key="key"
-					class="flex items-center justify-between overflow-hidden text-sm font-normal text-gray-400 rounded-md hover:bg-white/10 group"
+					class="flex items-center justify-between overflow-hidden text-sm font-normal rounded-md text-white/70 hover:bg-white/10 group"
 					@click="playSong(song)"
 				>
 					<div class="flex w-full gap-3 px-4 py-2">

@@ -1,7 +1,7 @@
 <template>
-	<table class="w-full h-full text-left divide-y cursor-default divide-gray-500/20">
+	<table class="w-full h-full text-left divide-y cursor-default divide-white/10">
 		<thead>
-			<tr class="sticky top-0 text-sm font-normal text-zinc-400">
+			<tr class="sticky top-0 text-sm font-normal text-spotify-icon-light">
 				<th class="px-4 py-2">
 					#
 				</th>
@@ -35,19 +35,19 @@
 			<tr
 				v-for="(song, index) in songs"
 				:key="index"
-				class="overflow-hidden text-sm font-light text-gray-400 transition duration-300 border-spacing-0 hover:bg-white/10 group"
+				class="overflow-hidden text-sm font-light transition duration-300 text-white/70 border-spacing-0 hover:bg-white/10 group"
 				@click="playSong(song)"
 			>
 				<td class="relative w-5 px-4 py-2 text-center rounded-tl-lg rounded-bl-lg">
 					<nuxt-icon
 						v-if="!playerStore.isPlaying || playerStore.currentMusic.song.id !== song.id"
 						name="play"
-						class="absolute inset-0 z-10 self-center text-center translate-y-4 opacity-0 justify-self-center group-hover:translate-y-0 group-hover:opacity-100"
+						class="absolute inset-0 z-10 self-center text-center text-white translate-y-4 opacity-0 justify-self-center group-hover:translate-y-0 group-hover:opacity-100"
 					/>
 					<nuxt-icon
 						v-else
 						name="pause"
-						class="absolute inset-0 z-10 self-center text-center translate-y-4 opacity-0 justify-self-center group-hover:translate-y-0 group-hover:opacity-100"
+						class="absolute inset-0 z-10 self-center text-center text-white translate-y-4 opacity-0 justify-self-center group-hover:translate-y-0 group-hover:opacity-100"
 					/>
 					<span
 						class="absolute inset-0 z-10 self-center text-center translate-y-0 opacity-100 group-hover:translate-y-4 group-hover:opacity-0"

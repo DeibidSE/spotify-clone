@@ -26,7 +26,7 @@ defineProps<{ tooltipText?: string, position?: string }>()
       @apply text-sm leading-none select-none pointer-events-none absolute hidden opacity-0 transition-opacity duration-200 ease-out;
     }
     &::after {
-      @apply bg-zinc-800;
+      @apply bg-spotify-midnight;
     }
     &:hover::before,
     &:hover::after {

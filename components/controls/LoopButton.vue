@@ -3,15 +3,15 @@
 		aria-label="Loop"
 		class="relative p-2"
 		:class="{
-			'text-green-500 hover:text-green-400': loopEnabled,
-			'text-zinc-400 hover:text-zinc-100': !loopEnabled,
+			'text-spotify-electric-green hover:text-spotify-lime-pop': loopEnabled,
+			'text-spotify-icon-light hover:text-white': !loopEnabled,
 		}"
 		@click="toggleLoop"
 	>
 		<nuxt-icon name="loop" />
 		<span
 			v-if="loopEnabled"
-			class="absolute bottom-0 w-1 h-1 transform -translate-x-1/2 bg-green-500 rounded-full left-1/2"
+			class="absolute bottom-0 w-1 h-1 transform -translate-x-1/2 rounded-full bg-spotify-electric-green left-1/2"
 		/>
 	</button>
 </template>

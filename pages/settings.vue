@@ -12,7 +12,7 @@
 						{{ $t('language') }}
 					</h2>
 					<div class="grid items-center w-full grid-cols-[2fr_1fr] gap-6">
-						<span class="flex w-full text-sm text-gray-400">{{ $t('language_description') }}</span>
+						<span class="flex w-full text-sm text-white/70">{{ $t('language_description') }}</span>
 						<select
 							v-model="selectedLocale"
 							class="bg-[#333] rounded text-white/70 text-sm font-normal h-8 tracking-wide w-full pl-3 pr-8 truncate"

@@ -1,7 +1,7 @@
 <template>
 	<NuxtLayout>
-		<div class="flex gap-6 p-10 bg-gradient-to-b from-[#5eac96] to-[#f79bd2] bg-opacity-70 rounded-lg text-black">
-			<div class="flex flex-col xl:flex-row bg-gradient-to-t from-[#5eac96] to-[#f79bd2] bg-opacity-70 p-10 w-full h-full">
+		<div class="flex gap-6 p-10 text-black rounded-lg bg-gradient-to-b from-spotify-mint to-spotify-rose bg-opacity-70">
+			<div class="flex flex-col w-full h-full p-10 xl:flex-row bg-gradient-to-t from-spotify-mint to-spotify-rose bg-opacity-70">
 				<!-- Contenido principal -->
 				<div class="flex flex-col gap-8 xl:w-1/2">
 					<nuxt-icon
@@ -21,7 +21,7 @@
 						href="https://github.com/DeibidSE/spotify-clone.git"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="flex items-center justify-center gap-3 py-2 px-3 text-white bg-[#202020] w-fit rounded-xl"
+						class="flex items-center justify-center gap-3 px-3 py-2 text-white bg-spotify-deep-hover w-fit rounded-xl"
 					>
 						<nuxt-icon
 							name="github"

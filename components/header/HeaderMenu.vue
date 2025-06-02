@@ -21,7 +21,7 @@
 		>
 			<NuxtLink
 				to="/"
-				class="p-3 rounded-full bg-[#242424] hover:bg-[#2a2a2a] text-[#b3b3b3] hover:text-white hover:scale-105 transition-transform"
+				class="p-3 transition-transform rounded-full bg-spotify-midnight hover:bg-spotify-shadow text-spotify-steel hover:text-white hover:scale-105"
 				aria-label="Home"
 			>
 				<nuxt-icon
@@ -33,7 +33,7 @@
 
 		<!-- Search Input -->
 		<div class="relative w-full max-w-lg">
-			<div class="absolute left-4 top-1/2 -translate-y-1/2 text-[#b3b3b3] h-full">
+			<div class="absolute h-full -translate-y-1/2 left-4 top-1/2 text-spotify-steel">
 				<ToolTip
 					:tooltip-text="$t('search')"
 					position="bottom"
@@ -50,10 +50,10 @@
 				v-model="searchQuery"
 				type="search"
 				:placeholder="$t('search_placeholder')"
-				class="w-full pl-12 pr-16 py-3 rounded-full bg-[#242424] text-white placeholder-[#b3b3b3] border border-transparent focus:border-white hover:border-[#2a2a2a] transition hover:bg-[#2a2a2a]"
+				class="w-full py-3 pl-12 pr-16 text-white transition border border-transparent rounded-full bg-spotify-midnight placeholder-spotify-steel focus:border-white hover:border-spotify-shadow hover:bg-spotify-shadow"
 				aria-label="Search"
 			>
-			<div class="absolute right-4 top-1/2 -translate-y-1/2 items-center text-[#b3b3b3] h-full">
+			<div class="absolute items-center h-full -translate-y-1/2 right-4 top-1/2 text-spotify-steel">
 				<ToolTip
 					:tooltip-text="$t('explore')"
 					position="bottom"
@@ -63,7 +63,7 @@
 						class="text-2xl"
 						aria-label="Explore"
 					>
-						<span class="h-5 w-[1px] bg-[#b3b3b3] mr-3" />
+						<span class="h-5 w-[1px] bg-spotify-steel mr-3" />
 						<nuxt-icon
 							name="explore"
 							class="transition-transform hover:text-white hover:scale-105"
@@ -123,7 +123,7 @@
 			class="relative"
 		>
 			<button
-				class="w-12 h-12 text-center transition-transform bg-blue-400 border-8 border-gray-800 rounded-full hover:scale-105"
+				class="w-12 h-12 text-center transition-transform bg-blue-400 border-8 rounded-full border-spotify-midnight hover:scale-105"
 				aria-label="User Menu"
 				@click="toggleDropdown"
 			>
@@ -132,7 +132,7 @@
 
 			<ul
 				v-show="isDropdownOpen"
-				class="absolute right-0 z-50 w-40 p-1 mt-2 divide-y rounded-md shadow-lg bg-zinc-800"
+				class="absolute right-0 z-50 w-40 p-1 mt-2 divide-y rounded-md shadow-lg bg-spotify-dusk-transition"
 				role="menu"
 			>
 				<li class="transition-colors rounded-sm hover:bg-white/10">

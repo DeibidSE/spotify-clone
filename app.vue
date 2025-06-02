@@ -11,7 +11,7 @@
 			<SidebarAsideMenu />
 		</aside>
 
-		<main class="[grid-area:main-view] relative z-10 flex flex-col rounded-lg overflow-y-auto w-full h-full bg-[#121212]">
+		<main class="[grid-area:main-view] relative z-10 flex flex-col rounded-lg overflow-y-auto w-full h-full bg-spotify-obsidian">
 			<NuxtPage />
 		</main>
 

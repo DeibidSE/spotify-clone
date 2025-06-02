@@ -40,32 +40,34 @@
 					<ControlsShuffleButton class="text-3xl" />
 					<button
 						aria-label="More options"
-						class="flex items-center justify-center pb-2 text-3xl tracking-wider text-center text-gray-400 transition cursor-pointer hover:scale-105 hover:text-gray-300"
+						class="flex items-center justify-center pb-2 text-3xl tracking-wider text-center transition cursor-pointer text-spotify-icon-light hover:text-white hover:scale-105"
 					>
 						...
 					</button>
 				</div>
 				<div
-					class="flex items-center gap-2 text-gray-300 transition cursor-pointer hover:text-white"
+					class="flex items-center gap-2 transition cursor-pointer text-spotify-steel hover:text-white"
 					@click="isListExpanded = !isListExpanded"
 				>
 					<span class="text-sm">{{ playerStore.isListCompact ? $t('compact') : $t('list') }}</span>
 					<nuxt-icon name="list" />
 					<ul
 						v-show="isListExpanded"
-						class="absolute z-10 w-40 p-1 overflow-hidden rounded shadow-lg right-4 top-20 bg-zinc-800"
+						class="absolute z-10 w-40 p-1 overflow-hidden rounded shadow-lg right-4 top-20 bg-spotify-dusk-transition"
 					>
-						<li class="p-3 text-xs font-bold text-green-400">
+						<li class="p-3 text-xs font-bold text-white/70">
 							{{ $t('view_as') }}
 						</li>
 						<li
 							class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
+							:class="{ 'text-spotify-electric-green': playerStore.isListCompact }"
 							@click="playerStore.setCompactList(true)"
 						>
 							<nuxt-icon name="compact-list" />{{ $t('compact') }}
 						</li>
 						<li
 							class="flex items-center gap-4 p-3 text-sm transition-colors duration-300 rounded-sm hover:bg-white/10"
+							:class="{ 'text-spotify-electric-green': !playerStore.isListCompact }"
 							@click="playerStore.setCompactList(false)"
 						>
 							<nuxt-icon name="list" />{{ $t('list') }}

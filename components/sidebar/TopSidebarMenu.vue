@@ -7,7 +7,7 @@
 		>
 			<NuxtLink
 				:to="item"
-				class="flex flex-row items-center h-10 gap-5 font-bold transition duration-300 text-zinc-400 hover:text-zinc-100"
+				class="flex flex-row items-center h-10 gap-5 font-bold transition duration-300 text-spotify-icon-light hover:text-white"
 			>
 				<nuxt-icon
 					:name="key"

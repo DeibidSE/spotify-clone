@@ -1,7 +1,7 @@
 <template>
 	<button
 		aria-label="Play/Pause"
-		class="p-5 w-[60px] h-[60px] text-xl text-black transition bg-green-500 rounded-full shadow-xl hover:scale-105 hover:bg-green-400"
+		class="p-5 w-[60px] h-[60px] text-xl text-black transition bg-spotify-electric-green rounded-full shadow-xl hover:scale-105 hover:bg-spotify-lime-pop"
 		@click="handleClick"
 	>
 		<nuxt-icon

@@ -1,6 +1,8 @@
 <template>
 	<article
-		class="relative transition-all duration-300 rounded-md shadow-lg group hover:bg-zinc-800 hover:shadow-xl bg-zinc-500/30"
+		class="relative transition-all duration-300 rounded-md shadow-lg group hover:bg-white/20 hover:shadow-xl bg-spotify-snow"
+		@mouseenter="emit('hover', playlist.color || '#1DB954')"
+		@mouseleave="emit('leave')"
 	>
 		<!-- Play/Pause button -->
 		<div
@@ -26,7 +28,7 @@
 				<span class="text-sm text-white">
 					{{ playlist.title }}
 				</span>
-				<span class="text-xs text-gray-400 capitalize">
+				<span class="text-xs text-white/70 capitalize">
 					{{ playlist.artists.length > 0 ? playlist.artists.join(', ') : `${$t('by')} DeibidSE` }}
 				</span>
 			</div>
@@ -38,5 +40,11 @@
 import type { Playlist } from '@/lib/types.d'
 
 defineProps<{ playlist: Playlist }>()
+
+const emit = defineEmits<{
+	(e: 'hover', color: string): void
+	(e: 'leave'): void
+}>()
+
 const active = useState()
 </script>
