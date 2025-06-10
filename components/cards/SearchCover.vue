@@ -12,7 +12,7 @@
 			</span>
 			<img
 				v-if="list.cover && list.cover !== ''"
-				:src="`${$config.public.BASE_URL}${list.cover}`"
+				:src="`${$config.public.BASE_URL}${list.cover ? list.cover : '/img/no_image.webp'}`"
 				class="absolute bottom-0 right-0 object-cover object-center w-28 h-28 rotate-[25deg] translate-x-4 translate-y-1.5 shadow-[0_2px_4px_0_rgba(0,0,0,0.2)]"
 			>
 		</div>

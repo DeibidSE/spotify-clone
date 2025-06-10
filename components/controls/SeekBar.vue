@@ -1,7 +1,7 @@
 <template>
 	<div class="flex w-full gap-3 text-xs">
 		<span class="w-12 text-right opacity-50">{{ formatTime(currentTime) }}</span>
-		<SliderComponent
+		<ControlsSliderComponent
 			:max="props.audio ? props.audio.duration : 0"
 			:value="currentTime"
 			@update:model-value="handleSliderChange"

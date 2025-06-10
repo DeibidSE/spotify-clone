@@ -17,13 +17,13 @@
   "dependencies": {
     "@nuxt/icon": "^1.13.0",
     "@nuxtjs/i18n": "^9.5.5",
-    "@pinia/nuxt": "^0.11.0",
+    "@pinia/nuxt": "^0.11.1",
+    "nuxt": "^3.17.5",
     "nuxt-icons": "^3.2.1",
-    "nuxt": "^3.17.4",
+    "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.3.0",
-    "pinia": "^3.0.2",
     "radix-vue": "^1.9.17",
-    "vue-router": "latest",
-    "vue": "latest"
+    "vue": "latest",
+    "vue-router": "latest"
   }
 }

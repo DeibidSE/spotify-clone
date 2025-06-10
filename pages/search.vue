@@ -51,10 +51,10 @@
 				class="flex flex-col items-center justify-center h-full gap-4"
 			>
 				<h1 class="text-4xl font-bold">
-					{{ $t('no_results_for') }} "{{ searchQuery }}"
+					{{ $t('search.no_results_prefix') }} "{{ searchQuery }}"
 				</h1>
 				<p class="text-white">
-					{{ $t('no_results_for_advise') }}
+					{{ $t('search.no_results_advice') }}
 				</p>
 			</div>
 			<div
@@ -62,7 +62,7 @@
 				class="flex flex-col gap-2"
 			>
 				<h2 class="text-2xl font-bold">
-					{{ $t('browse_all') }}
+					{{ $t('browse.all') }}
 				</h2>
 				<div class="flex flex-wrap gap-6">
 					<CardsSearchCover
@@ -91,7 +91,7 @@ const filteredItems = computed(() => {
 
 const lists = Array.from(new Set(playlists.map(playlist => playlist.genre))).map((genre) => {
 	const playlist = playlists.find(p => p.genre === genre)
-	return { name: genre, color: playlist?.color || '#000', cover: playlist?.cover }
+	return { name: genre, color: playlist?.color || '#000', cover: playlist?.cover || '/img/no_image.webp' }
 })
 
 const playSong = (selectedSong: Song) => {

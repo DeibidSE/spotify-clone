@@ -16,7 +16,7 @@
 	<nav class="flex items-center justify-center flex-1 gap-4 w-[40%]">
 		<!-- Home Button -->
 		<ToolTip
-			:tooltip-text="$t('home')"
+			:tooltip-text="$t('navigation.home')"
 			position="bottom"
 		>
 			<NuxtLink
@@ -35,7 +35,7 @@
 		<div class="relative w-full max-w-lg">
 			<div class="absolute h-full -translate-y-1/2 left-4 top-1/2 text-spotify-steel">
 				<ToolTip
-					:tooltip-text="$t('search')"
+					:tooltip-text="$t('search.title')"
 					position="bottom"
 				>
 					<nuxt-icon
@@ -49,13 +49,13 @@
 				ref="searchInputRef"
 				v-model="searchQuery"
 				type="search"
-				:placeholder="$t('search_placeholder')"
+				:placeholder="$t('search.placeholder')"
 				class="w-full py-3 pl-12 pr-16 text-white transition border border-transparent rounded-full bg-spotify-midnight placeholder-spotify-steel focus:border-white hover:border-spotify-shadow hover:bg-spotify-shadow"
 				aria-label="Search"
 			>
 			<div class="absolute items-center h-full -translate-y-1/2 right-4 top-1/2 text-spotify-steel">
 				<ToolTip
-					:tooltip-text="$t('explore')"
+					:tooltip-text="$t('navigation.explore')"
 					position="bottom"
 				>
 					<NuxtLink
@@ -85,13 +85,13 @@
 					aria-label="Install App"
 				>
 					<nuxt-icon name="download" />
-					<span class="text-sm font-bold">{{ $t('install_app') }}</span>
+					<span class="text-sm font-bold">{{ $t('app.install') }}</span>
 				</NuxtLink>
 			</div>
 
 			<!-- News Button -->
 			<ToolTip
-				:tooltip-text="$t('whats_new')"
+				:tooltip-text="$t('updates.title')"
 				position="bottom"
 			>
 				<NuxtLink
@@ -105,7 +105,7 @@
 
 			<!-- Friends Activity Button -->
 			<ToolTip
-				:tooltip-text="$t('friends_activity')"
+				:tooltip-text="$t('social.friends_activity')"
 				position="bottom"
 			>
 				<button
@@ -143,7 +143,7 @@
 						role="menuitem"
 						aria-label="GitHub Repository"
 					>
-						{{ $t('github') }}
+						{{ $t('links.github') }}
 						<nuxt-icon name="external-link" />
 					</NuxtLink>
 				</li>
@@ -154,7 +154,7 @@
 						class="flex items-center justify-between p-3 text-sm text-white/90"
 						role="menuitem"
 					>
-						{{ $t('settings') }}
+						{{ $t('settings.title') }}
 					</NuxtLink>
 				</li>
 			</ul>

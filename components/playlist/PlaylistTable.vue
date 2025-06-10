@@ -1,25 +1,25 @@
 <template>
-	<table class="w-full h-full text-left divide-y cursor-default divide-white/10">
+	<table class="w-full text-left divide-y cursor-default divide-white/10 h-fit">
 		<thead>
-			<tr class="sticky top-0 text-sm font-normal text-spotify-icon-light">
+			<tr class="top-0 text-sm font-normal text-spotify-icon-light">
 				<th class="px-4 py-2">
 					#
 				</th>
 				<th class="px-4 py-2">
-					<span class="hover:text-white">{{ $t('title') }}</span>
+					<span class="hover:text-white">{{ $t('track.title') }}</span>
 				</th>
 				<th
 					v-if="playerStore.isListCompact"
 					class="px-4 py-2"
 				>
-					<span class="hover:text-white">{{ $t('artists') }}</span>
+					<span class="hover:text-white">{{ $t('artist.plural') }}</span>
 				</th>
 				<th class="px-4 py-2">
-					<span class="hover:text-white">{{ $t('album') }}</span>
+					<span class="hover:text-white">{{ $t('album.single') }}</span>
 				</th>
 				<th class="px-4 py-2">
 					<ToolTip
-						:tooltip-text="$t('duration')"
+						:tooltip-text="$t('track.duration')"
 						position="top"
 					>
 						<nuxt-icon
@@ -31,7 +31,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="h-[16px]" />
+			<tr class="h-4" />
 			<tr
 				v-for="(song, index) in songs"
 				:key="index"

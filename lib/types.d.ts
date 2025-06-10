@@ -2,9 +2,14 @@ export interface Playlist {
 	id: string
 	title: string
 	color: string
-	cover: string
+	cover?: string
 	artists: string[]
 	genre: string
+	description: string
+	isPublic: boolean
+	type: 'music' | 'podcast'
+	saved: boolean
+	isAlbum: boolean
 }
 
 export interface Song {
@@ -14,6 +19,9 @@ export interface Song {
 	image: string
 	artists: string[]
 	duration: string
+	explicit: boolean
+	previewUrl: string
+	type: 'music' | 'podcast'
 }
 
 export interface Music {

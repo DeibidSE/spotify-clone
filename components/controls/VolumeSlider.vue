@@ -1,7 +1,7 @@
 <template>
 	<div class="flex justify-center gap-3 text-white w-36">
 		<ToolTip
-			:tooltip-text="$t('mute')"
+			:tooltip-text="$t('player.mute')"
 			position="top"
 		>
 			<button
@@ -19,7 +19,7 @@
 				/>
 			</button>
 		</ToolTip>
-		<SliderComponent
+		<ControlsSliderComponent
 			:max="100"
 			:value="playerStore.volume * 100"
 			@update:model-value="handleVolumeChange"

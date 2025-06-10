@@ -1,6 +1,6 @@
 <template>
 	<NuxtLayout>
-		<div class="flex gap-6 p-10 text-black rounded-lg bg-gradient-to-b from-spotify-mint to-spotify-rose bg-opacity-70">
+		<div class="flex h-full gap-6 p-10 text-black rounded-lg bg-gradient-to-b from-spotify-mint to-spotify-rose bg-opacity-70">
 			<div class="flex flex-col w-full h-full p-10 xl:flex-row bg-gradient-to-t from-spotify-mint to-spotify-rose bg-opacity-70">
 				<!-- Contenido principal -->
 				<div class="flex flex-col gap-8 xl:w-1/2">
@@ -10,11 +10,11 @@
 					/>
 
 					<h2 class="text-4xl font-bold">
-						{{ $t('download_repo') }}
+						{{ $t('download.repo.title') }}
 					</h2>
 
 					<span class="text-lg">
-						{{ $t('download_repo_description') }}
+						{{ $t('download.repo.description') }}
 					</span>
 
 					<a
@@ -29,10 +29,10 @@
 						/>
 						<div class="flex flex-col items-start justify-center">
 							<div class="text-[0.65rem] text-left font-light">
-								{{ $t('download_from') }}
+								{{ $t('download.from') }}
 							</div>
 							<div class="font-sans text-lg font-semibold leading-4">
-								{{ $t('official_repo') }}
+								{{ $t('links.official_repo') }}
 							</div>
 						</div>
 					</a>

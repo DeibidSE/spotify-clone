@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="grid h-screen gap-2 p-2 overflow-auto spotify_grid"
+		class="grid h-screen gap-2 p-2 overflow-hidden spotify_grid"
 		:class="{ collapsed: isCollapsed }"
 	>
 		<header class="[grid-area:header] w-full z-50 flex items-center justify-between min-w-fit gap-2">
@@ -11,7 +11,7 @@
 			<SidebarAsideMenu />
 		</aside>
 
-		<main class="[grid-area:main-view] relative z-10 flex flex-col rounded-lg overflow-y-auto w-full h-full bg-spotify-obsidian">
+		<main class="[grid-area:main-view] relative z-10 flex flex-col rounded-lg w-full h-full overflow-hidden bg-spotify-obsidian">
 			<NuxtPage />
 		</main>
 
