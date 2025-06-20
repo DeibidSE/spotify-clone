@@ -56,7 +56,7 @@ export const playlists: Playlist[] = [
 	{
 		id: 'amichii',
 		title: 'Amichii',
-		color: '#3a6ea5',
+		color: '#60a5fa',
 		cover: '/music/amichii/cover.webp',
 		artists: ['Amichii'],
 		genre: 'EDM',

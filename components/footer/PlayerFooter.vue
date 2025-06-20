@@ -168,7 +168,9 @@ watchEffect(() => {
 	}
 
 	if (playerStore.isPlaying) {
-		audioRef.value.play()
+		audioRef.value.play().catch((error) => {
+			console.error('Error playing audio:', error)
+		})
 	} else {
 		audioRef.value.pause()
 	}

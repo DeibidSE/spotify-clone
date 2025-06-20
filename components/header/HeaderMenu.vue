@@ -41,36 +41,41 @@
 					<nuxt-icon
 						name="search"
 						class="text-2xl transition-transform cursor-pointer hover:text-white hover:scale-105"
-						@click="() => $refs.searchInputRef.focus()"
+						@click="focusSearchInput"
 					/>
 				</ToolTip>
 			</div>
-			<input
-				ref="searchInputRef"
-				v-model="searchQuery"
-				type="search"
-				:placeholder="$t('search.placeholder')"
-				class="w-full py-3 pl-12 pr-16 text-white transition border border-transparent rounded-full bg-spotify-midnight placeholder-spotify-steel focus:border-white hover:border-spotify-shadow hover:bg-spotify-shadow"
-				aria-label="Search"
+			<NuxtLink
+				to="/search"
+				aria-label="Explore"
 			>
-			<div class="absolute items-center h-full -translate-y-1/2 right-4 top-1/2 text-spotify-steel">
-				<ToolTip
-					:tooltip-text="$t('navigation.explore')"
-					position="bottom"
+				<input
+					ref="searchInputRef"
+					v-model="searchQuery"
+					type="search"
+					:placeholder="$t('search.placeholder')"
+					class="w-full py-3 pl-12 pr-16 text-white transition border border-transparent rounded-full bg-spotify-midnight placeholder-spotify-steel focus:border-white hover:border-spotify-shadow hover:bg-spotify-shadow"
+					aria-label="Search"
 				>
-					<NuxtLink
-						to="/search"
-						class="text-2xl"
-						aria-label="Explore"
+				<div class="absolute items-center h-full -translate-y-1/2 right-4 top-1/2 text-spotify-steel">
+					<ToolTip
+						:tooltip-text="$t('navigation.explore')"
+						position="bottom"
 					>
-						<span class="h-5 w-[1px] bg-spotify-steel mr-3" />
-						<nuxt-icon
-							name="explore"
-							class="transition-transform hover:text-white hover:scale-105"
-						/>
-					</NuxtLink>
-				</ToolTip>
-			</div>
+						<NuxtLink
+							to="/search"
+							class="text-2xl"
+							aria-label="Explore"
+						>
+							<span class="h-5 w-[1px] bg-spotify-steel mr-3" />
+							<nuxt-icon
+								name="explore"
+								class="transition-transform hover:text-white hover:scale-105"
+							/>
+						</NuxtLink>
+					</ToolTip>
+				</div>
+			</NuxtLink>
 		</div>
 	</nav>
 
@@ -167,12 +172,15 @@ const searchQuery = ref('') // TODO: Implement search functionality
 
 const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
+const searchInputRef = ref()
 
 const handleClickOutside = (event: MouseEvent) => {
 	if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
 		isDropdownOpen.value = false
 	}
 }
+
+const focusSearchInput = () => searchInputRef.value.focus()
 
 const toggleDropdown = () => {
 	isDropdownOpen.value = !isDropdownOpen.value

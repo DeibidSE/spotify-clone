@@ -21,13 +21,11 @@
 <script setup lang="ts">
 import type { Song, Playlist } from '@/lib/types.d'
 
-// 🆕 Agregamos el prop 'size' con un valor por defecto 'large'
 const props = defineProps<{
 	id: string | string[]
 	size?: 'small' | 'large'
 }>()
 
-// Valor por defecto si no se pasa 'size'
 const size = props.size || 'large'
 
 const { BASE_URL } = useRuntimeConfig().public

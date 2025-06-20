@@ -14,7 +14,7 @@
 
 			<div class="flex flex-wrap gap-4">
 				<CardsPlaylistCard
-					v-for="(playlist, key) in playlists.slice(0, 6)"
+					v-for="(playlist, key) in filteredPlaylists.slice(0, 6)"
 					:key="'mini-' + key"
 					:playlist="playlist"
 					variant="mini"
@@ -87,7 +87,7 @@ function clearHoveredColor() {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 2s ease;
+	transition: opacity 1.5s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
