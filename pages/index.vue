@@ -1,21 +1,23 @@
 <template>
 	<NuxtLayout>
-		<div class="flex flex-col gap-6 px-6 py-4">
+		<div class="flex flex-col gap-6 px-6 py-4 overflow-x-hidden">
+			<!-- Pills Filter -->
 			<div class="flex gap-2">
 				<OthersPillFilter
-					v-for="(pill, key) in pills"
-					:key="key"
+					v-for="pill in pills"
+					:key="pill"
 					:filter-text="pill"
 					:is-selected="pill === selectedFilter"
 					aria-label="Filter by {{ pill }}"
-					@select="selectedFilter = (selectedFilter === pill ? t('common.all') : pill)"
+					@select="toggleFilter(pill)"
 				/>
 			</div>
 
-			<div class="flex flex-wrap gap-4">
+			<!-- Recently played Playlists -->
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 				<CardsPlaylistCard
-					v-for="(playlist, key) in filteredPlaylists.slice(0, 6)"
-					:key="'mini-' + key"
+					v-for="(playlist, index) in filteredPlaylists.saved"
+					:key="'mini-' + index"
 					:playlist="playlist"
 					variant="mini"
 					@hover="setHoveredColor(playlist.color || '#1DB954')"
@@ -27,10 +29,11 @@
 				{{ $t('playlist.for_you') }}
 			</h1>
 
+			<!-- Recommended Playlists -->
 			<div class="flex flex-wrap gap-4">
 				<CardsPlaylistCard
-					v-for="(playlist, key) in filteredPlaylists"
-					:key="'base-' + key"
+					v-for="(playlist, index) in filteredPlaylists.recommended"
+					:key="'base-' + index"
 					:playlist="playlist"
 					@hover="setHoveredColor(playlist.color || '#1DB954')"
 					@leave="clearHoveredColor"
@@ -38,9 +41,8 @@
 			</div>
 		</div>
 
-		<!-- Base gradient -->
+		<!-- Gradients -->
 		<div class="absolute inset-0 -z-20 bg-gradient-to-t from-spotify-obsidian via-spotify-obsidian/80 to-spotify-electric-green/80" />
-		<!-- Dynamic hover gradient -->
 		<Transition name="fade">
 			<div
 				v-if="hoveredColor"
@@ -54,32 +56,50 @@
 </template>
 
 <script setup lang="ts">
-import { playlists } from '@/lib/data'
+import { playlists, otherPlaylists } from '@/lib/data'
+import type { Playlist } from '@/lib/types'
 
 const { t } = useI18n()
 
-const selectedFilter = ref<string>(t('common.all'))
+const ALL = t('common.all')
+const MUSIC = t('music.title')
+const PODCAST = t('podcast.plural')
+
+const selectedFilter = ref<string>(ALL)
 const hoveredColor = ref<string | null>(null)
 
-const pills = computed(() => [t('common.all'), t('music.title'), t('podcast.plural')])
-const filteredPlaylists = computed(() => {
-	if (selectedFilter.value === t('common.all')) {
-		return playlists
-	}
-	if (selectedFilter.value === t('music.title')) {
-		return playlists.filter(p => p.type === 'music')
-	}
-	if (selectedFilter.value === t('podcast.plural')) {
-		return playlists.filter(p => p.type === 'podcast')
-	}
-	return playlists
-})
+const pills = computed(() => [ALL, MUSIC, PODCAST])
 
-function setHoveredColor(color: string) {
+const allPlaylists = computed(() => ({
+	saved: [...playlists, ...otherPlaylists].filter(p => p.saved),
+	recommended: [...playlists, ...otherPlaylists].filter(p => !p.saved),
+}))
+
+const filterByType = (items: Playlist[], type: string) => {
+	switch (type) {
+		case MUSIC:
+			return items.filter(p => p.type === 'music')
+		case PODCAST:
+			return items.filter(p => p.type === 'podcast')
+		default:
+			return items
+	}
+}
+
+const filteredPlaylists = computed(() => ({
+	saved: filterByType(allPlaylists.value.saved, selectedFilter.value),
+	recommended: filterByType(allPlaylists.value.recommended, selectedFilter.value),
+}))
+
+const toggleFilter = (pill: string) => {
+	selectedFilter.value = selectedFilter.value === pill ? ALL : pill
+}
+
+const setHoveredColor = (color: string) => {
 	hoveredColor.value = color
 }
 
-function clearHoveredColor() {
+const clearHoveredColor = () => {
 	hoveredColor.value = null
 }
 </script>

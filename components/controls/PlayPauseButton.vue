@@ -28,12 +28,10 @@ const props = defineProps<{
 
 const size = props.size || 'large'
 
-const { BASE_URL } = useRuntimeConfig().public
+const { public: { BASE_URL } } = useRuntimeConfig()
 const playerStore = usePlayerStore()
 
-const isPlayingPlaylist = computed(() => {
-	return playerStore.isPlaying && playerStore.currentMusic?.playlist?.id === props.id
-})
+const isPlayingPlaylist = computed(() => playerStore.isPlaying && playerStore.currentMusic?.playlist?.id === props.id)
 
 const handleClick = async () => {
 	if (isPlayingPlaylist.value === true) {

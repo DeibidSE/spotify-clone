@@ -9,6 +9,7 @@
 				:src="`${$config.public.BASE_URL}${song.image}`"
 				:alt="song.title"
 				class="rounded-md aspect-square"
+				@error="onImageError"
 			>
 		</picture>
 		<div class="flex flex-col">
@@ -38,7 +39,9 @@ import type { Song } from '@/lib/types.d'
 
 const playerStore = usePlayerStore()
 
-const song = computed<Song | null>(() => {
-	return playerStore.currentMusic?.song
-})
+const song = computed<Song | null>(() => playerStore.currentMusic?.song)
+
+const onImageError = (event: Event) => {
+	(event.target as HTMLImageElement).src = '/img/no_image.webp'
+}
 </script>

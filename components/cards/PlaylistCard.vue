@@ -33,19 +33,19 @@
 			]"
 			@click="active = playlist.id"
 		>
-			<picture
-				:class="variant === 'base' ? 'flex-none w-full aspect-square' : 'flex-none w-16 aspect-square'"
+			<img
+				:src="`${$config.public.BASE_URL}${playlist.cover ? playlist.cover : '/img/no_image.webp'}`"
+				:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
+				:class="[
+					'object-cover h-full aspect-square',
+					active === playlist.id && variant === 'base' ? 'active contain-layout' : '',
+					variant === 'mini' ? 'rounded-l-md flex-none w-16 aspect-square' : 'rounded-md flex-none w-full aspect-square',
+				]"
+				:style="{
+					'view-transition-name': `selected-playlist-${playlist.id}`,
+				}"
+				@error="onImageError"
 			>
-				<img
-					:src="`${$config.public.BASE_URL}${playlist.cover ? playlist.cover : '/img/no_image.webp'}`"
-					:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
-					:class="[
-						'object-cover w-full h-full aspect-square',
-						active === playlist.id && variant === 'base' ? 'active [view-transition-name:selected-playlist] [contain:layout]' : '',
-						variant === 'mini' ? 'rounded-l-md' : 'rounded-md',
-					]"
-				>
-			</picture>
 
 			<div
 				v-if="variant === 'base'"
@@ -91,8 +91,9 @@ const playerStore = usePlayerStore()
 const active = useState()
 const variant = props.variant ?? 'base'
 
-const isPlayingPlaylist = computed(() =>
-	playerStore.isPlaying
-	&& playerStore.currentMusic?.playlist?.id === props.playlist.id,
-)
+const isPlayingPlaylist = computed(() => playerStore.isPlaying && playerStore.currentMusic?.playlist?.id === props.playlist.id)
+
+const onImageError = (event: Event) => {
+	(event.target as HTMLImageElement).src = '/img/no_image.webp'
+}
 </script>

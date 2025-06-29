@@ -50,7 +50,6 @@
 				aria-label="Explore"
 			>
 				<input
-					ref="searchInputRef"
 					v-model="searchQuery"
 					type="search"
 					:placeholder="$t('search.placeholder')"
@@ -168,11 +167,18 @@
 </template>
 
 <script lang="ts" setup>
-const searchQuery = ref('') // TODO: Implement search functionality
+import { useSearchStore } from '@/stores/searchStore'
+
+const searchStore = useSearchStore()
+const searchInputRef = ref()
+
+const searchQuery = computed({
+	get: () => searchStore.searchQuery,
+	set: value => searchStore.setSearchQuery(value),
+})
 
 const isDropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
-const searchInputRef = ref()
 
 const handleClickOutside = (event: MouseEvent) => {
 	if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {

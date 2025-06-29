@@ -1,5 +1,5 @@
 <template>
-	<nav class="flex flex-col h-full gap-2 overflow-y-hidden">
+	<nav class="flex flex-col h-full gap-2 overflow-y-hidden group">
 		<div class="flex flex-col w-full h-full gap-2 p-2 overflow-x-hidden overflow-y-auto rounded-lg bg-spotify-obsidian">
 			<header
 				class="flex items-center px-4 py-1 text-spotify-steel"
@@ -8,7 +8,7 @@
 				<!-- Panel Left Button -->
 				<div
 					v-if="!playerStore.isGridCollapsed"
-					class="relative flex items-center w-full font-bold transition duration-200 group hover:cursor-pointer"
+					class="relative flex items-center w-full font-bold transition duration-200 hover:cursor-pointer"
 					aria-label="Collapse Left Panel"
 					@click="collapseLeftPanel"
 				>
@@ -96,6 +96,7 @@
 								'object-cover w-full h-full aspect-square',
 								playlist.isAlbum ? 'rounded-md' : 'rounded-full',
 							]"
+							@error="onImageError"
 						>
 					</picture>
 
@@ -136,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists } from '@/lib/data'
+import { playlists, otherPlaylists } from '@/lib/data'
 
 const playerStore = usePlayerStore()
 const { t } = useI18n()
@@ -145,8 +146,7 @@ const selectedSidebarFilter = ref<string>('')
 
 const filters = computed(() => [t('view.lists'), t('artist.plural'), t('album.plural')])
 const filteredPlayLists = computed(() => {
-	// const base = playlists.filter(p => p.saved)
-	const base = playlists
+	const base = [...playlists, ...otherPlaylists].filter(p => p.saved)
 
 	if (selectedSidebarFilter.value === t('artist.plural')) {
 		return base.filter(p => p.type === 'music' && !p.isAlbum)
@@ -171,5 +171,9 @@ const expandLeftPanel = () => {
 
 const applyFilter = (filter: string) => {
 	selectedSidebarFilter.value = selectedSidebarFilter.value === filter ? t('view.lists') : filter
+}
+
+const onImageError = (event: Event) => {
+	(event.target as HTMLImageElement).src = '/img/no_image.webp'
 }
 </script>

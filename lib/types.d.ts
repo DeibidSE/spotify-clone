@@ -5,8 +5,6 @@ export interface Playlist {
 	cover?: string
 	artists: string[]
 	genre: string
-	description: string
-	isPublic: boolean
 	type: 'music' | 'podcast'
 	saved: boolean
 	isAlbum: boolean

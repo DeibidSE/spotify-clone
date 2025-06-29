@@ -2,7 +2,6 @@
 	<NuxtLayout>
 		<div class="flex h-full gap-6 p-10 text-black rounded-lg bg-gradient-to-b from-spotify-mint to-spotify-rose bg-opacity-70">
 			<div class="flex flex-col w-full h-full p-10 xl:flex-row bg-gradient-to-t from-spotify-mint to-spotify-rose bg-opacity-70">
-				<!-- Contenido principal -->
 				<div class="flex flex-col gap-8 xl:w-1/2">
 					<nuxt-icon
 						name="logo_name"
@@ -38,7 +37,6 @@
 					</a>
 				</div>
 
-				<!-- Imagen de instalación -->
 				<div class="flex items-center justify-center xl:w-1/2">
 					<img
 						loading="lazy"

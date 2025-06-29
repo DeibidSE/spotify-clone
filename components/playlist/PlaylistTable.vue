@@ -62,6 +62,7 @@
 							:src="`${$config.public.BASE_URL}${song.image}`"
 							:alt="song.title"
 							class="rounded-md w-11 h-11 aspect-square"
+							@error="onImageError"
 						>
 					</picture>
 					<div class="flex flex-col">
@@ -128,5 +129,9 @@ const playSong = (selectedSong: Song) => {
 		playerStore.setIsPlaying(false)
 		console.error('Error playing song:', error)
 	}
+}
+
+const onImageError = (event: Event) => {
+	(event.target as HTMLImageElement).src = '/img/no_image.webp'
 }
 </script>

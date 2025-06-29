@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-const { BASE_URL } = useRuntimeConfig().public
+const { public: { BASE_URL } } = useRuntimeConfig()
 const playerStore = usePlayerStore()
 const audioRef = ref<HTMLAudioElement>()
 let audioSrc = ''
