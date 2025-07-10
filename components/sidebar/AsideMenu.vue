@@ -90,7 +90,7 @@
 					<!-- Playlist Image -->
 					<picture class="flex-none w-12 h-12">
 						<img
-							:src="`${$config.public.BASE_URL}${playlist.cover ? playlist.cover : '/img/no_image.webp'}`"
+							:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
 							:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
 							:class="[
 								'object-cover w-full h-full aspect-square',

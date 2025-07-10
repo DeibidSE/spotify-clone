@@ -18,7 +18,7 @@
 								class="absolute inset-0 z-10 self-center opacity-0 justify-self-center group-hover:opacity-100"
 							/>
 							<img
-								:src="`${$config.public.BASE_URL}${song.image}`"
+								:src="song.image"
 								:alt="song.title"
 								class="rounded-md w-11 h-11 aspect-square group-hover:opacity-60"
 								@error="onImageError"

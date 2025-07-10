@@ -26,15 +26,15 @@
 		<NuxtLink
 			:to="`/playlist/${playlist.id}`"
 			:class="[
-				'relative transition-all duration-300 rounded-md overflow-hidden',
+				'transition-all duration-300 rounded-md overflow-hidden',
 				variant === 'base'
 					? 'flex flex-col gap-2 p-2 pb-6 w-44'
-					: 'flex items-center flex-1 gap-2 min-w-80 basis-80',
+					: 'flex items-center flex-1 gap-2 w-full basis-80',
 			]"
 			@click="active = playlist.id"
 		>
 			<img
-				:src="`${$config.public.BASE_URL}${playlist.cover ? playlist.cover : '/img/no_image.webp'}`"
+				:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
 				:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
 				:class="[
 					'object-cover h-full aspect-square',
@@ -57,19 +57,23 @@
 				</span>
 			</div>
 
-			<span
+			<div
 				v-else
-				class="p-2 font-bold text-white"
+				class="flex items-center justify-between w-full p-2 pr-4"
 			>
-				{{ playlist.title }}
-			</span>
+				<span
+					class="font-bold text-white truncate w-fit"
+				>
+					{{ playlist.title }}
+				</span>
 
-			<img
-				v-if="isPlayingPlaylist && variant !== 'base'"
-				src="/img/equaliser-animated-green.gif"
-				alt="Equaliser animated green icon"
-				class="absolute w-4 h-4 right-4"
-			>
+				<img
+					v-if="isPlayingPlaylist"
+					src="/img/equaliser-animated-green.gif"
+					alt="Equaliser animated green icon"
+					class="w-4 h-4"
+				>
+			</div>
 		</NuxtLink>
 	</article>
 </template>

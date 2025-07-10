@@ -55,6 +55,11 @@ export default defineNuxtConfig({
 		viewTransition: true,
 	},
 	compatibilityDate: '2024-08-24',
+	nitro: {
+		imports: {
+			exclude: [/.*.nuxt\/dist\/server.*/],
+		},
+	},
 	eslint: {
 		config: {
 			stylistic: {

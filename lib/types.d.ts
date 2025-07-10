@@ -17,8 +17,6 @@ export interface Song {
 	image: string
 	artists: string[]
 	duration: string
-	explicit: boolean
-	previewUrl: string
 	type: 'music' | 'podcast'
 }
 

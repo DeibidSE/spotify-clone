@@ -6,6 +6,7 @@ export const usePlayerStore = defineStore('player', {
 		isPlaying: false, // Indicates if the player is currently playing
 		currentMusic: {} as Music, // Stores information about the currently playing music
 		volume: 1, // Stores the current volume level
+		currentTime: 0, // Stores the current playback time in seconds
 		isListCompact: false, // Indicates if the playlist is displayed in a compact mode
 		shuffleEnabled: false, // Indicates if shuffle mode is enabled
 		isGridCollapsed: false, // Indicates if the left panel is collapsed or not
@@ -40,6 +41,7 @@ export const usePlayerStore = defineStore('player', {
 			}
 
 			this.currentMusic = { ...newCurrentMusic }
+			this.currentTime = 0
 		},
 		/**
      * Set the state of how show the table

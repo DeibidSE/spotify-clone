@@ -59,7 +59,7 @@
 					<picture class="">
 						<img
 							v-if="!playerStore.isListCompact"
-							:src="`${$config.public.BASE_URL}${song.image}`"
+							:src="song.image"
 							:alt="song.title"
 							class="rounded-md w-11 h-11 aspect-square"
 							@error="onImageError"

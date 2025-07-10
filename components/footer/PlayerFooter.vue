@@ -14,12 +14,11 @@
 				class="p-2"
 				aria-label="Shuffle Songs"
 			/>
-
 			<!-- Previous Song Button -->
 			<button
 				aria-label="Previous Song"
 				class="p-2 text-spotify-icon-light hover:text-white"
-				@click="prevSong"
+				@click="simPlayer.prev"
 			>
 				<nuxt-icon name="previous" />
 			</button>
@@ -28,7 +27,7 @@
 			<button
 				aria-label="Play/Pause"
 				class="w-8 h-8 p-2 bg-white rounded-full hover:scale-110"
-				@click="togglePlay"
+				@click="handlePlayPauseClick"
 			>
 				<nuxt-icon
 					v-if="!playerStore.isPlaying"
@@ -46,32 +45,33 @@
 			<button
 				aria-label="Next Song"
 				class="p-2 text-spotify-icon-light hover:text-white"
-				@click="nextSong"
+				@click="simPlayer.next"
 			>
 				<nuxt-icon name="next" />
 			</button>
 
 			<!-- Loop Song Button -->
 			<ControlsLoopButton
-				:audio="audioRef"
 				aria-label="Toggle Loop"
-				@switch-loop="switchLoop"
 			/>
 		</div>
 
 		<!-- Song Time Slider -->
 		<ControlsSeekBar
-			:audio="audioRef"
+			:current-time="simPlayer.currentTime"
+			:duration="simPlayer.duration"
 			aria-label="Song Progress"
-			@update:audio="updateAudioRef"
+			@seek="simPlayer.seek"
 		/>
-		<audio ref="audioRef" />
 	</div>
 
 	<!-- Volume Control Section -->
 	<div class="flex items-center justify-end w-[30%] min-w-44 gap-2">
 		<!-- Volume Slider -->
-		<ControlsVolumeSlider />
+		<ControlsVolumeSlider
+			:volume="simPlayer.volume"
+			@update:volume="simPlayer.setVolume"
+		/>
 		<!-- Fullscreen Toggle Button -->
 		<button
 			aria-label="Toggle full screen"
@@ -84,65 +84,14 @@
 </template>
 
 <script setup lang="ts">
-const { public: { BASE_URL } } = useRuntimeConfig()
+const simPlayer = useSimulatedPlayerStore()
 const playerStore = usePlayerStore()
-const audioRef = ref<HTMLAudioElement>()
-let audioSrc = ''
 
-const currentSong = computed(() => playerStore.currentMusic?.song)
-
-const togglePlay = () => {
-	if (currentSong.value) {
-		playerStore.setIsPlaying(!playerStore.isPlaying)
-	}
-}
-
-const nextSong = () => {
-	const { song, playlist, songs } = playerStore.currentMusic
-
-	if (!song || !playlist || !songs) { return }
-
-	const index = songs.findIndex(e => e.id === song.id) ?? -1
-
-	// Exit if the current song is not found in the song list
-	if (index === -1 || !audioRef.value) { return }
-
-	// Get the index of the next song, considering the song list cycle
-	const nextIndex = (index + 1) % songs.length
-
-	playerStore.setIsPlaying(false)
-	playerStore.setCurrentMusic({ songs, playlist, song: songs[nextIndex] })
-	playerStore.setIsPlaying(true)
-	audioRef.value.currentTime = 0
-}
-
-const prevSong = () => {
-	const { song, playlist, songs } = playerStore.currentMusic
-
-	if (!song || !playlist || !songs) { return }
-
-	const index = songs.findIndex(e => e.id === song.id) ?? -1
-
-	// Exit if the current song is the first one or there is no audio
-	if (index <= 0 || !audioRef.value) { return }
-
-	const prevIndex = index - 1
-
-	playerStore.setIsPlaying(false)
-	playerStore.setCurrentMusic({ songs, playlist, song: songs[prevIndex] })
-	playerStore.setIsPlaying(true)
-	audioRef.value.currentTime = 0
-}
-
-const switchLoop = (loopEnabled: boolean) => {
-	if (audioRef.value && loopEnabled) {
-		audioRef.value.loop = loopEnabled
-	}
-}
-
-const updateAudioRef = (newAudio: number) => {
-	if (audioRef.value && newAudio) {
-		audioRef.value.currentTime = newAudio
+const handlePlayPauseClick = () => {
+	if (playerStore.isPlaying) {
+		simPlayer.pause()
+	} else {
+		simPlayer.play()
 	}
 }
 
@@ -153,32 +102,4 @@ const toggleFullscreen = () => {
 		document.exitFullscreen()
 	}
 }
-
-watchEffect(() => {
-	const { song, playlist } = playerStore.currentMusic
-
-	if (!song || !playlist || Object.keys(playlist).length === 0 || !audioRef.value) { return }
-
-	const src = `${BASE_URL}/music/${playlist.id}/0${song.id}.mp3`
-
-	if (src !== audioSrc) {
-		audioSrc = src
-		audioRef.value.src = src
-		audioRef.value.volume = playerStore.volume
-	}
-
-	if (playerStore.isPlaying) {
-		audioRef.value.play().catch((error) => {
-			console.error('Error playing audio:', error)
-		})
-	} else {
-		audioRef.value.pause()
-	}
-})
-
-watch(() => playerStore.volume, (newVolume) => {
-	if (audioRef.value) {
-		audioRef.value.volume = newVolume
-	}
-})
 </script>

@@ -12,9 +12,9 @@
 					:style="{ 'view-transition-name': `selected-playlist-${playlist.id}` }"
 				>
 					<img
-						:src="playlist.cover ? `${$config.public.BASE_URL}${playlist.cover}` : '/img/no_image.webp'"
+						:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
 						:alt="`Cover of ${playlist.title}`"
-						class="w-full h-full rounded aspect-square"
+						class="object-cover w-full h-full rounded aspect-square"
 						@error="onImageError"
 					>
 				</picture>

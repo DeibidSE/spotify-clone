@@ -167,8 +167,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useSearchStore } from '@/stores/searchStore'
-
 const searchStore = useSearchStore()
 const searchInputRef = ref()
 

@@ -12,16 +12,18 @@ export default defineEventHandler((event) => {
 		const playlist = playlists.find(playlist => playlist.id === id)
 
 		if (!playlist) {
-			throw createError({
-				statusCode: 400,
-				statusMessage: 'Playlist not found',
+			return new Response(JSON.stringify({ error: 'Playlist not found' }), {
+				status: 404,
+				headers: { 'content-type': 'application/json' },
 			})
 		}
 
 		const allSongs = songs.filter(song => song.albumId === playlist.id)
 
-		if (!playlist || !songs.length) {
-			throw new Error('Invalid data or no songs found')
+		if (allSongs.length === 0) {
+			return new Response(JSON.stringify({ playlist, songs: [] }), {
+				headers: { 'content-type': 'application/json' },
+			})
 		}
 
 		return new Response(JSON.stringify({ playlist, songs: allSongs }), {
@@ -29,7 +31,7 @@ export default defineEventHandler((event) => {
 		})
 	} catch (error: any) {
 		return new Response(JSON.stringify({ error: error.message }), {
-			status: 404,
+			status: 500,
 			headers: { 'content-type': 'application/json' },
 		})
 	}

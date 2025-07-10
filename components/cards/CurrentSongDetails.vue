@@ -6,7 +6,7 @@
 	>
 		<picture class="w-16 h-16 overflow-hidden rounded-md shadow-lg">
 			<img
-				:src="`${$config.public.BASE_URL}${song.image}`"
+				:src="song.image"
 				:alt="song.title"
 				class="rounded-md aspect-square"
 				@error="onImageError"

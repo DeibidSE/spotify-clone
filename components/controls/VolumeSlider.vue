@@ -21,30 +21,32 @@
 		</ToolTip>
 		<ControlsSliderComponent
 			:max="100"
-			:value="playerStore.volume * 100"
+			:value="props.volume !== undefined ? props.volume * 100 : playerStore.volume * 100"
 			@update:model-value="handleVolumeChange"
 		/>
 	</div>
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{ volume?: number }>()
+const emits = defineEmits(['update:volume'])
 const playerStore = usePlayerStore()
 const previousVolume = ref(0)
 
-const isVolumeSilenced = computed(() => playerStore.volume < 0.01)
+const isVolumeSilenced = computed(() => (props.volume !== undefined ? props.volume : playerStore.volume) < 0.01)
 
 const toggleVolume = () => {
 	if (isVolumeSilenced.value) {
-		playerStore.setVolume(previousVolume.value)
+		emits('update:volume', previousVolume.value)
 	} else {
-		previousVolume.value = playerStore.volume
-		playerStore.setVolume(0)
+		previousVolume.value = props.volume !== undefined ? props.volume : playerStore.volume
+		emits('update:volume', 0)
 	}
 }
 
 const handleVolumeChange = (value: number[]) => {
 	const [newVolume] = value
 	const volumeValue = newVolume / 100
-	playerStore.setVolume(volumeValue)
+	emits('update:volume', volumeValue)
 }
 </script>

@@ -17,15 +17,12 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ audio: HTMLAudioElement | undefined }>()
 const loopEnabled = ref(false)
 
 const emits = defineEmits(['switch-loop'])
 
 const toggleLoop = () => {
-	if (props.audio) {
-		emits('switch-loop', !loopEnabled.value)
-		loopEnabled.value = !loopEnabled.value
-	}
+	loopEnabled.value = !loopEnabled.value
+	emits('switch-loop', loopEnabled.value)
 }
 </script>

@@ -42,8 +42,15 @@ const handleClick = async () => {
 	try {
 		const { songs, playlist }: { songs: Song[], playlist: Playlist } = await $fetch(`${BASE_URL}/api/playlist-info?id=${props.id}`)
 		if (songs.length === 0) return
-		playerStore.setCurrentMusic({ songs, playlist, song: songs[0] })
-		playerStore.setIsPlaying(true)
+
+		// If it is the same song, simply play or pause without resetting the timer
+		if (playerStore.currentMusic?.song?.id === songs[0].id) {
+			playerStore.setIsPlaying(true)
+		} else {
+			// If it is a different song, load it and restart the time.
+			playerStore.setCurrentMusic({ songs, playlist, song: songs[0] })
+			playerStore.setIsPlaying(true)
+		}
 	} catch (error: any) {
 		playerStore.setIsPlaying(false)
 		console.error('Error fetching playlist info:', error)
