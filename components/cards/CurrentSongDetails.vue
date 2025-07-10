@@ -8,7 +8,7 @@
 			<img
 				:src="song.image"
 				:alt="song.title"
-				class="rounded-md aspect-square"
+				class="w-auto h-full rounded-md aspect-square"
 				@error="onImageError"
 			>
 		</picture>

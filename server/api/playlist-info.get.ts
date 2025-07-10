@@ -1,4 +1,4 @@
-import { playlists, songs } from '@/lib/data'
+import { playlists, otherPlaylists, songs, otherSongs } from '@/lib/data'
 
 export default defineEventHandler((event) => {
 	try {
@@ -9,7 +9,7 @@ export default defineEventHandler((event) => {
 			throw createError({ statusCode: 400, statusMessage: 'ID not provided' })
 		}
 
-		const playlist = playlists.find(playlist => playlist.id === id)
+		const playlist = [...playlists, ...otherPlaylists].find(playlist => playlist.id === id)
 
 		if (!playlist) {
 			return new Response(JSON.stringify({ error: 'Playlist not found' }), {
@@ -18,7 +18,7 @@ export default defineEventHandler((event) => {
 			})
 		}
 
-		const allSongs = songs.filter(song => song.albumId === playlist.id)
+		const allSongs = [...songs, ...otherSongs].filter(song => song.albumId === playlist.id)
 
 		if (allSongs.length === 0) {
 			return new Response(JSON.stringify({ playlist, songs: [] }), {
