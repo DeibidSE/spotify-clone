@@ -91,7 +91,7 @@
 					<picture class="flex-none w-12 h-12">
 						<img
 							:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
-							:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
+							:alt="`Cover of the list ${playlist.title}`"
 							:class="[
 								'object-cover w-full h-full aspect-square',
 								playlist.isAlbum ? 'rounded-md' : 'rounded-full',
@@ -110,7 +110,7 @@
 							v-if="playlist.isAlbum"
 							class="text-xs truncate text-white/70"
 						>
-							{{ playlist.artists.length > 0 ? playlist.artists.join(', ') : `${$t('playlist.title')} • DeibidSE` }}
+							{{ `${$t('playlist.title')} • DeibidSE` }}
 						</span>
 						<span
 							v-else
@@ -137,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists, otherPlaylists } from '@/lib/data'
+import { playlists } from '@/lib/data'
 
 const playerStore = usePlayerStore()
 const { t } = useI18n()
@@ -146,10 +146,10 @@ const selectedSidebarFilter = ref<string>('')
 
 const filters = computed(() => [t('view.lists'), t('artist.plural'), t('album.plural')])
 const filteredPlayLists = computed(() => {
-	const base = [...playlists, ...otherPlaylists].filter(p => p.saved)
+	const base = playlists.filter(p => p.saved)
 
 	if (selectedSidebarFilter.value === t('artist.plural')) {
-		return base.filter(p => p.type === 'music' && !p.isAlbum)
+		return base.filter(p => p.type === 'artist')
 	}
 
 	if (selectedSidebarFilter.value === t('album.plural')) {

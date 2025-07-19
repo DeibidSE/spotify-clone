@@ -8,7 +8,7 @@
 			<img
 				:src="song.image"
 				:alt="song.title"
-				class="w-auto h-full rounded-md aspect-square"
+				class="object-cover w-auto h-full rounded-md aspect-square"
 				@error="onImageError"
 			>
 		</picture>
@@ -16,7 +16,7 @@
 			<span class="block text-sm font-semibold">
 				{{ song.title }}
 			</span>
-			<span class="text-xs opacity-80">
+			<span class="w-full text-xs truncate opacity-80">
 				{{ song.artists.join(', ') }}
 			</span>
 		</div>

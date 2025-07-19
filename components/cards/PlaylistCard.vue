@@ -35,7 +35,7 @@
 		>
 			<img
 				:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
-				:alt="`Cover of ${playlist.title} by ${playlist.artists.join(', ')}`"
+				:alt="`Cover of the playlist ${playlist.title}`"
 				:class="[
 					'object-cover h-full aspect-square',
 					active === playlist.id && variant === 'base' ? 'active contain-layout' : '',
@@ -52,8 +52,8 @@
 				class="flex flex-col flex-auto px-2"
 			>
 				<span class="text-sm text-white hover:underline w-fit">{{ playlist.title }}</span>
-				<span class="text-xs capitalize text-white/70 hover:underline w-fit">
-					{{ playlist.artists.length > 0 ? playlist.artists.join(', ') : `${$t('common.by')} DeibidSE` }}
+				<span class="w-full text-xs capitalize truncate text-white/70 hover:underline">
+					{{ artists.length > 0 ? artists : `${$t('common.by')} DeibidSE` }}
 				</span>
 			</div>
 
@@ -79,7 +79,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Playlist } from '@/lib/types.d'
+import { songs } from '@/lib/data'
+import type { Playlist, Song } from '@/lib/types'
 
 const props = defineProps<{
 	playlist: Playlist
@@ -96,6 +97,11 @@ const active = useState()
 const variant = props.variant ?? 'base'
 
 const isPlayingPlaylist = computed(() => playerStore.isPlaying && playerStore.currentMusic?.playlist?.id === props.playlist.id)
+const playlistSongs = computed(() => songs.filter((song: Song) => song.albumId === props.playlist?.id))
+const artists = computed(() => {
+	const allArtists = playlistSongs.value.flatMap(song => song.artists)
+	return [...new Set(allArtists)].join(', ')
+})
 
 const onImageError = (event: Event) => {
 	(event.target as HTMLImageElement).src = '/img/no_image.webp'

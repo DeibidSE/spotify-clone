@@ -24,7 +24,6 @@ export default defineNuxtConfig({
 					content: 'width=device-width, initial-scale=1',
 				},
 				{
-					hid: 'description',
 					name: 'description',
 					content: 'Spotify Clone created with Nuxt 3',
 				},

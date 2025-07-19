@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists, otherPlaylists } from '@/lib/data'
+import { playlists } from '@/lib/data'
 import type { Playlist } from '@/lib/types'
 
 const { t } = useI18n()
@@ -71,8 +71,8 @@ const hoveredColor = ref<string | null>(null)
 const pills = computed(() => [ALL, MUSIC, PODCAST])
 
 const allPlaylists = computed(() => ({
-	saved: [...playlists, ...otherPlaylists].filter(p => p.saved),
-	recommended: [...playlists, ...otherPlaylists].filter(p => !p.saved),
+	saved: playlists.filter(p => p.saved && p.type !== 'artist'),
+	recommended: playlists.filter(p => !p.saved),
 }))
 
 const filterByType = (items: Playlist[], type: string) => {

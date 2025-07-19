@@ -29,14 +29,18 @@
 					</h1>
 					<div
 						v-if="playlist"
-						class="flex flex-row w-full gap-1 text-sm font-normal text-white"
+						class="flex flex-col w-full gap-1 text-sm font-normal text-white"
 					>
-						<span class="font-bold">
-							{{ playlist.artists?.length ? playlist.artists.join(', ') : 'DeibidSE' }}
+						<span class="w-1/2 font-bold truncate">
+							{{ artists }}
 						</span>
-						<span>
-							• {{ playlistSongs.length }} {{ $t('song.plural') }}, {{ formattedDuration }}
-						</span>
+						<div class="flex items-center justify-start gap-2">
+							<nuxt-icon
+								name="logo"
+								class="text-2xl text-spotify-lime-pop"
+							/>
+							<span>{{ $t('song.made_for_you') }} • {{ playlistSongs.length }} {{ $t('song.plural') }}, {{ formattedDuration }}</span>
+						</div>
 					</div>
 				</div>
 			</header>
@@ -102,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists, otherPlaylists, songs, otherSongs } from '@/lib/data'
+import { playlists, songs } from '@/lib/data'
 import type { Playlist, Song } from '@/lib/types'
 
 const { t } = useI18n()
@@ -112,8 +116,12 @@ const playerStore = usePlayerStore()
 const isListExpanded = ref(false)
 
 const id = computed(() => route.params.id)
-const playlist = computed(() => playlists.find((p: Playlist) => p?.id === id.value) || otherPlaylists.find((p: Playlist) => p?.id === id.value))
-const playlistSongs = computed(() => [...songs, ...otherSongs].filter((song: Song) => song.albumId === playlist.value?.id))
+const playlist = computed(() => playlists.find((p: Playlist) => p?.id === id.value))
+const playlistSongs = computed(() => songs.filter((song: Song) => song.albumId === playlist.value?.id))
+const artists = computed(() => {
+	const allArtists = playlistSongs.value.flatMap(song => song.artists)
+	return [...new Set(allArtists)].join(', ')
+})
 const totalDurationInSeconds = computed(() => playlistSongs.value.reduce((sum, song) => sum + durationInSeconds(song.duration), 0))
 const formattedDuration = computed(() => formatDuration(totalDurationInSeconds.value))
 const viewModes = computed(() => [{ compact: true, label: t('view.compact'), icon: 'compact-list' }, { compact: false, label: t('view.list'), icon: 'list' }])

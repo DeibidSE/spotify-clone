@@ -20,14 +20,14 @@
 							<img
 								:src="song.image"
 								:alt="song.title"
-								class="rounded-md w-11 h-11 aspect-square group-hover:opacity-60"
+								class="object-cover rounded-md w-11 h-11 aspect-square group-hover:opacity-60"
 								@error="onImageError"
 							>
 						</div>
 
 						<div class="flex flex-col">
 							<span class="text-base text-white">{{ song.title }}</span>
-							<span class="hover:text-white hover:underline">
+							<span class="w-full truncate hover:text-white hover:underline">
 								{{ song.artists.join(', ') }}
 							</span>
 						</div>
@@ -72,24 +72,22 @@
 
 <script setup lang="ts">
 import type { Song, Playlist } from '@/lib/types.d'
-import { songs, playlists, otherPlaylists, otherSongs } from '@/lib/data'
+import { songs, playlists } from '@/lib/data'
 
 const playerStore = usePlayerStore()
 const searchStore = useSearchStore()
 
 const searchQuery = computed(() => searchStore.searchQuery)
-const allPlaylists = computed(() => [...playlists, ...otherPlaylists])
-const allSongs = computed(() => [...songs, ...otherSongs])
 const hasQuery = computed(() => searchQuery.value.trim() !== '')
 const filteredItems = computed(() =>
-	allSongs.value.filter((song: Song) =>
+	songs.filter((song: Song) =>
 		song.title.toLowerCase().includes(searchQuery.value.toLowerCase()),
 	),
 )
 const lists = computed(() => {
-	const genres = new Set(allPlaylists.value.map((p: Playlist) => p.genre))
+	const genres = new Set(playlists.map((p: Playlist) => p.genre))
 	return Array.from(genres).map((genre) => {
-		const playlist = allPlaylists.value.find((p: Playlist) => p.genre === genre)
+		const playlist = playlists.find((p: Playlist) => p.genre === genre)
 		return {
 			name: genre,
 			color: playlist?.color || '#000',
@@ -113,8 +111,8 @@ const playSong = (selectedSong: Song) => {
 
 	try {
 		const playlistId = selectedSong.albumId ?? ''
-		const playlist = allPlaylists.value.find((p: Playlist) => p.id === playlistId)
-		const playlistSongs = allSongs.value.filter((s: Song) => s.albumId === playlistId)
+		const playlist = playlists.find((p: Playlist) => p.id === playlistId)
+		const playlistSongs = songs.filter((s: Song) => s.albumId === playlistId)
 
 		if (!playlist || !playlistSongs.length) return
 

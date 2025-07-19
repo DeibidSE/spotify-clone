@@ -3,9 +3,8 @@ export interface Playlist {
 	title: string
 	color: string
 	cover?: string
-	artists: string[]
 	genre: string
-	type: 'music' | 'podcast'
+	type: 'music' | 'podcast' | 'artist'
 	saved: boolean
 	isAlbum: boolean
 }
