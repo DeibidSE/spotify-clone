@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SpotifyMixUI";
+  src: url("~/assets/fonts/SpotifyMixUI-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* SpotifyMixUI Bold */
+@font-face {
+  font-family: "SpotifyMixUI";
+  src: url("~/assets/fonts/SpotifyMixUI-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SpotifyMixUI";
+  src: url("~/assets/fonts/SpotifyMixUITitleVariable.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-family: "SpotifyMixUI", system-ui, sans-serif;
+  background: #010101;
+  color: white;
+}

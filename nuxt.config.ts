@@ -2,10 +2,10 @@
 export default defineNuxtConfig({
 	modules: [
 		'@nuxt/eslint',
+		'@nuxt/icon',
 		'@nuxtjs/i18n',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
-		'nuxt-icons',
 		'pinia-plugin-persistedstate/nuxt',
 		'radix-vue/nuxt',
 	],
@@ -73,5 +73,14 @@ export default defineNuxtConfig({
 			cookieKey: 'i18n_redirected',
 			redirectOn: 'root',
 		},
+	},
+	icon: {
+		mode: 'svg',
+		customCollections: [
+			{
+				prefix: 'my-icon',
+				dir: './app/assets/icons',
+			},
+		],
 	},
 })
