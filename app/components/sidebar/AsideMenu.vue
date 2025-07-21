@@ -2,8 +2,8 @@
 	<nav class="flex flex-col h-full gap-2 overflow-y-hidden group">
 		<div class="flex flex-col w-full h-full gap-2 p-2 overflow-x-hidden overflow-y-auto rounded-lg bg-spotify-obsidian">
 			<header
-				class="flex items-center px-4 py-1 text-spotify-steel"
-				:class="playerStore.isGridCollapsed ? 'justify-center' : 'justify-between'"
+				class="flex items-center text-spotify-steel"
+				:class="playerStore.isGridCollapsed ? 'justify-center px-4 py-3' : 'justify-between px-4 py-1'"
 			>
 				<!-- Panel Left Button -->
 				<div
@@ -24,12 +24,12 @@
 
 				<!-- Collapse/Expand Button when Grid is Collapsed -->
 				<div
-					v-if="playerStore.isGridCollapsed"
-					class="flex flex-col items-center justify-center gap-2"
+					v-else
+					class="flex flex-col items-center justify-center gap-4"
 				>
 					<Icon
 						name="my-icon:compact-library"
-						class="px-1 py-2 text-2xl cursor-pointer hover:text-white"
+						class="text-2xl cursor-pointer hover:text-white"
 						aria-label="Expand Grid"
 						@click="collapseLeftPanel"
 					/>
@@ -53,7 +53,11 @@
 						<span class="text-3xl leading-4">+</span>
 						<span class="text-sm font-bold text-white">{{ $t('playlist.create') }}</span>
 					</button>
-					<button class="p-2 transition rounded-full cursor-pointer hover:text-white hover:bg-spotify-midnight" aria-label="Expand Grid" @click="expandLeftPanel">
+					<button
+						class="p-2 transition rounded-full cursor-pointer hover:text-white hover:bg-spotify-midnight"
+						aria-label="Expand Grid"
+						@click="expandLeftPanel"
+					>
 						<Icon name="my-icon:expand" />
 					</button>
 				</div>
@@ -80,7 +84,7 @@
 					v-for="(playlist, key) in filteredPlayLists"
 					:key="key"
 					:to="`/playlist/${playlist.id}`"
-					class="flex items-center gap-5 p-2 truncate transition rounded-md hover:bg-spotify-midnight"
+					class="flex items-center justify-center gap-5 py-2 truncate transition rounded-md hover:bg-spotify-midnight"
 					:class="{ 'text-spotify-electric-green': playlistPlaying === playlist.id }"
 					aria-label="Go to Playlist: {{ playlist.title }}"
 				>

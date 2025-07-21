@@ -24,7 +24,7 @@
 					<h2 class="flex w-full text-sm transition-all duration-300">
 						{{ $t('playlist.title') }}
 					</h2>
-					<h1 class="w-full font-extrabold text-white truncate transition-all duration-300 text-8xl">
+					<h1 class="w-full py-2 font-extrabold text-white transition-all duration-300 whitespace-nowrap text-balance text-8xl">
 						{{ playlist?.title }}
 					</h1>
 					<div

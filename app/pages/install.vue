@@ -4,7 +4,7 @@
 			<div class="flex flex-col w-full h-full p-10 xl:flex-row bg-gradient-to-t from-spotify-mint to-spotify-rose bg-opacity-70">
 				<div class="flex flex-col gap-8 xl:w-1/2">
 					<Icon
-						name="my-icon:logo_name"
+						name="my-icon:logo-name"
 						class="text-7xl"
 					/>
 
