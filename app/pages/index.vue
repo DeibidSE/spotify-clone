@@ -25,10 +25,14 @@
 				/>
 			</div>
 
-			<h1 class="text-3xl font-bold">
-				{{ $t('playlist.for_you') }}
-			</h1>
-			<OthersGreetingMessage />
+			<div class="flex flex-col gap-1">
+				<p class="text-xs text-spotify-icon-light">
+					{{ $t('playlist.for_you.description') }}
+				</p>
+				<h2 class="text-3xl font-bold">
+					{{ $t('playlist.for_you') }}
+				</h2>
+			</div>
 
 			<!-- Recommended Playlists -->
 			<div class="flex flex-wrap gap-4">
