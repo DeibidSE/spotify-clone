@@ -3,7 +3,7 @@
 		<div class="flex flex-col gap-6 px-6 py-4 overflow-x-hidden">
 			<!-- Pills Filter -->
 			<div class="flex gap-2">
-				<OthersPillFilter
+				<CommonPillFilter
 					v-for="pill in pills"
 					:key="pill"
 					:filter-text="pill"
@@ -28,6 +28,7 @@
 			<h1 class="text-3xl font-bold">
 				{{ $t('playlist.for_you') }}
 			</h1>
+			<OthersGreetingMessage />
 
 			<!-- Recommended Playlists -->
 			<div class="flex flex-wrap gap-4">

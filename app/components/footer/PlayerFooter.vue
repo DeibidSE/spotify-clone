@@ -1,7 +1,7 @@
 <template>
 	<!-- Song Playing Info Section -->
 	<div class="flex items-center justify-start w-[30%] min-w-44">
-		<CardsCurrentSongDetails />
+		<CardsNowPlayingCard />
 	</div>
 
 	<!-- Song Controls and Time Slider Section -->
@@ -51,13 +51,13 @@
 			</button>
 
 			<!-- Loop Song Button -->
-			<ControlsLoopButton
+			<ControlsRepeatButton
 				aria-label="Toggle Loop"
 			/>
 		</div>
 
 		<!-- Song Time Slider -->
-		<ControlsSeekBar
+		<ControlsSongProgressBar
 			:current-time="simPlayer.currentTime"
 			:duration="simPlayer.duration"
 			aria-label="Song Progress"

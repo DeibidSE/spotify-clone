@@ -18,7 +18,7 @@
 					<span class="hover:text-white">{{ $t('album.single') }}</span>
 				</th>
 				<th class="px-4 py-2">
-					<ToolTip
+					<CommonToolTip
 						:tooltip-text="$t('track.duration')"
 						position="top"
 					>
@@ -26,7 +26,7 @@
 							name="my-icon:time"
 							class="hover:text-white"
 						/>
-					</ToolTip>
+					</CommonToolTip>
 				</th>
 			</tr>
 		</thead>

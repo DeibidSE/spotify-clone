@@ -1,6 +1,6 @@
 <template>
 	<div class="flex justify-center gap-3 text-white w-36">
-		<ToolTip
+		<CommonToolTip
 			:tooltip-text="$t('player.mute')"
 			position="top"
 		>
@@ -18,7 +18,7 @@
 					name="my-icon:volume"
 				/>
 			</button>
-		</ToolTip>
+		</CommonToolTip>
 		<ControlsSliderComponent
 			:max="100"
 			:value="props.volume !== undefined ? props.volume * 100 : playerStore.volume * 100"

@@ -15,7 +15,7 @@
 	<!-- Home button + Search -->
 	<nav class="flex items-center justify-center flex-1 gap-4 w-[40%]">
 		<!-- Home Button -->
-		<ToolTip
+		<CommonToolTip
 			:tooltip-text="$t('navigation.home')"
 			position="bottom"
 		>
@@ -29,12 +29,12 @@
 					class="text-2xl"
 				/>
 			</NuxtLink>
-		</ToolTip>
+		</CommonToolTip>
 
 		<!-- Search Input -->
 		<div class="relative w-full max-w-lg">
 			<div class="absolute h-full -translate-y-1/2 left-4 top-1/2 text-spotify-steel">
-				<ToolTip
+				<CommonToolTip
 					:tooltip-text="$t('search.title')"
 					position="bottom"
 				>
@@ -43,7 +43,7 @@
 						class="text-2xl transition-transform cursor-pointer hover:text-white hover:scale-105"
 						@click="focusSearchInput"
 					/>
-				</ToolTip>
+				</CommonToolTip>
 			</div>
 			<NuxtLink
 				to="/search"
@@ -57,7 +57,7 @@
 					aria-label="Search"
 				>
 				<div class="absolute items-center h-full -translate-y-1/2 right-4 top-1/2 text-spotify-steel">
-					<ToolTip
+					<CommonToolTip
 						:tooltip-text="$t('navigation.explore')"
 						position="bottom"
 					>
@@ -72,7 +72,7 @@
 								class="transition-transform hover:text-white hover:scale-105"
 							/>
 						</NuxtLink>
-					</ToolTip>
+					</CommonToolTip>
 				</div>
 			</NuxtLink>
 		</div>
@@ -94,7 +94,7 @@
 			</div>
 
 			<!-- News Button -->
-			<ToolTip
+			<CommonToolTip
 				:tooltip-text="$t('updates.title')"
 				position="bottom"
 			>
@@ -105,10 +105,10 @@
 				>
 					<Icon name="my-icon:bell" />
 				</NuxtLink>
-			</ToolTip>
+			</CommonToolTip>
 
 			<!-- Friends Activity Button -->
-			<ToolTip
+			<CommonToolTip
 				:tooltip-text="$t('social.friends_activity')"
 				position="bottom"
 			>
@@ -118,7 +118,7 @@
 				>
 					<Icon name="my-icon:social" />
 				</button>
-			</ToolTip>
+			</CommonToolTip>
 		</div>
 
 		<!-- User Dropdown -->

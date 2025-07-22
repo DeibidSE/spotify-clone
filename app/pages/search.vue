@@ -59,7 +59,7 @@
 					{{ $t('browse.all') }}
 				</h2>
 				<div class="flex flex-wrap gap-6">
-					<CardsSearchCover
+					<CardsSearchCard
 						v-for="list in lists"
 						:key="list.name"
 						:list="list"

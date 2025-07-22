@@ -68,7 +68,7 @@
 				v-if="!playerStore.isGridCollapsed"
 				class="flex flex-wrap w-full gap-3 p-2"
 			>
-				<OthersPillFilter
+				<CommonPillFilter
 					v-for="(filter, key) in filters"
 					:key="key"
 					:filter-text="filter"

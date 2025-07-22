@@ -9,7 +9,7 @@ export const playlists: Playlist[] = [
 	{ id: 'late_night_vibes', title: 'Late Night Vibes', color: '#91FE06', cover: '/music/late_night_vibes/cover.webp', genre: 'Chill', type: 'music', isAlbum: true, saved: false },
 	{ id: 'summer_vibes', title: 'Summer Vibes', color: '#4DB8F4', cover: '/music/summer_vibes/cover.webp', genre: 'Pop', type: 'music', isAlbum: true, saved: false },
 	{ id: 'avicii', title: 'Avicii', color: '#7A2986', cover: '/music/avicii/cover.webp', genre: 'EDM', type: 'artist', isAlbum: false, saved: true },
-	{ id: 'the_knowledge_hub', title: 'The Knowledge Hub', color: '#3A1253', cover: '/music/the_knowledge_hub/cover.webp', genre: 'Podcast', type: 'podcast', isAlbum: true, saved: false },
+	{ id: 'the_knowledge_hub', title: 'The Knowledge Hub', color: '#3A1253', cover: '/music/the_knowledge_hub/cover.webp', genre: 'Podcasts', type: 'podcast', isAlbum: true, saved: false },
 	{ id: 'funky_grooves', title: 'Funky Grooves', color: '#E0C7AE', cover: '/music/funky_grooves/cover.webp', genre: 'Funk', type: 'music', isAlbum: true, saved: false },
 ]
 
