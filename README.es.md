@@ -1,4 +1,4 @@
-# Clon de Spotify con Nuxt 3
+# Clon de Spotify con Nuxt 4
 
 > [!WARNING]  
 > Este proyecto está sin finalizar y puede contener errores y/o funcionalidades sin desarrollar
