@@ -1,13 +1,13 @@
 import type { Song, Playlist } from './types.d'
 
 export const playlists: Playlist[] = [
-	{ id: 'link_in_park', title: 'Link In Park', color: '#fe9ca7', cover: '/music/link_in_park/cover.webp', genre: 'Nu-Metal', type: 'music', isAlbum: true, saved: true },
+	{ id: 'link_in_park', title: 'This is Link In Park', color: '#fe9ca7', cover: '/music/link_in_park/cover.webp', genre: 'Nu-Metal', type: 'music', isAlbum: true, saved: false },
 	{ id: 'rock_hits', title: 'Rock Hits', color: '#9D1B1D', cover: '/music/rock_hits/cover.webp', genre: 'Rock', type: 'music', isAlbum: true, saved: false },
 	{ id: 'pop', title: 'Pop Essentials', color: '#F5632B', cover: '/music/pop/cover.webp', genre: 'Pop', type: 'music', isAlbum: true, saved: true },
 	{ id: 'trap_vibes', title: 'Trap Vibes', color: '#0B0201', cover: '/music/trap_vibes/cover.webp', genre: 'Electronic', type: 'music', isAlbum: true, saved: true },
 	{ id: 'electronic_dance', title: 'Electronic Dance', color: '#4F021D', cover: '/music/electronic_dance/cover.webp', genre: 'Electronic', type: 'music', isAlbum: true, saved: true },
 	{ id: 'late_night_vibes', title: 'Late Night Vibes', color: '#91FE06', cover: '/music/late_night_vibes/cover.webp', genre: 'Chill', type: 'music', isAlbum: true, saved: false },
-	{ id: 'summer_vibes', title: 'Summer Vibes', color: '#4DB8F4', cover: '/music/summer_vibes/cover.webp', genre: 'Pop', type: 'music', isAlbum: true, saved: false },
+	{ id: 'summer_vibes', title: 'Summer Vibes', color: '#4DB8F4', cover: '/music/summer_vibes/cover.webp', genre: 'Pop', type: 'music', isAlbum: true, saved: true },
 	{ id: 'avicii', title: 'Avicii', color: '#7A2986', cover: '/music/avicii/cover.webp', genre: 'EDM', type: 'artist', isAlbum: false, saved: true },
 	{ id: 'the_knowledge_hub', title: 'The Knowledge Hub', color: '#3A1253', cover: '/music/the_knowledge_hub/cover.webp', genre: 'Podcasts', type: 'podcast', isAlbum: true, saved: false },
 	{ id: 'funky_grooves', title: 'Funky Grooves', color: '#E0C7AE', cover: '/music/funky_grooves/cover.webp', genre: 'Funk', type: 'music', isAlbum: true, saved: false },
