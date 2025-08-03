@@ -3,10 +3,12 @@ export interface Playlist {
 	title: string
 	color: string
 	cover?: string
+	header?: string
 	genre: string
 	type: 'music' | 'podcast' | 'artist'
 	saved: boolean
 	isAlbum: boolean
+	public: boolean
 }
 
 export interface Song {
