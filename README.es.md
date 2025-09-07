@@ -11,7 +11,9 @@
 
 # Descripción
 
-Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo a los usuarios explorar, buscar y reproducir diferentes canciones y/o álbumes, entre otras funcionalidades.
+Este clon de Spotify ofrece una interfaz de usuario similar a la aplicación oficial de Spotify, permitiendo explorar, buscar y reproducir diferentes canciones* y/o álbumes, entre otras funcionalidades.
+
+**Nota:** *Por razones obvias de derechos de autor, no puedo incluir música real, por lo que el reproductor simula la reproducción, pero sin sonido.*
 
 # Instalación
 
@@ -45,7 +47,7 @@ npm run dev
 
 ## Contribuciones
 
-¡Las contribuciones son siempre bienvenidas! Si encuentras algún problema o tienes alguna sugerencia, no dudes en enviar un pull request. ¡Siempre se agradece cualquier colaboración por pequeña que sea!
+¡Las contribuciones son siempre bienvenidas! Si encuentras algún problema o tienes alguna sugerencia, no dudes en enviar un pull request. Siempre se agradece cualquier colaboración por pequeña que sea
 
 ## Créditos
 
