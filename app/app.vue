@@ -1,7 +1,8 @@
 <template>
 	<div
 		class="grid h-screen gap-2 p-2 overflow-hidden spotify_grid"
-		:class="{ collapsed: isCollapsed }"
+		:class="{ collapsed: playerStore.isGridCollapsed, resizing: isResizing }"
+		:style="gridStyle"
 	>
 		<header class="[grid-area:header] w-full z-50 flex items-center justify-between min-w-fit gap-2">
 			<HeaderMenu />
@@ -23,11 +24,28 @@
 
 <script setup lang="ts">
 const playerStore = usePlayerStore()
-const isCollapsed = ref(playerStore.isGridCollapsed)
+const library = useLibraryStore()
 
-watch(() => playerStore.isGridCollapsed, (newValue) => {
-	isCollapsed.value = newValue
+const isResizing = computed(() => library.isResizing)
+
+// Sidebar column width is driven by the library store (drag-to-resize, persisted).
+const gridStyle = computed(() => ({
+	'--sidebar-width': playerStore.isGridCollapsed ? '80px' : `${library.sidebarWidth}px`,
+}))
+
+// Responsive: auto-collapse the sidebar on narrow viewports, like Spotify Web.
+const applyResponsive = () => {
+	if (typeof window === 'undefined') return
+	if (window.innerWidth < 768 && !playerStore.isGridCollapsed) {
+		playerStore.setGridCollapsed(true)
+	}
+}
+
+onMounted(() => {
+	applyResponsive()
+	window.addEventListener('resize', applyResponsive)
 })
+onUnmounted(() => window.removeEventListener('resize', applyResponsive))
 </script>
 
 <style scoped>
@@ -36,12 +54,13 @@ watch(() => playerStore.isGridCollapsed, (newValue) => {
 		"header header"
     "left-sidebar main-view"
     "now-playing-bar now-playing-bar";
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: var(--sidebar-width, 350px) 1fr;
   grid-template-rows: auto 1fr auto;
   transition: grid-template-columns 0.3s ease;
 }
 
-.spotify_grid.collapsed {
-  grid-template-columns: 80px 1fr;
+/* Disable the column transition while dragging so resize feels 1:1. */
+.spotify_grid.resizing {
+  transition: none;
 }
 </style>

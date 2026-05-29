@@ -1,180 +1,310 @@
 <template>
-	<nav class="flex flex-col h-full gap-2 overflow-y-hidden group">
-		<div class="flex flex-col w-full h-full gap-2 p-2 overflow-x-hidden overflow-y-auto rounded-lg bg-spotify-obsidian">
+	<nav class="relative flex flex-col h-full group">
+		<div class="flex flex-col w-full h-full overflow-hidden rounded-lg bg-spotify-obsidian">
+			<!-- Header (fixed) -->
 			<header
-				class="flex items-center text-spotify-steel"
-				:class="playerStore.isGridCollapsed ? 'justify-center px-4 py-3' : 'justify-between px-4 py-1'"
+				class="flex items-center flex-none gap-2 px-4 pt-3 pb-2"
+				:class="playerStore.isGridCollapsed ? 'flex-col' : 'justify-between'"
 			>
-				<!-- Panel Left Button -->
-				<div
-					v-if="!playerStore.isGridCollapsed"
-					class="relative flex items-center w-full font-bold transition duration-200 hover:cursor-pointer"
-					aria-label="Collapse Left Panel"
-					@click="collapseLeftPanel"
+				<button
+					class="flex items-center gap-3 font-bold transition-colors text-spotify-steel hover:text-white"
+					:aria-label="$t('library.collapse')"
+					@click="toggleCollapse"
 				>
 					<Icon
-						name="my-icon:library"
-						class="absolute left-0 transition-all duration-200 transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 hover:text-white"
+						:name="playerStore.isGridCollapsed ? 'my-icon:compact-library' : 'my-icon:library'"
+						class="flex-none text-2xl"
 						aria-hidden="true"
 					/>
-					<span class="pl-0 text-white truncate transition-all duration-200 group-hover:pl-6">
+					<span
+						v-if="!playerStore.isGridCollapsed"
+						class="text-white"
+					>
 						{{ $t('library.title') }}
 					</span>
-				</div>
+				</button>
 
-				<!-- Collapse/Expand Button when Grid is Collapsed -->
 				<div
-					v-else
-					class="flex flex-col items-center justify-center gap-4"
+					class="flex items-center gap-1"
+					:class="{ 'flex-col': playerStore.isGridCollapsed }"
 				>
-					<Icon
-						name="my-icon:compact-library"
-						class="text-2xl cursor-pointer hover:text-white"
-						aria-label="Expand Grid"
-						@click="collapseLeftPanel"
-					/>
 					<button
-						class="p-2 text-3xl font-thin leading-4 transition-colors duration-200 rounded-full bg-spotify-midnight hover:bg-spotify-shadow"
-						aria-label="Add New Playlist"
+						v-if="playerStore.isGridCollapsed"
+						class="p-2 text-2xl font-thin leading-4 transition-colors rounded-full bg-spotify-midnight hover:bg-spotify-shadow hover:text-white"
+						:aria-label="$t('playlist.create_playlist')"
+						@click="createPlaylist"
 					>
 						+
 					</button>
-				</div>
-
-				<!-- Create Button and Expand Icon when Grid is Expanded -->
-				<div
-					v-if="!playerStore.isGridCollapsed"
-					class="flex items-center gap-2"
-				>
 					<button
-						class="flex items-center gap-2 px-4 py-2 font-thin transition-colors duration-200 rounded-full bg-spotify-midnight hover:bg-spotify-shadow"
-						aria-label="Create New Playlist"
+						v-else
+						class="flex items-center gap-2 px-3 py-2 text-sm font-bold transition-colors rounded-full bg-spotify-midnight text-spotify-steel hover:bg-spotify-shadow hover:text-white hover:scale-105"
+						:aria-label="$t('playlist.create_playlist')"
+						@click="createPlaylist"
 					>
-						<span class="text-3xl leading-4">+</span>
-						<span class="text-sm font-bold text-white">{{ $t('playlist.create') }}</span>
+						<span class="text-xl leading-4">+</span>
+						<span>{{ $t('playlist.create') }}</span>
 					</button>
+
 					<button
-						class="p-2 transition rounded-full cursor-pointer hover:text-white hover:bg-spotify-midnight"
-						aria-label="Expand Grid"
-						@click="expandLeftPanel"
+						v-if="!playerStore.isGridCollapsed"
+						class="p-2 transition-colors rounded-full text-spotify-steel hover:text-white hover:bg-spotify-midnight"
+						:aria-label="isExpanded ? $t('library.reduce') : $t('library.expand')"
+						@click="toggleExpand"
 					>
-						<Icon name="my-icon:expand" />
+						<Icon :name="isExpanded ? 'my-icon:reduce' : 'my-icon:expand'" />
 					</button>
 				</div>
 			</header>
 
-			<!-- Sidebar Filter Pills -->
+			<!-- Filter pills (fixed) -->
 			<div
 				v-if="!playerStore.isGridCollapsed"
-				class="flex flex-wrap w-full gap-3 p-2"
+				class="flex items-center flex-none gap-2 px-2 pb-1"
 			>
-				<CommonPillFilter
-					v-for="(filter, key) in filters"
-					:key="key"
-					:filter-text="filter"
-					:is-selected="filter === selectedSidebarFilter"
-					aria-label="Filter by {{ filter }}"
-					@select="applyFilter(filter)"
-				/>
+				<button
+					v-if="library.filter !== 'all'"
+					class="flex-none p-1.5 transition-colors rounded-full text-spotify-steel bg-spotify-snow hover:text-white"
+					:aria-label="$t('library.clear_filter')"
+					@click="library.setFilter(library.filter)"
+				>
+					<Icon name="my-icon:close" />
+				</button>
+				<div class="flex flex-wrap gap-2">
+					<CommonPillFilter
+						v-for="f in visibleFilters"
+						:key="f.key"
+						:filter-text="f.label"
+						:is-selected="library.filter === f.key"
+						@select="library.setFilter(f.key)"
+					/>
+				</div>
 			</div>
 
-			<!-- Playlists -->
-			<div class="h-full overflow-x-hidden overflow-y-auto">
-				<NuxtLink
-					v-for="(playlist, key) in filteredPlayLists"
-					:key="key"
-					:to="`/playlist/${playlist.id}`"
-					class="flex items-center justify-center gap-5 py-2 truncate transition rounded-md hover:bg-spotify-midnight"
-					:class="{ 'text-spotify-electric-green': playlistPlaying === playlist.id }"
-					aria-label="Go to Playlist: {{ playlist.title }}"
-				>
-					<!-- Playlist Image -->
-					<picture class="flex-none w-12 h-12">
-						<img
-							:src="playlist.cover ? playlist.cover : '/img/no_image.webp'"
-							:alt="`Cover of the list ${playlist.title}`"
-							:class="[
-								'object-cover w-full h-full aspect-square',
-								playlist.isAlbum ? 'rounded-md' : 'rounded-full',
-							]"
-							@error="onImageError"
-						>
-					</picture>
+			<!-- Search + sort (fixed) -->
+			<SidebarLibraryToolbar
+				v-if="!playerStore.isGridCollapsed"
+				class="flex-none py-1"
+			/>
 
-					<!-- Playlist Info -->
-					<div
-						v-if="!playerStore.isGridCollapsed"
-						class="flex flex-col w-full truncate"
+			<!-- Scrollable list (the ONLY scroll container) -->
+			<div class="flex-1 px-2 pb-2 overflow-x-hidden overflow-y-auto sidebar-scroll">
+				<ul>
+					<li
+						v-for="item in library.visibleItems"
+						:key="item.id"
 					>
-						<h4 class="text-sm truncate">{{ playlist.title }}</h4>
-						<span
-							v-if="playlist.isAlbum"
-							class="text-xs truncate text-white/70"
-						>
-							{{ `${$t('playlist.title')} • DeibidSE` }}
-						</span>
-						<span
-							v-else
-							class="text-xs truncate text-white/70"
-						>
-							{{ $t('playlist.artist') }}
-						</span>
-					</div>
-
-					<!-- Playing Indicator -->
-					<div
-						v-if="playlistPlaying === playlist.id && playerStore.isPlaying"
-						class="text-sm"
-					>
-						<Icon
-							name="my-icon:volume"
-							aria-hidden="true"
+						<SidebarPlaylistRow
+							:item="item"
+							:collapsed="playerStore.isGridCollapsed"
+							:active="activeId === item.id"
+							:is-current="currentPlaylistId === item.id"
+							:is-playing="playerStore.isPlaying"
+							:editing="editingId === item.id"
+							@rename="onRename(item.id, $event)"
+							@cancel-edit="editingId = null"
+							@contextmenu="openContext(item, $event)"
 						/>
-					</div>
-				</NuxtLink>
+					</li>
+				</ul>
+
+				<!-- Empty state for in-library search -->
+				<div
+					v-if="!library.hasResults"
+					class="px-3 py-6 text-sm text-spotify-steel"
+				>
+					<template v-if="library.query">
+						<p class="font-bold text-white">
+							{{ $t('library.no_results_title') }} "{{ library.query }}"
+						</p>
+						<p class="mt-1">
+							{{ $t('search.no_results_advice') }}
+						</p>
+					</template>
+					<p v-else>
+						{{ $t('library.empty') }}
+					</p>
+				</div>
 			</div>
 		</div>
+
+		<!-- Resize handle -->
+		<div
+			v-if="!playerStore.isGridCollapsed"
+			class="absolute top-0 right-0 z-20 w-1 h-full cursor-col-resize hover:bg-white/20"
+			:class="{ 'bg-white/20': library.isResizing }"
+			aria-hidden="true"
+			@mousedown.prevent="startResize"
+		/>
+
+		<!-- Context menu -->
+		<SidebarContextMenu
+			v-if="contextItem"
+			:item="contextItem"
+			:x="contextPos.x"
+			:y="contextPos.y"
+			@pin="onPin"
+			@rename="onStartRename"
+			@remove="onRemove"
+			@close="contextItem = null"
+		/>
+
+		<!-- Delete confirmation -->
+		<CommonConfirmDialog
+			v-if="pendingDelete"
+			:title="$t('library.delete_confirm_title')"
+			:body="$t('library.delete_confirm_body', { name: pendingDelete.title })"
+			:confirm-label="$t('library.delete')"
+			@confirm="confirmDelete"
+			@cancel="pendingDelete = null"
+		/>
 	</nav>
 </template>
 
 <script setup lang="ts">
-import { playlists } from '@/lib/data'
+import type { LibraryFilter, LibraryItem } from '@/lib/types.d'
 
 const playerStore = usePlayerStore()
+const library = useLibraryStore()
+const route = useRoute()
 const { t } = useI18n()
 
-const selectedSidebarFilter = ref<string>('')
+const editingId = ref<string | null>(null)
+const contextItem = ref<LibraryItem | null>(null)
+const contextPos = reactive({ x: 0, y: 0 })
 
-const filters = computed(() => [t('view.lists'), t('artist.plural'), t('album.plural')])
-const filteredPlayLists = computed(() => {
-	const base = playlists.filter(p => p.saved)
+const filterDefs = computed<{ key: LibraryFilter, label: string }[]>(() => [
+	{ key: 'playlists', label: t('library.filter.playlists') },
+	{ key: 'artists', label: t('artist.plural') },
+	{ key: 'albums', label: t('album.plural') },
+])
 
-	if (selectedSidebarFilter.value === t('artist.plural')) {
-		return base.filter(p => p.type === 'artist')
+// When a filter is active, hide the others and show just the active one.
+const visibleFilters = computed(() =>
+	library.filter === 'all'
+		? filterDefs.value
+		: filterDefs.value.filter(f => f.key === library.filter),
+)
+
+const activeId = computed(() =>
+	route.path.startsWith('/playlist/') ? String(route.params.id) : null,
+)
+const currentPlaylistId = computed(() => playerStore.currentMusic?.playlist?.id)
+
+const DEFAULT_WIDTH = 350
+const EXPANDED_WIDTH = 540
+const MAX_WIDTH = 600
+
+const toggleCollapse = () => playerStore.setGridCollapsed(!playerStore.isGridCollapsed)
+
+// "Expand" widens the library panel (it does not collapse it).
+const isExpanded = computed(() => library.sidebarWidth >= EXPANDED_WIDTH)
+const toggleExpand = () => {
+	playerStore.setGridCollapsed(false)
+	library.setSidebarWidth(isExpanded.value ? DEFAULT_WIDTH : EXPANDED_WIDTH)
+}
+
+const createPlaylist = () => {
+	library.setFilter('all')
+	library.toggleSearch(false)
+	const id = library.createPlaylist()
+	editingId.value = id
+}
+
+const onRename = (id: string, title: string) => {
+	library.renamePlaylist(id, title)
+	editingId.value = null
+}
+
+const openContext = (item: LibraryItem, event: MouseEvent) => {
+	contextItem.value = item
+	contextPos.x = event.clientX
+	contextPos.y = event.clientY
+}
+
+const onPin = () => {
+	if (contextItem.value) library.togglePin(contextItem.value.id)
+	contextItem.value = null
+}
+
+const onStartRename = () => {
+	if (contextItem.value) editingId.value = contextItem.value.id
+	contextItem.value = null
+}
+
+const pendingDelete = ref<LibraryItem | null>(null)
+
+const onRemove = () => {
+	const item = contextItem.value
+	contextItem.value = null
+	if (!item) return
+	// User-created playlists are destructive to delete → ask for confirmation,
+	// like Spotify. Saved albums/artists are removed silently.
+	if (item.isUserCreated) {
+		pendingDelete.value = item
+	} else {
+		library.removeItem(item.id)
 	}
+}
 
-	if (selectedSidebarFilter.value === t('album.plural')) {
-		return base.filter(p => p.type === 'music' && p.isAlbum)
+const confirmDelete = async () => {
+	const item = pendingDelete.value
+	pendingDelete.value = null
+	if (!item) return
+	library.removeItem(item.id)
+	// If we were viewing the playlist we just deleted, leave its (now empty) page.
+	if (route.path === `/playlist/${item.id}`) await navigateTo('/')
+}
+
+// Mark a playlist as recently played so the "Recents" sort reflects it.
+watch(currentPlaylistId, id => library.markPlayed(id))
+
+// --- Resize ---
+const startResize = (event: MouseEvent) => {
+	library.setResizing(true)
+	const startX = event.clientX
+	const startWidth = library.sidebarWidth
+	document.body.style.userSelect = 'none'
+
+	const onMove = (e: MouseEvent) => {
+		const width = startWidth + (e.clientX - startX)
+		if (width < 200) {
+			playerStore.setGridCollapsed(true)
+			stop()
+		} else {
+			playerStore.setGridCollapsed(false)
+			library.setSidebarWidth(Math.min(width, MAX_WIDTH))
+		}
 	}
-
-	return base
-})
-
-const playlistPlaying = computed(() => playerStore.currentMusic?.playlist?.id)
-
-const collapseLeftPanel = () => {
-	playerStore.setGridCollapsed(!playerStore.isGridCollapsed)
-}
-
-const expandLeftPanel = () => {
-	// TODO: Implement expand functionality
-}
-
-const applyFilter = (filter: string) => {
-	selectedSidebarFilter.value = selectedSidebarFilter.value === filter ? t('view.lists') : filter
-}
-
-const onImageError = (event: Event) => {
-	(event.target as HTMLImageElement).src = '/img/no_image.webp'
+	const stop = () => {
+		library.setResizing(false)
+		document.body.style.userSelect = ''
+		document.removeEventListener('mousemove', onMove)
+		document.removeEventListener('mouseup', stop)
+	}
+	document.addEventListener('mousemove', onMove)
+	document.addEventListener('mouseup', stop)
 }
 </script>
+
+<style scoped>
+.sidebar-scroll {
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+}
+.sidebar-scroll:hover {
+	scrollbar-color: #4d4d4d transparent;
+}
+.sidebar-scroll::-webkit-scrollbar {
+	width: 12px;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+	background-color: transparent;
+	border: 3px solid transparent;
+	background-clip: content-box;
+	border-radius: 8px;
+}
+.sidebar-scroll:hover::-webkit-scrollbar-thumb {
+	background-color: #4d4d4d;
+}
+</style>

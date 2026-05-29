@@ -9,7 +9,7 @@
 		>
 			<component
 				:is="isArtistPage ? ViewsArtistView : ViewsPlaylistView"
-				:playlists="playlists"
+				:playlists="allPlaylists"
 				:songs="playlistSongs"
 			/>
 		</div>
@@ -30,9 +30,16 @@ const ViewsArtistView = resolveComponent('ViewsArtistView')
 const ViewsPlaylistView = resolveComponent('ViewsPlaylistView')
 
 const route = useRoute()
+const library = useLibraryStore()
+
+// User-created playlists live in the library store, not in the static data.
+const allPlaylists = computed<Playlist[]>(() => [
+	...playlists,
+	...library.items.filter(i => !playlists.some(p => p.id === i.id)),
+])
 
 const id = computed(() => route.params.id)
-const playlist = computed(() => playlists.find((p: Playlist) => p?.id === id.value))
+const playlist = computed(() => allPlaylists.value.find((p: Playlist) => p?.id === id.value))
 const isArtistPage = computed(() => playlist.value?.type === 'artist')
 const playlistSongs = computed(() => songs.filter((song: Song) => song.albumId === playlist.value?.id))
 </script>
