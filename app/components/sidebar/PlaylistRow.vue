@@ -94,7 +94,7 @@
 
 <script setup lang="ts">
 import { itemCreator } from '@/stores/libraryStore'
-import type { LibraryItem } from '@/lib/types.d'
+import type { LibraryItem } from '~/types'
 
 const props = defineProps<{
 	item: LibraryItem

@@ -162,7 +162,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LibraryFilter, LibraryItem } from '@/lib/types.d'
+import type { LibraryFilter, LibraryItem } from '~/types'
 
 const playerStore = usePlayerStore()
 const library = useLibraryStore()

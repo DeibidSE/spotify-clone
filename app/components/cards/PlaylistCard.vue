@@ -79,8 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { songs } from '@/lib/data'
-import type { Playlist, Song } from '@/lib/types'
+import type { Playlist, Song } from '~/types'
 
 const props = defineProps<{
 	playlist: Playlist

@@ -243,7 +243,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Playlist, Song } from '@/lib/types'
+import type { Playlist, Song } from '~/types'
 
 interface MenuOption {
 	key: string

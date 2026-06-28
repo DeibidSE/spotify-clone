@@ -23,8 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists, songs } from '@/lib/data'
-import type { Playlist, Song } from '@/lib/types'
+import type { Playlist, Song } from '~/types'
 
 const ViewsArtistView = resolveComponent('ViewsArtistView')
 const ViewsPlaylistView = resolveComponent('ViewsPlaylistView')

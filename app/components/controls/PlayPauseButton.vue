@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Song, Playlist } from '@/lib/types.d'
+import type { Song, Playlist } from '~/types'
 
 const props = defineProps<{
 	id: string | string[]

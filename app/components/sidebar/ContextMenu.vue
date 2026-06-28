@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LibraryItem } from '@/lib/types.d'
+import type { LibraryItem } from '~/types'
 
 const props = defineProps<{
 	item: LibraryItem

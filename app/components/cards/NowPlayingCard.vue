@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Song } from '@/lib/types.d'
+import type { Song } from '~/types'
 
 const playerStore = usePlayerStore()
 

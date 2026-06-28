@@ -61,8 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { playlists } from '@/lib/data'
-import type { Playlist } from '@/lib/types'
+import type { Playlist } from '~/types'
 
 const { t } = useI18n()
 

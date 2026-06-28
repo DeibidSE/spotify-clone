@@ -71,8 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Song, Playlist } from '@/lib/types.d'
-import { songs, playlists } from '@/lib/data'
+import type { Song, Playlist } from '~/types'
 
 const playerStore = usePlayerStore()
 const searchStore = useSearchStore()

@@ -107,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Playlist, Song } from '@/lib/types.d'
+import type { Playlist, Song } from '~/types'
 
 const songsProp = defineProps<{ songs: Song[], playlist: Playlist }>()
 

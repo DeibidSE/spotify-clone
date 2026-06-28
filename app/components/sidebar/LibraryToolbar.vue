@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LibrarySort } from '@/lib/types.d'
+import type { LibrarySort } from '~/types'
 
 const library = useLibraryStore()
 const { t } = useI18n()

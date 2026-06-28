@@ -1,4 +1,4 @@
-import { playlists, songs } from '@/lib/data'
+import { playlists, songs } from '@/utils/data'
 
 export default defineEventHandler((event) => {
 	try {

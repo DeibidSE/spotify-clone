@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import { playlists } from '@/lib/data'
-import type { LibraryFilter, LibraryItem, LibrarySort } from '@/lib/types.d'
+import type { LibraryFilter, LibraryItem, LibrarySort } from '~/types'
 
 /** Owner label shown in subtitles / used by the "Creator" sort. */
 const DEFAULT_OWNER = 'DeibidSE'
